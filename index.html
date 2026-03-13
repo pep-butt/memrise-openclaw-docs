@@ -143,18 +143,37 @@
     ul, ol { margin: 0; padding-left: 20px; }
     li { margin: 7px 0; }
     .toc-inline {
+      margin-top: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: #fff;
+      overflow: hidden;
+    }
+    .toc-inline summary {
+      list-style: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      font-weight: 700;
+    }
+    .toc-inline summary::-webkit-details-marker { display: none; }
+    .toc-inline .toc-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 12px;
-      margin-top: 18px;
+      gap: 10px;
+      padding: 0 16px 16px;
     }
-    .toc-inline div {
+    .toc-inline a {
+      display: block;
+      text-decoration: none;
+      color: var(--text);
       border: 1px solid var(--line);
-      background: #fff;
-      border-radius: 14px;
-      padding: 12px 14px;
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 10px 12px;
       font-weight: 600;
+      font-size: 14px;
     }
+    .toc-inline a:hover { border-color: var(--accent); color: var(--accent); }
     .tableish { display: grid; gap: 12px; }
     .row {
       display: grid;
@@ -252,14 +271,19 @@
         <h1>Memrise × OpenClaw Implementation Documentation</h1>
         <p class="lead">This document argues that Memrise should use OpenClaw as a tightly scoped internal AI operating layer, starting with one serious technical workflow rather than a broad multi-agent rollout. The first goal is to prove operational leverage safely, not to maximize visible autonomy.</p>
         <div class="callout" style="margin-top:16px;"><strong>Recommendation in one sentence:</strong> Memrise should implement OpenClaw as an internal orchestration layer that routes work between people, agents, tools, and approvals — starting with BMO as a bounded coding execution agent and avoiding broad platform sprawl until that path is proven.</div>
-        <div class="toc-inline">
-          <div>Why Memrise needs this</div>
-          <div>What I would recommend first</div>
-          <div>Why BMO is the right first workflow</div>
-          <div>How non-developers should use it</div>
-          <div>Where the real risks are</div>
-          <div>How to control cost and complexity</div>
-        </div>
+        <details class="toc-inline">
+          <summary>Contents</summary>
+          <div class="toc-grid">
+            <a href="#problem">Why Memrise needs this</a>
+            <a href="#architecture">Architecture</a>
+            <a href="#bmo">Why BMO first</a>
+            <a href="#practical">Practical example</a>
+            <a href="#security">Security</a>
+            <a href="#cost">Cost and mitigation</a>
+            <a href="#rollout">Rollout plan</a>
+            <a href="#appendix">Appendix</a>
+          </div>
+        </details>
         <div class="callout" style="margin-top:16px;"><strong>The trap to avoid:</strong> trying to turn OpenClaw into a broad AI platform before Memrise has proved one workflow, one review path, one trust model, and one clear owner.</div>
       </section>
 

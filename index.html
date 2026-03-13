@@ -60,6 +60,8 @@
       margin: 0 0 12px;
     }
     .intro { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
+    .sidebar-menu { margin-top: 0; }
+    .sidebar-menu summary { display: none; }
     nav { display: grid; gap: 6px; }
     nav a {
       display: block;
@@ -225,7 +227,21 @@
         height: auto;
         border-right: none;
         border-bottom: 1px solid var(--line);
+        padding: 16px 16px 18px;
       }
+      .sidebar-menu summary {
+        display: block;
+        cursor: pointer;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: #fff;
+        font-weight: 700;
+        margin-top: 12px;
+      }
+      .sidebar-menu nav { display: none; margin-top: 10px; }
+      .sidebar-menu[open] nav { display: grid; }
+      .meta-box { display: none; }
       main { padding: 22px 16px 60px; }
       h1 { font-size: 34px; }
       h2 { font-size: 26px; }
@@ -240,23 +256,26 @@
       <div class="brand">Implementation Docs</div>
       <div class="title">Memrise × OpenClaw</div>
       <div class="intro">Comprehensive implementation documentation for using OpenClaw effectively inside Memrise, with practical workflow design, security, cost, and rollout guidance.</div>
-      <nav>
-        <a href="#overview">1. Overview</a>
-        <a href="#problem">2. Problem & objective</a>
-        <a href="#architecture">3. Architecture</a>
-        <a href="#bmo">4. BMO as first workflow</a>
-        <a href="#practical">5. Practical example: PodChats</a>
-        <a href="#nondev">6. Non-developer operating model</a>
-        <a href="#security">7. Security concerns</a>
-        <a href="#cost">8. Cost model & mitigation</a>
-        <a href="#rollout">9. Rollout plan</a>
-        <a href="#setup">10. Setup prerequisites</a>
-        <a href="#approval">11. Approval matrix</a>
-        <a href="#runbooks">12. Failure modes & runbooks</a>
-        <a href="#checklist">13. Implementation checklist</a>
-        <a href="#research">14. Research basis</a>
-        <a href="#appendix">15. Setup appendix</a>
-      </nav>
+      <details class="sidebar-menu">
+        <summary>☰ Menu</summary>
+        <nav>
+          <a href="#overview">1. Overview</a>
+          <a href="#problem">2. Problem & objective</a>
+          <a href="#architecture">3. Architecture</a>
+          <a href="#bmo">4. BMO as first workflow</a>
+          <a href="#practical">5. Practical example: PodChats</a>
+          <a href="#nondev">6. Non-developer operating model</a>
+          <a href="#security">7. Security concerns</a>
+          <a href="#cost">8. Cost model & mitigation</a>
+          <a href="#rollout">9. Rollout plan</a>
+          <a href="#setup">10. Setup prerequisites</a>
+          <a href="#approval">11. Approval matrix</a>
+          <a href="#runbooks">12. Failure modes & runbooks</a>
+          <a href="#checklist">13. Implementation checklist</a>
+          <a href="#research">14. Research basis</a>
+          <a href="#appendix">15. Setup appendix</a>
+        </nav>
+      </details>
       <div class="meta-box">
         <strong>Status</strong><br>
         Research-grounded working draft<br><br>

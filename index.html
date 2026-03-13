@@ -736,6 +736,37 @@
         <p style="margin-top:14px;">A Head of AI recommendation has to account not just for technical architecture, but for the fact that organizational ambiguity can kill agent deployments even when the tooling works.</p>
       </section>
 
+      <section>
+        <div class="tag purple">Mission control</div>
+        <h2>How the system would be managed and maintained</h2>
+        <p>OpenClaw should not be treated as a black box. One of the reasons Command Center matters is that it gives Memrise an operational surface for managing the system, not just a conversational surface for using it.</p>
+        <div class="grid-two">
+          <div class="card">
+            <h3>What Mission Control is for</h3>
+            <ul>
+              <li>seeing live sessions and which agents are active</li>
+              <li>tracking usage and model consumption</li>
+              <li>monitoring cost and session health</li>
+              <li>spotting drift, idle sessions, or abnormal behavior</li>
+              <li>understanding whether the system is saving time or just burning tokens</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Why this matters for Memrise</h3>
+            <ul>
+              <li>it creates operator trust</li>
+              <li>it gives AI work an observable control plane</li>
+              <li>it makes debugging and governance practical</li>
+              <li>it supports cost control rather than vague optimism</li>
+            </ul>
+          </div>
+        </div>
+        <div class="diagram" style="text-align:center;">
+          <img src="assets/command-center.jpg" alt="OpenClaw Command Center screenshot showing sessions, cost, usage, and system health" style="max-width:100%; border-radius:14px; border:1px solid var(--line);" />
+        </div>
+        <p class="muted" style="margin-top:12px;">This is how the system should be operated day to day: not just by prompting agents, but by supervising usage, costs, sessions, and health through Mission Control.</p>
+      </section>
+
       <section id="rollout">
         <div class="tag green">Rollout</div>
         <h2>Recommended rollout plan</h2>

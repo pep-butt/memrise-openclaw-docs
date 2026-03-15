@@ -411,7 +411,8 @@
           <a href="#management">Control layer / mission control</a>
           <a href="#security">Security and governance</a>
           <a href="#cost">Cost control and model routing</a>
-          <a href="#principles">Key operating principles</a>
+          <a href="#principles">Memrise AI operating rules</a>
+          <a href="#success">Success criteria</a>
           <a href="#appendix-rebel">Appendix: leverage vs Rebel</a>
           <a href="#closing">Closing takeaway</a>
         </nav>
@@ -430,6 +431,14 @@
         <div class="eyebrow">🦞 Guide</div>
         <h1>OpenClaw × Memrise</h1>
         <p class="lead">A guide to how a multi-agent operating model could be used inside Memrise: starting from a working personal setup, then translating it into a clearer team model built around separated identities, Slack-based workflows, tracked execution, mission control, and controlled rollout.</p>
+        <div class="callout" style="margin-top:18px;">
+          <strong>Executive summary:</strong> This document argues for a narrow, agent-based operating model inside Memrise, starting with a small number of reviewable workflows, separated identities, mission control, and staged rollout.
+          <ul style="margin-top:10px;">
+            <li>Start with customer service, workflow planning, and selected technical delivery</li>
+            <li>Operate through dedicated agent identities, Slack-based workflows, and visible controls</li>
+            <li>Scale only when security, cost, and supervision are proven</li>
+          </ul>
+        </div>
       </section>
 
       <section id="operating-system">
@@ -577,7 +586,7 @@
         <div class="tag red">Applying this model to Memrise</div>
         <h2>A possible Memrise setup</h2>
         <p class="lead">From here, the document shifts from the current personal setup to a more practical guide for how the same operating logic could be adapted inside Memrise.</p>
-        <p>This is the deliberate pivot from personal proof-of-concept to company implementation: same underlying model, tighter boundaries, clearer roles, and more explicit controls.</p>
+        <p>The current setup matters because it proves the model in miniature. But moving from a personal operating system to a company setting changes the requirements: visibility, permissions, approvals, cost control, and workflow design all become much more important.</p>
       </section>
 
       
@@ -611,7 +620,7 @@
               </div>
             </div>
             <p><strong>Why this is a good first workflow:</strong> customer service is high-volume, repeatable, measurable, and naturally suited to human-in-the-loop review.</p>
-            <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> Zendesk, Slack, help content, and support reporting loops.</p>
+            <p class="muted" style="margin-top:12px;"><strong>Primary goal:</strong> reduce support load while preserving quality.</p><p class="muted"><strong>Systems touched:</strong> Zendesk, Slack, help content, support reporting loops.</p><p class="muted"><strong>Review point:</strong> sensitive or unclear cases require human approval.</p>
             <ul>
               <li>triage inbound support requests</li>
               <li>classify intent, urgency, and risk</li>
@@ -638,7 +647,7 @@
               <li>support PRs, QA, and technical documentation</li>
               <li>escalate blockers or risky changes for review</li>
             </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> Claude Code, GitHub, repos, CI, and QA/review flows.</p>
+            <p class="muted" style="margin-top:12px;"><strong>Primary goal:</strong> increase throughput on scoped engineering work.</p><p class="muted"><strong>Systems touched:</strong> GitHub, Claude Code, repos, CI, docs.</p><p class="muted"><strong>Review point:</strong> production-impacting changes require review.</p>
           </div>
           <div class="card">
             <div class="agent-head">
@@ -657,7 +666,7 @@
               <li>track priorities and progress across workflows</li>
               <li>reduce coordination overhead</li>
             </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> Slack, task systems, docs, and internal workflow tooling.</p>
+            <p class="muted" style="margin-top:12px;"><strong>Primary goal:</strong> reduce coordination drag and blank-page work.</p><p class="muted"><strong>Systems touched:</strong> Slack, task systems, docs, workflow tooling.</p><p class="muted"><strong>Review point:</strong> major prioritization or routing decisions stay reviewable.</p>
           </div>
           <div class="card">
             <div class="agent-head">
@@ -676,7 +685,7 @@
               <li>generate executive or team-facing summaries</li>
               <li>help make demand versus capacity more visible</li>
             </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> AWS / Athena and the reporting/data work already happening with Kevin.</p>
+            <p class="muted" style="margin-top:12px;"><strong>Primary goal:</strong> improve visibility with low execution risk.</p><p class="muted"><strong>Systems touched:</strong> AWS, Athena, reporting/data tooling.</p><p class="muted"><strong>Review point:</strong> summaries should stay inspectable before wider circulation.</p>
           </div>
         </div>
         <div class="callout"><strong>Priority order:</strong> Customer Service Agent → Workflow / Planning Agent → Technical Delivery Agent → Insights and Reporting Agent.</div>
@@ -875,25 +884,65 @@
       
 
       <section id="principles">
-        <div class="tag red">14. Key operating principles</div>
-        <h2>The non-negotiable ideas this should revolve around</h2>
-        <p>These are the “Bible verses” of the model: the short governing ideas that should keep the system honest as it grows.</p>
+        <div class="tag red">14. Memrise AI operating rules</div>
+        <h2>A small set of rules to keep the model useful, visible, and manageable</h2>
+        <p>These are not abstract principles. They are practical constraints designed to keep the system governable as it moves from a personal setup into a company workflow.</p>
         <div class="grid-three" style="margin-top:16px;">
-          <div class="card"><h3>👁 Visibility over black boxes</h3><p>If work is distributed across agents, operators need to be able to see what is happening.</p></div>
-          <div class="card"><h3>🧩 Specialization over one giant agent</h3><p>Split roles where it creates clarity, control, and better handoffs.</p></div>
-          <div class="card"><h3>🪜 Autonomy within boundaries</h3><p>Agents can move work forward independently, but not without guardrails.</p></div>
-          <div class="card"><h3>🧑‍⚖️ Human review where risk matters</h3><p>Sensitive actions, merges, external sends, and permission changes should stay gated.</p></div>
-          <div class="card"><h3>💸 Cost-aware by design</h3><p>Routing, narrow contexts, and spend tracking should be built in from the start.</p></div>
-          <div class="card"><h3>🧱 Fit into existing workflows</h3><p>Slack, Telegram, GitHub, and adjacent systems should be part of the operating model, not afterthoughts.</p></div>
-          <div class="card"><h3>🌱 Start narrow, scale carefully</h3><p>Prove leverage in selected workflows before broadening autonomy.</p></div>
-          <div class="card"><h3>🧠 Externalize memory</h3><p>Important context should live in durable systems, not only inside huge chat histories.</p></div>
-          <div class="card"><h3>🤝 Teach the humans too</h3><p>Adoption depends on training, consultation, and trust — especially with developers and workflow owners.</p></div>
-          <div class="card"><h3>🛡 Useful with guardrails</h3><p>The right goal is bounded usefulness with supervision, not trust-by-default or unrestricted execution.</p></div>
+          <div class="card"><h3>1. One role, one agent, one identity</h3><p>Roles should stay distinct so permissions are easier to scope and actions are easier to trace.</p></div>
+          <div class="card"><h3>2. Human review where risk matters</h3><p>Sensitive, ambiguous, or high-impact actions should remain reviewable.</p></div>
+          <div class="card"><h3>3. Visible work beats black-box work</h3><p>Mission control, logs, status views, approvals, and failure visibility are part of the operating model.</p></div>
+          <div class="card"><h3>4. Cheap models by default</h3><p>Routine tasks should use cheaper paths; premium models should be justified rather than assumed.</p></div>
+          <div class="card"><h3>5. Start narrow, then scale selectively</h3><p>Expand only when value, control, costs, and failure modes are understood.</p></div>
         </div>
       </section>
 
+      <section id="success">
+        <div class="tag green">15. Success criteria for a Memrise pilot</div>
+        <h2>How we would know this is working</h2>
+        <p>A pilot should not be judged on whether the agents look impressive. It should be judged on whether they create measurable operational leverage without introducing unacceptable cost, risk, or supervision burden.</p>
+        <div class="grid-two" style="margin-top:16px;">
+          <div class="card">
+            <h3>Workflow effectiveness</h3>
+            <ul>
+              <li>support response throughput improves</li>
+              <li>planning/admin overhead drops</li>
+              <li>scoped dev tasks move faster without quality loss</li>
+              <li>reporting and status synthesis take less manual effort</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Quality and trust</h3>
+            <ul>
+              <li>outputs are trusted enough within clear boundaries</li>
+              <li>support drafts are usually useful rather than full rewrites</li>
+              <li>technical work requires less manual reshaping</li>
+              <li>users would actively choose to keep using the system</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Visibility and controllability</h3>
+            <ul>
+              <li>active work is visible</li>
+              <li>failures and stuck states are detectable</li>
+              <li>approvals are clear and easy to action</li>
+              <li>intervention and rerouting are manageable</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Cost discipline</h3>
+            <ul>
+              <li>costs are visible by workflow or agent</li>
+              <li>premium models are used selectively</li>
+              <li>spend remains within an acceptable pilot budget</li>
+              <li>the setup can be repeated without chaos</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout"><strong>A successful pilot should prove five things:</strong> it makes real work faster, the outputs are trusted enough to use, operators can see and control what is happening, the costs stay within reason, and the setup can be repeated without chaos.</div>
+      </section>
+
       <section id="closing">
-        <div class="tag green">15. Closing takeaway</div>
+        <div class="tag green">16. Closing takeaway</div>
         <h2>This is not a chatbot rollout</h2>
         <p>This is an operating model for selected workflows. The point is to increase leverage without losing control: show the system working in miniature, then design the cleaner, safer, more governable version that a company context would require.</p>
       </section>

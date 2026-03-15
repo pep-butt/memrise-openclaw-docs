@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenClaw × Memrise — Developer how-to</title>
+  <style>
+    :root { --bg:#f7f3ec; --card:#fffdf9; --text:#1f1f1f; --muted:#6a645b; --line:#ddd2c2; --accent:#5b46ff; --accent-soft:#efe8ff; }
+    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 36px 20px 64px; }
+    .hero,.card { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:24px; box-shadow:0 10px 30px rgba(29,25,20,.05); }
+    .hero { margin-bottom:24px; }
+    h1,h2,h3 { margin:0 0 12px; line-height:1.1; }
+    p, li { color:var(--muted); line-height:1.55; }
+    .eyebrow { display:inline-block; margin-bottom:10px; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); }
+    .grid { display:grid; gap:18px; }
+    .grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .button { display:inline-block; padding:10px 14px; border-radius:999px; background:var(--accent-soft); color:var(--accent); text-decoration:none; font-weight:700; margin-right:10px; }
+    @media (max-width: 760px) { .grid.two { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">🦞 Developer how-to</div>
+      <h1>How to get started with OpenClaw</h1>
+      <p>This page is for developers and technical operators who want the sane first path: one workflow, one agent, one review point, and no unnecessary mess.</p>
+      <a class="button" href="./index.html">Back to main exploration</a>
+      <a class="button" href="./mission-control.html">Mission Control</a>
+    </section>
+
+    <div class="grid two">
+      <section class="card">
+        <h2>1. Before you start</h2>
+        <ul>
+          <li>decide whether this is personal, pilot, or shared team use</li>
+          <li>choose where it runs: personal machine, Mac mini, or VPS</li>
+          <li>make sure repo / Slack / tool access is explicit</li>
+          <li>don’t mix personal credentials into shared runtimes</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2>2. Recommended first path</h2>
+        <ul>
+          <li>start with one workflow, not many</li>
+          <li>pick one interface, usually Slack or Telegram</li>
+          <li>use one agent first, then add specialisation later</li>
+          <li>keep one clear human review point</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2>3. First useful setup</h2>
+        <ul>
+          <li>connect the basic tools you actually need</li>
+          <li>create one agent with one clear role</li>
+          <li>test one workflow end to end</li>
+          <li>make sure the output is visible and recoverable</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2>4. Keep it safe and cheap</h2>
+        <ul>
+          <li>use dedicated identities</li>
+          <li>scope permissions tightly</li>
+          <li>cheap-first routing by default</li>
+          <li>manage context windows and reset bloated sessions</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2>5. Good first workflows</h2>
+        <ul>
+          <li>planning / triage</li>
+          <li>customer support drafts</li>
+          <li>scoped technical delivery</li>
+          <li>reporting / status summaries</li>
+        </ul>
+      </section>
+      <section class="card">
+        <h2>6. What success looks like</h2>
+        <ul>
+          <li>real work moves faster</li>
+          <li>users trust the outputs within clear boundaries</li>
+          <li>failures are visible and recoverable</li>
+          <li>the setup is repeatable without chaos</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+</body>
+</html>

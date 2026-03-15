@@ -390,19 +390,17 @@
     <aside>
       <div class="brand">OpenClaw Docs</div>
       <div class="title">Operating Model Documentation</div>
-      <div class="intro">A documentation-style overview of how OpenClaw should be used as an operating layer: agents, workflows, interfaces, governance, cost control, memory, and who this model is actually for.</div>
+      
 
       <details class="sidebar-menu" open>
         <summary>☰ Menu</summary>
         <nav>
           <a href="#overview">Overview</a>
-          <a href="#part1">Part 1 — Current operating system</a>
           <a href="#current-setup">Current setup</a>
           <a href="#individual-accounts">Why individual accounts</a>
           <a href="#development">Development workflow</a>
           <a href="#interfaces">Interfaces</a>
-          <a href="#limitations">What is working / current limitations</a>
-          <a href="#part2">Part 2 — Applying this to Memrise</a>
+          <a href="#part2">Applying this to Memrise</a>
           <a href="#memrise-why">Why this could matter for Memrise</a>
           <a href="#memrise-system">How Memrise would be set up</a>
           <a href="#memrise-agents">Candidate use cases / agents</a>
@@ -410,7 +408,6 @@
           <a href="#management">Control layer / mission control</a>
           <a href="#security">Security and governance</a>
           <a href="#cost">Cost control and model routing</a>
-          <a href="#users">Who this is for</a>
           <a href="#rebel">Why this is better than Rebel</a>
           <a href="#principles">Bible verses / key principles</a>
           <a href="#closing">Closing takeaway</a>
@@ -427,27 +424,14 @@
 
     <main>
       <section class="hero" id="overview">
-        <div class="eyebrow">Proposal</div>
+        <div class="eyebrow">Guide</div>
         <h1>OpenClaw × Memrise</h1>
-        <p class="lead">A proposal for how a multi-agent operating model could be used inside Memrise: starting from a working personal setup, then translating it into a clearer team model built around separated identities, Slack-based workflows, tracked execution, mission control, and controlled rollout.</p>
-        <div class="grid-two" style="margin-top:18px; align-items:start;">
-          <div class="card">
-            <h3>What this proposal says</h3>
-            <ul>
-              <li>use specialised agents rather than one overloaded assistant</li>
-              <li>separate each agent with its own identity, permissions, and accounts</li>
-              <li>use Slack as the primary Memrise operating surface</li>
-              <li>make work visible through tracked workflows and mission control</li>
-              <li>pilot with technical teams first, then expand selectively</li>
-            </ul>
-          </div>
-          <div class="callout"><strong>Reading note:</strong> the document first shows the current system working in practice, then translates that logic into a Memrise-specific proposal with clearer governance, rollout logic, and account separation.</div>
-        </div>
+        <p class="lead">A guide to how a multi-agent operating model could be used inside Memrise: starting from a working personal setup, then translating it into a clearer team model built around separated identities, Slack-based workflows, tracked execution, mission control, and controlled rollout.</p>
       </section>
 
       <section id="operating-system">
         <div class="tag purple">1. Overview</div>
-        <h2>What this system is and why it exists</h2>
+        <h2>How the current operating model is structured</h2>
         <p>This system is structured around specialised agents, separate identities, lightweight interfaces, and explicit control layers because the goal is not just to make AI available. The goal is to make it usable, governable, and effective in real workflows.</p>
         <p>A single general-purpose agent quickly becomes overloaded. It has to hold too much context, switch between too many responsibilities, and operate across too many systems at once. That increases cost, reduces clarity, and makes failures harder to understand. By splitting work across specialised agents, each agent can operate with a narrower role, a smaller context window, and a clearer operating boundary.</p>
         <p>The result is a system that is easier to supervise, easier to scale, and less likely to become an expensive black box.</p>
@@ -553,18 +537,7 @@
         <div class="tag green">4. Development workflow</div>
         <h2>From scoping to tracked execution</h2>
         <p>This is the clearest place to show the system working in miniature. A request comes in, Pep shapes it into a structured project, BMO takes the technical path, and the work becomes visible rather than disappearing into a chat thread.</p>
-        <div class="grid-two" style="margin-top:16px; align-items:start;">
-          <div class="card">
-            <h3>The workflow in plain English</h3>
-            <div class="flow" style="margin-top:14px;">
-              <div class="step"><strong>1. Scope the work.</strong> Turn a raw request into something bounded and actionable.</div>
-              <div class="step"><strong>2. Create the project structure.</strong> Make the work visible in GitHub rather than leaving it as informal memory.</div>
-              <div class="step"><strong>3. Break it into tasks.</strong> Define the technical steps clearly enough for execution.</div>
-              <div class="step"><strong>4. Hand off to BMO.</strong> Move execution to the specialist technical agent.</div>
-              <div class="step"><strong>5. Track it to completion.</strong> Progress lives in issues, tasks, PRs, and review points.</div>
-            </div>
-          </div>
-          <div class="visual">
+        <div class="visual" style="margin-top:16px;">
             <svg viewBox="0 0 980 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Development workflow diagram">
               <rect x="24" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
               <text x="99" y="93" text-anchor="middle" font-size="18" font-weight="700">Idea / request</text>
@@ -589,7 +562,6 @@
               <path d="M822 98 L848 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
               <defs><marker id="flowarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
             </svg>
-          </div>
         </div>
         <div class="grid-two" style="margin-top:18px;">
           <figure class="screenshot">
@@ -609,7 +581,7 @@
         <p>The interfaces should look cleaner because they are doing different kinds of work. Telegram is the lightweight direct line into the system. Slack is the shared operational surface where people can see what is happening and intervene when needed.</p>
 
         <div class="card" style="margin-top:16px;">
-          <div class="grid-two" style="align-items:start; grid-template-columns: minmax(0, 1.5fr) minmax(240px, .9fr);">
+          <div class="grid-two" style="align-items:start; grid-template-columns: minmax(0, 1.7fr) minmax(180px, .7fr);">
             <div>
               <h3>Telegram</h3>
               <p>Telegram works well as the fast personal interface: low friction, mobile-first, good for direct requests, quick check-ins, and lightweight coordination.</p>
@@ -621,11 +593,11 @@
               </ul>
             </div>
             <div style="display:grid; gap:12px; align-content:start;">
-              <figure class="screenshot">
+              <figure class="screenshot" style="max-width:190px; justify-self:end;">
                 <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575808160_Screenshot+2026-03-15+at+12.56.42.png" alt="Telegram screenshot" />
                 <figcaption class="caption">Fast, low-friction interaction.</figcaption>
               </figure>
-              <figure class="screenshot">
+              <figure class="screenshot" style="max-width:190px; justify-self:end;">
                 <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575677387_Screenshot+2026-03-15+at+12.54.34.png" alt="Telegram screenshot 2" />
                 <figcaption class="caption">Works well as a lightweight companion interface.</figcaption>
               </figure>
@@ -645,7 +617,7 @@
                 <li>coordination next to GitHub and adjacent tools</li>
               </ul>
             </div>
-            <figure class="screenshot">
+            <figure class="screenshot" style="max-width:210px; justify-self:end;">
               <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575721043_Screenshot+2026-03-15+at+12.55.17.png" alt="Slack screenshot" />
               <figcaption class="caption">Slack is stronger when work needs visibility, approvals, and shared context.</figcaption>
             </figure>
@@ -655,42 +627,17 @@
 
       
 
-      <section id="limitations">
-        <div class="tag gold">6. What is working / current limitations</div>
-        <h2>What already works and what still feels messy</h2>
-        <div class="grid-two">
-          <div class="card">
-            <h3>What is already working well</h3>
-            <ul>
-              <li>agent specialization keeps roles clearer</li>
-              <li>the development path from scoping to tracked execution is real</li>
-              <li>Telegram and Slack both work as practical interfaces</li>
-              <li>mission control improves visibility and operator trust</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Current limitations</h3>
-            <ul>
-              <li>memory is still weaker than it should be</li>
-              <li>security and permissions are not yet as tight as a company rollout would require</li>
-              <li>visibility is better, but not complete</li>
-              <li>some workflows still feel hand-built rather than formalized</li>
-            </ul>
-          </div>
-        </div>
-        <div class="callout"><strong>Bridge:</strong> The current setup is useful because it shows the model working in practice. But moving from a personal operating system to a team or company context changes the requirements. At that point, visibility, permissions, cost control, governance, and workflow design become much more important.</div>
-      </section>
+      
 
       <section id="part2" class="hero">
-        <div class="eyebrow">Proposal mode</div>
-        <div class="tag red">Part 2 — Applying this model to Memrise</div>
-        <h2>This is the proposal layer</h2>
-        <p class="lead">From this point on, the document stops describing the current personal setup and starts making a more explicit proposal for how a model like this could be adapted for Memrise.</p>
-        <div class="callout warning"><strong>Reading lens:</strong> this section should be understood as a proposal, not just a demo. The question is no longer “does this work in miniature?” It is “what would need to be true for this to work safely, visibly, and usefully inside Memrise?”</div>
+        <div class="eyebrow">Guide</div>
+        <div class="tag red">Applying this model to Memrise</div>
+        <h2>How this could be introduced at Memrise</h2>
+        <p class="lead">From here, the document shifts from the current personal setup to a more practical guide for how the same operating logic could be adapted inside Memrise.</p>
       </section>
 
       <section id="memrise-why">
-        <div class="tag purple">7. Why this could matter for Memrise</div>
+        <div class="tag purple">6. Why this could matter for Memrise</div>
         <h2>From personal leverage to organizational leverage</h2>
         <div class="callout"><strong>Default interface recommendation for Memrise:</strong> use <strong>Slack</strong> as the primary operating surface. It fits the team context better than Telegram because it supports shared visibility, thread-based coordination, approvals, and clear separation between different bot identities.</div>
         <div class="grid-two">
@@ -716,7 +663,7 @@
       </section>
 
       <section id="memrise-system">
-        <div class="tag purple">8. How Memrise would be set up</div>
+        <div class="tag purple">7. How Memrise would be set up</div>
         <h2>The same system logic, translated into a company operating model</h2>
         <p>The point is not to clone the personal setup exactly. The point is to apply the same system logic in a Memrise-shaped way: shared Slack surface, separated bot identities, clear roles, a control layer, and explicit account boundaries.</p>
         <div class="visual">
@@ -767,7 +714,7 @@
       </section>
 
       <section id="memrise-agents">
-        <div class="tag green">9. Candidate use cases / agents at Memrise</div>
+        <div class="tag green">8. Candidate use cases / agents at Memrise</div>
         <h2>Translating the pattern, not copying the personalities</h2>
         <p>Memrise probably should not have Peppermint Butler or BMO by name. But it can adopt the concepts behind them: coordination, execution, and visibility as distinct roles with different model tiers and access boundaries.</p>
         <p><strong>Important implementation detail:</strong> each one should be separated out as its own bot identity rather than collapsing everything into one shared assistant.</p>
@@ -831,7 +778,7 @@
       </section>
 
       <section id="pilot">
-        <div class="tag purple">10. Pilot with technical teams first</div>
+        <div class="tag purple">9. Pilot with technical teams first</div>
         <h2>Broad rollout is probably not the right starting point</h2>
         <p>Before rolling out a system like this more broadly, it makes sense to test it with technically strong teams and developers first.</p>
         <p>This is particularly important for coding workflows, where the upside can be high but the setup burden is also significant. The point of the pilot phase is not just to prove that the tools work. It is to understand where they are worth the setup cost, where they need refinement, and where they should not yet be trusted without closer supervision.</p>
@@ -859,12 +806,31 @@
             </ul>
           </div>
         </div>
+        <div class="visual" style="margin-top:18px;">
+          <svg viewBox="0 0 980 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pilot rollout path diagram">
+            <rect x="28" y="54" width="170" height="72" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="113" y="85" text-anchor="middle" font-size="18" font-weight="700">Technical teams</text>
+            <text x="113" y="108" text-anchor="middle" font-size="13" fill="#6a645b">pilot first</text>
+            <rect x="250" y="54" width="170" height="72" rx="18" fill="#fff4d6" stroke="#ecdca4"/>
+            <text x="335" y="85" text-anchor="middle" font-size="18" font-weight="700" fill="#8a6500">Learn + refine</text>
+            <text x="335" y="108" text-anchor="middle" font-size="13" fill="#846800">find gaps and costs</text>
+            <rect x="472" y="54" width="170" height="72" rx="18" fill="#fff7f5" stroke="#f0d5cf"/>
+            <text x="557" y="85" text-anchor="middle" font-size="18" font-weight="700" fill="#c65b45">Mission control</text>
+            <text x="557" y="108" text-anchor="middle" font-size="13" fill="#8b5f54">watch usage and risk</text>
+            <rect x="694" y="54" width="170" height="72" rx="18" fill="#e7f8f1" stroke="#cceee0"/>
+            <text x="779" y="85" text-anchor="middle" font-size="18" font-weight="700" fill="#0a8c61">Expand selectively</text>
+            <text x="779" y="108" text-anchor="middle" font-size="13" fill="#4f7f69">only when repeatable</text>
+            <path d="M198 90 L250 90" stroke="#8a867b" stroke-width="2.5" marker-end="url(#pilotarr)"/>
+            <path d="M420 90 L472 90" stroke="#8a867b" stroke-width="2.5" marker-end="url(#pilotarr)"/>
+            <path d="M642 90 L694 90" stroke="#8a867b" stroke-width="2.5" marker-end="url(#pilotarr)"/>
+            <defs><marker id="pilotarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
+          </svg>
+        </div>
         <div class="callout"><strong>Bottom line:</strong> Start narrow, learn fast, then expand selectively.</div>
-        <div class="callout"><strong>Suggested speaker line:</strong> “The right first move is probably not company-wide rollout. It is to work with technically strong teams first, use them to refine the model, and prove where the workflows genuinely create leverage before expanding more broadly.”</div>
       </section>
 
       <section id="management">
-        <div class="tag purple">11. Control layer / mission control</div>
+        <div class="tag purple">10. Control layer / mission control</div>
         <h2>Memrise would need a real control layer</h2>
         <p>If Memrise adopted a model like this, mission control would stop being a nice-to-have and become part of the operating model. Once work is distributed across multiple agents, people need to see what is running, what has completed, what is blocked, what has failed, and where intervention is required.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -886,7 +852,7 @@
       </section>
 
       <section id="security">
-        <div class="tag red">12. Security and governance</div>
+        <div class="tag red">11. Security and governance</div>
         <h2>Security and governance need to be designed in from day one</h2>
         <p>Moving from a personal operating system to a company workflow changes the requirements. In a personal setup, some trust can sit with the operator. In a team setting, permissions, approvals, scoping, and auditability have to be explicit.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -899,7 +865,6 @@
               <li>governance has to cover approvals, permissions, and auditability from the start</li>
               <li>the goal is bounded autonomy, not unrestricted execution</li>
             </ul>
-            <div class="callout"><strong>Speaker note:</strong> once this becomes a shared operational system, the question is no longer just what the agent can do. It becomes what it is allowed to do, where it can act, and how those actions are reviewed and traced.</div>
           </div>
           <div class="card">
             <h3>2. Practical security controls</h3>
@@ -912,7 +877,6 @@
               <li>treat skills and skill folders as trusted code and restrict who can modify them</li>
               <li>keep sensitive credentials and personal accounts off shared runtimes</li>
             </ul>
-            <div class="callout"><strong>Speaker note:</strong> the right pattern is dedicated identities, narrow permissions, workspace-scoped access, and approval-backed execution.</div>
           </div>
           <div class="card">
             <h3>3. Execution must be gated, not assumed safe</h3>
@@ -924,7 +888,6 @@
               <li>bind execution to specific approved nodes where possible</li>
               <li>fail closed if the approval path is unavailable</li>
             </ul>
-            <div class="callout"><strong>Speaker note:</strong> execution is where things become real. The right approach is to keep command running behind a safety interlock and require approval or allowlisting for anything that touches a real machine.</div>
           </div>
           <div class="card">
             <h3>4. Governance model for Memrise</h3>
@@ -942,7 +905,7 @@
       </section>
 
       <section id="cost">
-        <div class="tag gold">13. Cost control and model routing</div>
+        <div class="tag gold">12. Cost control and model routing</div>
         <h2>Cheap-first routing, clear tiers, and explicit escalation</h2>
         <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The goal is to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -972,33 +935,10 @@
 
       
 
-      <section id="users">
-        <div class="tag purple">14. Who this is for</div>
-        <h2>Best for selected workflows, not for everyone by default</h2>
-        <div class="grid-two">
-          <div class="card">
-            <h3>Best for</h3>
-            <ul>
-              <li>operators and workflow owners</li>
-              <li>product and project leads</li>
-              <li>support and lifecycle-heavy roles</li>
-              <li>teams with repeatable, high-friction processes</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Not to be trusted by default</h3>
-            <ul>
-              <li>for everyone in the company</li>
-              <li>for high-risk actions without review</li>
-              <li>for workflows with unclear ownership</li>
-              <li>for contexts where deterministic behavior is essential</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      
 
       <section id="rebel">
-        <div class="tag purple">15. Why this is better than Rebel</div>
+        <div class="tag purple">13. Why this is better than Rebel</div>
         <h2>Why this model creates more practical leverage</h2>
         <div class="grid-two">
           <div class="card">
@@ -1028,7 +968,7 @@
       </section>
 
       <section id="principles">
-        <div class="tag red">16. Bible verses / key principles</div>
+        <div class="tag red">14. Bible verses / key principles</div>
         <h2>The non-negotiable ideas this should revolve around</h2>
         <p>These are the “Bible verses” of the model: the short governing ideas that should keep the system honest as it grows.</p>
         <div class="grid-three" style="margin-top:16px;">
@@ -1046,7 +986,7 @@
       </section>
 
       <section id="closing">
-        <div class="tag green">17. Closing takeaway</div>
+        <div class="tag green">15. Closing takeaway</div>
         <h2>This is not a chatbot rollout</h2>
         <p>This is an operating model for selected workflows. The point is to increase leverage without losing control: show the system working in miniature, then design the cleaner, safer, more governable version that a company context would require.</p>
       </section>

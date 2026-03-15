@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OpenClaw × Memrise — Mission Control</title>
+  <style>
+    :root {
+      --bg:#f7f3ec;
+      --card:#fffdf9;
+      --text:#1f1f1f;
+      --muted:#6a645b;
+      --line:#ddd2c2;
+      --accent:#5b46ff;
+      --accent-soft:#efe8ff;
+    }
+    body {
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 36px 20px 64px;
+    }
+    .hero, .card {
+      background: var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 10px 30px rgba(29,25,20,.05);
+    }
+    .hero { margin-bottom:24px; }
+    .eyebrow {
+      display:inline-block;
+      margin-bottom:10px;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--accent);
+    }
+    h1,h2 { margin:0 0 12px; line-height:1.1; }
+    p { line-height:1.55; color:var(--muted); }
+    .badge {
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:var(--accent);
+      font-size:12px;
+      font-weight:800;
+      margin-top:6px;
+    }
+    figure { margin:0; }
+    img {
+      width:100%;
+      display:block;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    figcaption {
+      margin-top:10px;
+      color:var(--muted);
+      font-size:14px;
+    }
+    .meta {
+      margin-top:18px;
+      font-size:14px;
+      color:var(--muted);
+    }
+    a { color:var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="eyebrow">🦞 OpenClaw × Memrise</div>
+      <h1>Mission Control</h1>
+      <p>A safe, static view of the mission-control interface. This is intentionally a screenshot, not a live dashboard link, so it can be shared without exposing direct operational access.</p>
+      <div class="badge">Static screenshot only</div>
+    </section>
+
+    <section class="card">
+      <figure>
+        <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773577392079_Screenshot+2026-03-11+at+16.16.14.png" alt="Mission control screenshot" />
+        <figcaption>The control layer shows active agents, workflow state, cost, failures, and intervention points.</figcaption>
+      </figure>
+      <div class="meta">
+        Main doc: <a href="./index.html">OpenClaw × Memrise</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

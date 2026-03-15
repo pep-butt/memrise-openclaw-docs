@@ -428,7 +428,7 @@
       <div class="title">OpenClaw × Memrise</div>
       
 
-      <details class="sidebar-menu">
+      <details class="sidebar-menu" open>
         <summary>☰ Menu</summary>
         <nav>
           <a href="#overview">Overview</a>
@@ -1275,6 +1275,11 @@
         navLinks.forEach(link => link.classList.remove('active'));
         if (current) current.link.classList.add('active');
       };
+
+      const sidebarMenu = document.querySelector('.sidebar-menu');
+      if (window.innerWidth <= 980 && sidebarMenu) {
+        sidebarMenu.removeAttribute('open');
+      }
 
       setActiveSection();
       window.addEventListener('scroll', setActiveSection, { passive: true });

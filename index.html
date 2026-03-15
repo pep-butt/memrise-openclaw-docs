@@ -671,6 +671,7 @@
       <section id="memrise-why">
         <div class="tag purple">7. Why this could matter for Memrise</div>
         <h2>From personal leverage to organizational leverage</h2>
+        <div class="callout"><strong>Default interface recommendation for Memrise:</strong> use <strong>Slack</strong> as the primary operating surface. It fits the team context better than Telegram because it supports shared visibility, thread-based coordination, approvals, and clear separation between different bot identities.</div>
         <div class="grid-two">
           <div class="card">
             <h3>Why the pattern matters</h3>
@@ -697,6 +698,7 @@
         <div class="tag green">8. Candidate use cases / agents at Memrise</div>
         <h2>Translating the pattern, not copying the personalities</h2>
         <p>Memrise probably should not have Peppermint Butler or BMO by name. But it can adopt the concepts behind them: coordination, execution, and visibility as distinct roles with different model tiers and access boundaries.</p>
+        <p><strong>Important implementation detail:</strong> each one should be separated out as its own bot identity rather than collapsing everything into one shared assistant.</p>
         <div class="grid-three" style="margin-top:16px;">
           <div class="card">
             <div class="agent-head">
@@ -753,6 +755,7 @@
           <div class="card"><h3>What matters most</h3><p>The names are less important than the boundaries: who coordinates, who executes, who reports, and what each role is allowed to do.</p></div>
           <div class="card"><h3>How to use the pattern</h3><p>Use Part 1 to show the model working in miniature. Use Part 2 to show what would be needed to make it company-safe and company-useful.</p></div>
         </div>
+        <div class="callout"><strong>Recommendation:</strong> in Memrise, each bot should have its <strong>own Slack identity</strong>, its <strong>own email address</strong>, and its <strong>own GitHub account</strong> wherever code or repo actions are involved. That separation is what makes permissions, audit trails, accountability, and safe automation workable.</div>
       </section>
 
       <section id="management">
@@ -784,7 +787,9 @@
           <div class="card">
             <h3>Controls that matter</h3>
             <ul>
-              <li>dedicated identities</li>
+              <li>dedicated Slack bot identities</li>
+              <li>separate email address per agent where messaging matters</li>
+              <li>separate GitHub account per agent where code / repo actions matter</li>
               <li>least privilege</li>
               <li>approval gates</li>
               <li>auditability</li>
@@ -799,6 +804,7 @@
               <li>humans stay accountable for high-impact decisions</li>
               <li>memory and context should be externalized, not hidden in giant chats</li>
               <li>autonomy should expand only where trust has been earned</li>
+              <li>identity separation is part of the control model, not cosmetic polish</li>
             </ul>
           </div>
         </div>

@@ -447,8 +447,53 @@
         <p>This system is structured around specialised agents, separate identities, lightweight interfaces, and explicit control layers because the goal is not just to make AI available. The goal is to make it usable, governable, and effective in real workflows.</p>
         <p>A single general-purpose agent quickly becomes overloaded. It has to hold too much context, switch between too many responsibilities, and operate across too many systems at once. That increases cost, reduces clarity, and makes failures harder to understand. By splitting work across specialised agents, each agent can operate with a narrower role, a smaller context window, and a clearer operating boundary.</p>
         <p>The result is a system that is easier to supervise, easier to scale, and less likely to become an expensive black box.</p>
-        <div class="grid-three" style="margin-top:18px;">
-          <div class="card"><h3>Lizzie</h3><p>The human operator who can message the system through lightweight interfaces.</p></div>
+        <div class="visual">
+          <svg viewBox="0 0 1080 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenClaw operating model diagram">
+            <rect x="40" y="128" width="150" height="74" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="115" y="161" text-anchor="middle" font-size="20" font-weight="700">Lizzie</text>
+            <text x="115" y="184" text-anchor="middle" font-size="14" fill="#6a645b">user</text>
+            <rect x="250" y="118" width="200" height="94" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="350" y="152" text-anchor="middle" font-size="20" font-weight="700">Interfaces</text>
+            <text x="350" y="178" text-anchor="middle" font-size="14" fill="#6a645b">Slack · Telegram</text>
+            <rect x="510" y="110" width="220" height="110" rx="24" fill="#ece8ff" stroke="#d8d1ff"/>
+            <text x="620" y="150" text-anchor="middle" font-size="26" font-weight="800" fill="#5b46ff">OpenClaw</text>
+            <text x="620" y="178" text-anchor="middle" font-size="15" fill="#4f41b8">routing · memory · tools</text>
+            <text x="620" y="199" text-anchor="middle" font-size="15" fill="#4f41b8">orchestration · approvals</text>
+            <rect x="790" y="40" width="220" height="132" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
+            <g>
+              <clipPath id="pepClip"><circle cx="835" cy="74" r="20"/></clipPath>
+              <image href="assets/pep-avatar.jpg" x="815" y="54" width="40" height="40" clip-path="url(#pepClip)" preserveAspectRatio="xMidYMid slice"/>
+              <circle cx="835" cy="74" r="20" fill="none" stroke="#ffffff" stroke-width="3"/>
+            </g>
+            <text x="910" y="74" text-anchor="middle" font-size="21" font-weight="800">Pep</text>
+            <text x="900" y="99" text-anchor="middle" font-size="14" fill="#6a645b">coordination and orchestration</text>
+            <rect x="815" y="116" width="58" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="844" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">routing</text>
+            <rect x="879" y="116" width="72" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="915" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">accounts</text>
+            <rect x="957" y="116" width="34" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="974" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">ops</text>
+            <rect x="830" y="146" width="67" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="863.5" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">updates</text>
+            <rect x="903" y="146" width="83" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="944.5" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">messaging</text>
+            <rect x="790" y="194" width="220" height="132" rx="20" fill="#e7f8f1" stroke="#cceee0"/>
+            <g>
+              <clipPath id="bmoClip"><circle cx="835" cy="228" r="20"/></clipPath>
+              <image href="assets/bmo-avatar.jpg" x="815" y="208" width="40" height="40" clip-path="url(#bmoClip)" preserveAspectRatio="xMidYMid slice"/>
+              <circle cx="835" cy="228" r="20" fill="none" stroke="#ffffff" stroke-width="3"/>
+            </g>
+            <text x="913" y="228" text-anchor="middle" font-size="21" font-weight="800" fill="#0a8c61">BMO</text>
+            <text x="900" y="253" text-anchor="middle" font-size="14" fill="#4f7f69">technical execution</text>
+            <rect x="815" y="270" width="54" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="842" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">build</text>
+            <rect x="875" y="270" width="61" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="905.5" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">debug</text>
+            <rect x="942" y="270" width="50" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="967" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">docs</text>
+            <rect x="830" y="300" width="76" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="868" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">GitHub</text>
+            <rect x="912" y="300" width="62" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="943" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">QA</text>
+            <rect x="790" y="348" width="220" height="48" rx="18" fill="#fff4d6" stroke="#ecdca4"/><circle cx="835" cy="372" r="18" fill="#fff" stroke="#ecdca4"/><text x="835" y="378" text-anchor="middle" font-size="16" font-weight="800" fill="#8a6500">+</text><text x="925" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#8a6500">Future specialists</text>
+            <path d="M190 165 L250 165" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
+            <path d="M450 165 L510 165" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
+            <path d="M730 165 L790 106" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
+            <path d="M730 165 L790 260" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
+            <path d="M730 165 L790 372" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
+            <defs><marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
+          </svg>
+        </div>
           <div class="card"><h3>Interfaces</h3><p>Telegram and Slack provide the surfaces where requests, updates, and handoffs happen.</p></div>
           <div class="card"><h3>OpenClaw</h3><p>The orchestration layer: routing, memory, tools, permissions, approvals, and handoffs.</p></div>
           <div class="card"><div class="agent-head"><img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Pep avatar" /><div><h3>Pep</h3><p class="muted">coordination and orchestration</p></div></div><p>Pep handles routing, structure, updates, and day-to-day operational glue.</p></div>
@@ -508,8 +553,32 @@
         <div class="tag green">3. Development workflow</div>
         <h2>From toilet-thought to tracked execution</h2>
         <p>This is the clearest place to show the system working in miniature. A request can come in from Telegram while I am on the move, half-distracted, or frankly on the toilet; Pep can still turn it into a structured project, BMO can take the technical path, and the work becomes visible rather than disappearing into a chat thread.</p>
-        <div class="grid-two" style="margin-top:18px;">
-          <div class="card"><h3>1. Telegram / request</h3><p>A request comes in quickly, often while out and about.</p></div>
+        <div class="visual" style="margin-top:16px;">
+            <svg viewBox="0 0 980 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Development workflow diagram">
+              <rect x="24" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+              <text x="99" y="93" text-anchor="middle" font-size="18" font-weight="700">Idea / request</text>
+              <text x="99" y="117" text-anchor="middle" font-size="14" fill="#6a645b">human intent</text>
+              <rect x="220" y="50" width="180" height="96" rx="18" fill="#ece8ff" stroke="#d8d1ff"/>
+              <text x="310" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#5b46ff">Pep</text>
+              <text x="310" y="112" text-anchor="middle" font-size="14" fill="#4f41b8">scope · route · shape</text>
+              <text x="310" y="132" text-anchor="middle" font-size="14" fill="#4f41b8">create project + tasks</text>
+              <rect x="446" y="50" width="180" height="96" rx="18" fill="#e7f8f1" stroke="#cceee0"/>
+              <text x="536" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#0a8c61">BMO</text>
+              <text x="536" y="112" text-anchor="middle" font-size="14" fill="#4f7f69">inspect · build · debug</text>
+              <text x="536" y="132" text-anchor="middle" font-size="14" fill="#4f7f69">tests · handover · QA</text>
+              <rect x="672" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+              <text x="747" y="93" text-anchor="middle" font-size="18" font-weight="700">GitHub Project</text>
+              <text x="747" y="117" text-anchor="middle" font-size="14" fill="#6a645b">tracked execution</text>
+              <rect x="848" y="60" width="110" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+              <text x="903" y="93" text-anchor="middle" font-size="18" font-weight="700">Review</text>
+              <text x="903" y="117" text-anchor="middle" font-size="14" fill="#6a645b">approve / merge</text>
+              <path d="M174 98 L220 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+              <path d="M400 98 L446 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+              <path d="M626 98 L672 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+              <path d="M822 98 L848 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+              <defs><marker id="flowarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
+            </svg>
+        </div>
           <div class="card"><h3>2. Pep scopes it</h3><p>Pep shapes it into something bounded and workable.</p></div>
           <div class="card"><h3>3. GitHub structure</h3><p>The work becomes a visible project rather than informal memory.</p></div>
           <div class="card"><h3>4. BMO executes</h3><p>BMO picks up the technical path, using Claude Code and repo workflows.</p></div>
@@ -595,8 +664,44 @@
         <div class="tag purple">5. How Memrise would be set up</div>
         <h2>Translating the model into Memrise</h2>
         <p>The point is not to clone the personal setup exactly. The point is to apply the same system logic in a Memrise-shaped way: shared Slack surface, separated bot identities, clear roles, a control layer, and explicit account boundaries.</p>
-        <div class="grid-three" style="margin-top:18px;">
-          <div class="card"><h3>Memrise team</h3><p>Operators, leads, and developers interact with the system as participants, not as passive recipients.</p></div>
+        <div class="visual">
+          <svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Memrise operating model diagram">
+            <rect x="42" y="150" width="180" height="90" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="132" y="184" text-anchor="middle" font-size="24" font-weight="800">Memrise team</text>
+            <text x="132" y="210" text-anchor="middle" font-size="14" fill="#6a645b">operators · leads · developers</text>
+            <rect x="280" y="140" width="190" height="110" rx="22" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="375" y="178" text-anchor="middle" font-size="24" font-weight="800">Slack</text>
+            <text x="375" y="205" text-anchor="middle" font-size="14" fill="#6a645b">shared operating surface</text>
+            <text x="375" y="225" text-anchor="middle" font-size="14" fill="#6a645b">threads · approvals · visibility</text>
+            <rect x="530" y="130" width="230" height="130" rx="26" fill="#ece8ff" stroke="#d8d1ff"/>
+            <text x="645" y="176" text-anchor="middle" font-size="28" font-weight="800" fill="#5b46ff">OpenClaw</text>
+            <text x="645" y="204" text-anchor="middle" font-size="15" fill="#4f41b8">routing · tools · memory</text>
+            <text x="645" y="225" text-anchor="middle" font-size="15" fill="#4f41b8">handoffs · permissions · approvals</text>
+            <rect x="820" y="38" width="250" height="112" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="945" y="72" text-anchor="middle" font-size="20" font-weight="800">Workflow Coordination Bot</text>
+            <text x="945" y="97" text-anchor="middle" font-size="14" fill="#6a645b">triage · planning · routing</text>
+            <text x="945" y="118" text-anchor="middle" font-size="14" fill="#6a645b">own Slack / email identity</text>
+            <rect x="820" y="178" width="250" height="112" rx="20" fill="#e7f8f1" stroke="#cceee0"/>
+            <text x="945" y="212" text-anchor="middle" font-size="20" font-weight="800" fill="#0a8c61">Technical Delivery Bot</text>
+            <text x="945" y="237" text-anchor="middle" font-size="14" fill="#4f7f69">build · debug · repo work</text>
+            <text x="945" y="258" text-anchor="middle" font-size="14" fill="#4f7f69">own Slack / GitHub identity</text>
+            <rect x="820" y="318" width="250" height="112" rx="20" fill="#fff4d6" stroke="#ecdca4"/>
+            <text x="945" y="352" text-anchor="middle" font-size="20" font-weight="800" fill="#8a6500">Insights / Data Bot</text>
+            <text x="945" y="377" text-anchor="middle" font-size="14" fill="#846800">reporting · summaries · data</text>
+            <text x="945" y="398" text-anchor="middle" font-size="14" fill="#846800">own Slack / email identity</text>
+            <rect x="530" y="322" width="230" height="96" rx="22" fill="#fff7f5" stroke="#f0d5cf"/>
+            <text x="645" y="356" text-anchor="middle" font-size="22" font-weight="800" fill="#c65b45">Mission control</text>
+            <text x="645" y="381" text-anchor="middle" font-size="14" fill="#8b5f54">usage · failures · approvals</text>
+            <text x="645" y="401" text-anchor="middle" font-size="14" fill="#8b5f54">costs · intervention points</text>
+            <path d="M222 195 L280 195" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M470 195 L530 195" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M760 195 L820 94" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M760 195 L820 234" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M760 195 L820 374" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M645 260 L645 322" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <defs><marker id="memarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
+          </svg>
+        </div>
           <div class="card"><h3>Slack</h3><p>The shared operating surface for threads, approvals, visibility, and lightweight coordination.</p></div>
           <div class="card"><h3>OpenClaw</h3><p>The orchestration layer that manages routing, tools, memory, permissions, and handoffs.</p></div>
           <div class="card"><h3>Workflow Coordination Bot</h3><p>Triage, planning, routing, summaries, and work-shaping with its own identity.</p></div>
@@ -737,8 +842,26 @@
             </ul>
           </div>
         </div>
-        <div class="grid-four" style="margin-top:18px;">
-          <div class="card"><h3>Technical teams first</h3><p>Pilot where people can spot gaps and edge cases early.</p></div>
+        <div class="visual" style="margin-top:18px;">
+          <svg viewBox="0 0 980 180" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pilot rollout path diagram">
+            <rect x="28" y="54" width="170" height="72" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="113" y="85" text-anchor="middle" font-size="18" font-weight="700">Technical teams</text>
+            <text x="113" y="108" text-anchor="middle" font-size="13" fill="#6a645b">pilot first</text>
+            <rect x="250" y="54" width="170" height="72" rx="18" fill="#fff4d6" stroke="#ecdca4"/>
+            <text x="335" y="85" text-anchor="middle" font-size="18" font-weight="700" fill="#8a6500">Learn + refine</text>
+            <text x="335" y="108" text-anchor="middle" font-size="13" fill="#846800">find gaps and costs</text>
+            <rect x="472" y="54" width="170" height="72" rx="18" fill="#fff7f5" stroke="#f0d5cf"/>
+            <text x="557" y="85" text-anchor="middle" font-size="18" font-weight="700" fill="#c65b45">Build buy-in</text>
+            <text x="557" y="108" text-anchor="middle" font-size="13" fill="#8b5f54">trust + internal support</text>
+            <rect x="694" y="54" width="170" height="72" rx="18" fill="#e7f8f1" stroke="#cceee0"/>
+            <text x="779" y="85" text-anchor="middle" font-size="18" font-weight="700" fill="#0a8c61">Expand selectively</text>
+            <text x="779" y="108" text-anchor="middle" font-size="13" fill="#4f7f69">only when repeatable</text>
+            <path d="M198 90 L250 90" stroke="#8a867b" stroke-width="2.5" marker-end="url(#pilotarr)"/>
+            <path d="M420 90 L472 90" stroke="#8a867b" stroke-width="2.5" marker-end="url(#pilotarr)"/>
+            <path d="M642 90 L694 90" stroke="#8a867b" stroke-width="2.5" marker-end="url(#pilotarr)"/>
+            <defs><marker id="pilotarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
+          </svg>
+        </div>
           <div class="card"><h3>Learn + refine</h3><p>Use the pilot to understand costs, setup burden, and workflow fit.</p></div>
           <div class="card"><h3>Build buy-in</h3><p>Trust matters. Adoption gets easier when early users can explain the value.</p></div>
           <div class="card"><h3>Expand selectively</h3><p>Only widen rollout once the model is repeatable and supervision is reliable.</p></div>

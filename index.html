@@ -402,6 +402,7 @@
           <a href="#current-setup">Current setup</a>
           <a href="#development">Development workflow</a>
           <a href="#interfaces">Interfaces</a>
+          <a href="#cost-caution">A note of caution</a>
           <a href="#part2">Applying this to Memrise</a>
           <a href="#memrise-system">Translating the model into Memrise</a>
           <a href="#memrise-agents">Candidate use cases / agents</a>
@@ -635,6 +636,21 @@
         </div>
       </section>
 
+      <section id="cost-caution">
+        <div class="tag gold">5. A note of caution</div>
+        <h2>Costs can mount quickly</h2>
+        <p>Agent-based systems create leverage, but only if model usage is designed deliberately.</p>
+        <p>A personal setup can absorb a degree of experimentation. A company rollout cannot. As more agents, sessions, workflows, and integrations are added, model usage can increase quickly — especially if stronger models are used by default, sessions become bloated, or tasks are not routed intelligently.</p>
+        <ul>
+          <li>costs rise quickly when multiple agents run without routing</li>
+          <li>long-lived sessions and repeated context increase token waste</li>
+          <li>premium models should not be the default for routine tasks</li>
+          <li>broad rollout before usage patterns are understood is likely to be inefficient</li>
+          <li>cost control has to be part of the operating model, not an afterthought</li>
+        </ul>
+        <div class="callout"><strong>Bottom line:</strong> The model is promising, but only if cost discipline is built in from day one.</div>
+      </section>
+
       
 
       
@@ -649,7 +665,7 @@
       
 
       <section id="memrise-system">
-        <div class="tag purple">5. How Memrise would be set up</div>
+        <div class="tag purple">6. How Memrise would be set up</div>
         <h2>Translating the model into Memrise</h2>
         <p>The point is not to clone the personal setup exactly. The point is to apply the same system logic in a Memrise-shaped way: shared Slack surface, separated bot identities, clear roles, a control layer, and explicit account boundaries.</p>
         <div class="visual">
@@ -693,7 +709,7 @@
       </section>
 
       <section id="memrise-agents">
-        <div class="tag green">6. First candidate agents for Memrise</div>
+        <div class="tag green">7. First candidate agents for Memrise</div>
         <h2>Start with agents that reduce operational drag, improve visibility, and fit naturally into reviewable workflows</h2>
         <p>The strongest first-wave candidates are not the flashiest ones. They are the ones that sit in repeatable workflows, produce measurable value, and still allow for human review where needed.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -780,7 +796,7 @@
       </section>
 
       <section id="individual-accounts">
-        <div class="tag gold">8. Why individual accounts</div>
+        <div class="tag gold">9. Why individual accounts</div>
         <h2>Dedicated identities make agent-based workflows easier to manage, safer to operate, and cleaner to supervise.</h2>
         <p>Separate identities are not cosmetic. They are part of the operating model. Once multiple agents are doing real work, identity separation is what keeps roles legible, permissions narrower, and workflows easier to reason about.</p>
         <div class="grid-three" style="margin-top:16px;">
@@ -795,7 +811,7 @@
       </section>
 
       <section id="pilot">
-        <div class="tag purple">9. Pilot with technical teams first</div>
+        <div class="tag purple">10. Pilot with technical teams first</div>
         <h2>Broad rollout is probably not the right starting point</h2>
         <p>Before rolling out a system like this more broadly, it makes sense to test it with technically strong teams and developers first.</p>
         <p>This is particularly important for coding workflows, where the upside can be high but the setup burden is also significant. The point of the pilot phase is not just to prove that the tools work. It is to understand where they are worth the setup cost, where they need refinement, and where they should not yet be trusted without closer supervision.</p>
@@ -847,7 +863,7 @@
       </section>
 
       <section id="strengths">
-        <div class="tag purple">10. OpenClaw: strengths and constraints</div>
+        <div class="tag purple">11. OpenClaw: strengths and constraints</div>
         <h2>High upside, but only with deliberate setup, control, and staged adoption</h2>
         <div class="grid-two">
           <div class="card">
@@ -874,7 +890,7 @@
       </section>
 
       <section id="management">
-        <div class="tag purple">11. Control layer / mission control</div>
+        <div class="tag purple">12. Control layer / mission control</div>
         <h2>Memrise would need a real control layer</h2>
         <p>If Memrise adopted a model like this, mission control would stop being a nice-to-have and become part of the operating model. Once work is distributed across multiple agents, people need to see what is running, what has completed, what is blocked, what has failed, and where intervention is required.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -896,7 +912,7 @@
       </section>
 
       <section id="security">
-        <div class="tag red">12. Security and governance</div>
+        <div class="tag red">13. Security and governance</div>
         <h2>Security and governance need to be designed in from day one</h2>
         <p>Moving from a personal operating system to a company workflow changes the requirements. In a personal setup, some trust can sit with the operator. In a team setting, permissions, approvals, scoping, and auditability have to be explicit.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -949,7 +965,7 @@
       </section>
 
       <section id="cost">
-        <div class="tag gold">13. Cost control and model routing</div>
+        <div class="tag gold">14. Cost control and model routing</div>
         <h2>Cheap-first routing, clear tiers, and explicit escalation</h2>
         <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The goal is to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -984,7 +1000,7 @@
       
 
       <section id="principles">
-        <div class="tag red">14. Memrise AI operating rules</div>
+        <div class="tag red">15. Memrise AI operating rules</div>
         <h2>A small set of rules to keep the model useful, visible, and manageable</h2>
         <p>These are not abstract principles. They are practical constraints designed to keep the system governable as it moves from a personal setup into a company workflow.</p>
         <div class="grid-three" style="margin-top:16px;">
@@ -997,7 +1013,7 @@
       </section>
 
       <section id="success">
-        <div class="tag green">15. Success criteria for a Memrise pilot</div>
+        <div class="tag green">16. Success criteria for a Memrise pilot</div>
         <h2>How we would know this is working</h2>
         <p>A pilot should not be judged on whether the agents look impressive. It should be judged on whether they create measurable operational leverage without introducing unacceptable cost, risk, or supervision burden.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -1042,13 +1058,13 @@
       </section>
 
       <section id="closing">
-        <div class="tag green">16. Closing takeaway</div>
+        <div class="tag green">17. Closing takeaway</div>
         <h2>This is not a chatbot rollout</h2>
         <p>This is an operating model for selected workflows. The point is to increase leverage without losing control: show the system working in miniature, then design the cleaner, safer, more governable version that a company context would require.</p>
       </section>
 
       <section id="appendix-rebel">
-        <div class="tag purple">14. Why this is better than Rebel</div>
+        <div class="tag purple">15. Why this is better than Rebel</div>
         <h2>Why this model creates more practical leverage</h2>
         <div class="grid-two">
           <div class="card">

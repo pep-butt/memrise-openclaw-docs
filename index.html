@@ -398,6 +398,7 @@
           <a href="#overview">Overview</a>
           <a href="#part1">Part 1 — Current operating system</a>
           <a href="#current-setup">Current setup</a>
+          <a href="#individual-accounts">Why individual accounts</a>
           <a href="#development">Development workflow</a>
           <a href="#interfaces">Interfaces</a>
           <a href="#management">Control layer / mission control</a>
@@ -521,23 +522,28 @@
             </ul>
           </div>
         </div>
-        <div class="tag gold" style="margin-top:22px;">Why individual accounts?</div>
-        <h3>Dedicated identities make agent-based workflows easier to manage, safer to operate, and clearer to supervise.</h3>
-        <div class="grid-three" style="margin-top:14px;">
-          <div class="card"><h3>Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
-          <div class="card"><h3>Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
-          <div class="card"><h3>Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
-          <div class="card"><h3>Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries, while still escalating sensitive or higher-risk actions.</p></div>
-          <div class="card"><h3>Cleaner handoffs between agents</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
-          <div class="card"><h3>Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
-          <div class="card"><h3>More resilient workflow design</h3><p>If one agent drifts, fails, or needs to be reset, it can be managed without disrupting the whole system.</p></div>
-        </div>
-        <div class="callout"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
         <div class="callout good"><strong>How they work together:</strong> Pep shapes work, routes it, and keeps the workflow legible. BMO picks up the execution-heavy technical path. That split is what lets planning and implementation remain connected without turning into one muddled session.</div>
       </section>
 
+      <section id="individual-accounts">
+        <div class="tag gold">3. Why individual accounts</div>
+        <div class="card">
+          <h2>Dedicated identities make agent-based workflows easier to manage, safer to operate, and clearer to supervise.</h2>
+          <div class="grid-three" style="margin-top:14px;">
+            <div class="card"><h3>Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
+            <div class="card"><h3>Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
+            <div class="card"><h3>Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
+            <div class="card"><h3>Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries, while still escalating sensitive or higher-risk actions.</p></div>
+            <div class="card"><h3>Cleaner handoffs between agents</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
+            <div class="card"><h3>Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
+            <div class="card"><h3>More resilient workflow design</h3><p>If one agent drifts, fails, or needs to be reset, it can be managed without disrupting the whole system.</p></div>
+          </div>
+          <div class="callout"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
+        </div>
+      </section>
+
       <section id="development">
-        <div class="tag green">3. Development workflow</div>
+        <div class="tag green">4. Development workflow</div>
         <h2>From scoping to tracked execution</h2>
         <p>This is the clearest place to show the system working in miniature. A request comes in, Pep turns it into a structured project and task list, BMO takes the technical path, and the work is tracked through to completion rather than disappearing into an opaque chat log.</p>
         <div class="flow">
@@ -586,7 +592,7 @@
       </section>
 
       <section id="interfaces">
-        <div class="tag purple">4. Interfaces</div>
+        <div class="tag purple">5. Interfaces</div>
         <h2>Why Telegram and Slack work well in practice</h2>
         <div class="grid-two">
           <div class="card">
@@ -627,7 +633,7 @@
       </section>
 
       <section id="management">
-        <div class="tag purple">5. Control layer / mission control</div>
+        <div class="tag purple">6. Control layer / mission control</div>
         <h2>How the agents are supervised</h2>
         <p>Once work is distributed across multiple agents, visibility becomes a core operating need. Operators need to be able to see what is running, what has completed, what is blocked, what has failed, and where intervention is required. Without that, the system becomes a black box.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -649,7 +655,7 @@
       </section>
 
       <section id="limitations">
-        <div class="tag gold">6. What is working / current limitations</div>
+        <div class="tag gold">7. What is working / current limitations</div>
         <h2>What already works and what still feels messy</h2>
         <div class="grid-two">
           <div class="card">
@@ -681,7 +687,7 @@
       </section>
 
       <section id="memrise-why">
-        <div class="tag purple">7. Why this could matter for Memrise</div>
+        <div class="tag purple">8. Why this could matter for Memrise</div>
         <h2>From personal leverage to organizational leverage</h2>
         <div class="grid-two">
           <div class="card">
@@ -706,7 +712,7 @@
       </section>
 
       <section id="memrise-agents">
-        <div class="tag green">8. Candidate use cases / agents at Memrise</div>
+        <div class="tag green">9. Candidate use cases / agents at Memrise</div>
         <h2>Translating the pattern, not copying the personalities</h2>
         <p>Memrise probably should not have Peppermint Butler or BMO by name. But it can adopt the concepts behind them: coordination, execution, and visibility as distinct roles with different model tiers and access boundaries.</p>
         <div class="grid-three" style="margin-top:16px;">
@@ -767,7 +773,7 @@
       </section>
 
       <section id="security">
-        <div class="tag red">9. Security and governance</div>
+        <div class="tag red">10. Security and governance</div>
         <h2>What would need to be true inside Memrise</h2>
         <div class="grid-two">
           <div class="card">
@@ -794,7 +800,7 @@
       </section>
 
       <section id="cost">
-        <div class="tag gold">10. Cost control and model routing</div>
+        <div class="tag gold">11. Cost control and model routing</div>
         <h2>Cheap-first routing, clear tiers, and explicit escalation</h2>
         <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The goal is to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -823,7 +829,7 @@
       </section>
 
       <section id="users">
-        <div class="tag purple">11. Who this is for</div>
+        <div class="tag purple">12. Who this is for</div>
         <h2>Best for selected workflows, not for everyone by default</h2>
         <div class="grid-two">
           <div class="card">
@@ -848,7 +854,7 @@
       </section>
 
       <section id="principles">
-        <div class="tag red">12. Key principles / guiding stars</div>
+        <div class="tag red">13. Key principles / guiding stars</div>
         <h2>The principles the adoption model should revolve around</h2>
         <div class="principles">
           <div class="principle"><strong>Visibility over black boxes.</strong> If the work is distributed across agents, operators need to be able to see what is happening.</div>
@@ -862,7 +868,7 @@
       </section>
 
       <section id="closing">
-        <div class="tag green">13. Closing takeaway</div>
+        <div class="tag green">14. Closing takeaway</div>
         <h2>This is not a chatbot rollout</h2>
         <p>This is an operating model for selected workflows. The point is to increase leverage without losing control: show the system working in miniature, then design the cleaner, safer, more governable version that a company context would require.</p>
       </section>

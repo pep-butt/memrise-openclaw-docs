@@ -411,6 +411,7 @@
           <a href="#security">Security and governance</a>
           <a href="#cost">Cost control and model routing</a>
           <a href="#users">Who this is for</a>
+          <a href="#rebel">Why this is better than Rebel</a>
           <a href="#principles">Bible verses / key principles</a>
           <a href="#closing">Closing takeaway</a>
         </nav>
@@ -824,7 +825,7 @@
         <div class="grid-three" style="margin-top:16px;">
           <div class="card"><h3>Other candidate workflows</h3><p>support, marketing / Braze, planning and status visibility, executive briefing / summaries, security / review assistance.</p></div>
           <div class="card"><h3>What matters most</h3><p>The names are less important than the boundaries: who coordinates, who executes, who reports, and what each role is allowed to do.</p></div>
-          <div class="card"><h3>How to use the pattern</h3><p>Use Part 1 to show the model working in miniature. Use Part 2 to show what would be needed to make it company-safe and company-useful.</p></div>
+          <div class="card"><h3>Data stack fit</h3><p>This agent should sit against the existing data stack — for example AWS / Athena and the reporting work already happening with Kevin — rather than feeling like a vague generic “insights” helper.</p></div>
         </div>
         <div class="callout"><strong>Recommendation:</strong> in Memrise, each bot should have its <strong>own Slack identity</strong>, its <strong>own email address</strong>, and its <strong>own GitHub account</strong> wherever code or repo actions are involved. That separation is what makes permissions, audit trails, accountability, and safe automation workable.</div>
       </section>
@@ -996,8 +997,38 @@
         </div>
       </section>
 
+      <section id="rebel">
+        <div class="tag purple">15. Why this is better than Rebel</div>
+        <h2>Why this model creates more practical leverage</h2>
+        <div class="grid-two">
+          <div class="card">
+            <h3>What feels stronger here</h3>
+            <ul>
+              <li>cross-channel access through Slack, Telegram, and other surfaces</li>
+              <li>specialised agents instead of one overloaded generalist</li>
+              <li>controlled agent-to-agent chaining and delegation</li>
+              <li>separate identities and accounts for clearer control</li>
+              <li>scheduled / recurring operational work</li>
+              <li>live artifacts and hosted outputs, not just text responses</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Why that matters in practice</h3>
+            <ul>
+              <li>it is easier to reach and use in real working life</li>
+              <li>specialisation creates better fit and better boundaries</li>
+              <li>coordination and execution can be split cleanly</li>
+              <li>actions become easier to supervise and audit</li>
+              <li>the system feels more like an operating environment than a single chat assistant</li>
+              <li>progress becomes visible because the agent can produce something reviewable</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout"><strong>Bottom line:</strong> Rebel feels closer to a single assistant. OpenClaw is stronger when the goal is a usable operating system: multiple agents, multiple surfaces, bounded identities, recurring work, and real outputs.</div>
+      </section>
+
       <section id="principles">
-        <div class="tag red">15. Bible verses / key principles</div>
+        <div class="tag red">16. Bible verses / key principles</div>
         <h2>The non-negotiable ideas this should revolve around</h2>
         <p>These are the “Bible verses” of the model: the short governing ideas that should keep the system honest as it grows.</p>
         <div class="grid-three" style="margin-top:16px;">
@@ -1015,7 +1046,7 @@
       </section>
 
       <section id="closing">
-        <div class="tag green">16. Closing takeaway</div>
+        <div class="tag green">17. Closing takeaway</div>
         <h2>This is not a chatbot rollout</h2>
         <p>This is an operating model for selected workflows. The point is to increase leverage without losing control: show the system working in miniature, then design the cleaner, safer, more governable version that a company context would require.</p>
       </section>

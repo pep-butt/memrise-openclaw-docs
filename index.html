@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Memrise × OpenClaw — Implementation Documentation</title>
+  <title>OpenClaw — Operating Model Documentation</title>
   <style>
     :root {
-      --bg: #f7f5f1;
-      --panel: #ffffff;
-      --sidebar: #f1ede6;
-      --line: #ddd5c8;
-      --text: #1f1f1f;
-      --muted: #666155;
+      --bg: #f6f2ea;
+      --panel: #fffdf9;
+      --sidebar: #efe8db;
+      --line: #ddd2c2;
+      --text: #1d1b17;
+      --muted: #6a645b;
       --accent: #5b46ff;
       --accent-soft: #ece8ff;
       --green: #0a8c61;
@@ -20,19 +20,23 @@
       --gold-soft: #fff4d6;
       --red: #b14d3f;
       --red-soft: #faebe7;
+      --shadow: 0 10px 28px rgba(28, 22, 14, 0.05);
+      --radius: 24px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--text);
       background: var(--bg);
+      color: var(--text);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.6;
     }
+    a { color: var(--accent); }
+    img { max-width: 100%; display: block; }
     .layout {
       display: grid;
-      grid-template-columns: 290px minmax(0, 1fr);
+      grid-template-columns: 300px minmax(0, 1fr);
       min-height: 100vh;
     }
     aside {
@@ -43,183 +47,264 @@
       overflow: auto;
       background: var(--sidebar);
       border-right: 1px solid var(--line);
-      padding: 26px 20px 40px;
+      padding: 28px 20px 36px;
     }
     .brand {
       font-size: 12px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--accent);
       font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--accent);
       margin-bottom: 12px;
     }
     .title {
-      font-size: 26px;
-      line-height: 1.1;
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.05;
       font-weight: 800;
-      margin: 0 0 12px;
     }
-    .intro { font-size: 14px; color: var(--muted); margin-bottom: 22px; }
-    .sidebar-menu { margin-top: 0; }
-    .sidebar-menu summary { display: none; }
-    nav { display: grid; gap: 6px; }
+    .intro {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+    .sidebar-menu { margin-top: 12px; }
+    .sidebar-menu summary {
+      display: none;
+      cursor: pointer;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-weight: 700;
+    }
+    nav {
+      display: grid;
+      gap: 6px;
+      margin-top: 6px;
+    }
     nav a {
       display: block;
       text-decoration: none;
       color: var(--text);
-      padding: 9px 10px;
-      border-radius: 10px;
+      border-radius: 12px;
+      padding: 10px 12px;
       font-size: 14px;
+      font-weight: 600;
     }
-    nav a:hover { background: rgba(91,70,255,.08); }
-    .meta-box {
-      margin-top: 20px;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 14px;
+    nav a:hover { background: rgba(91, 70, 255, .08); }
+    .sidebar-box {
+      margin-top: 18px;
       background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 14px;
       font-size: 13px;
       color: var(--muted);
     }
-    main { padding: 36px 34px 70px; }
-    .hero {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 30px;
-      margin-bottom: 24px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.04);
-    }
-    .eyebrow {
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: .14em;
-      color: var(--accent);
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-    h1 { font-size: 44px; line-height: 1.05; margin: 0 0 14px; }
-    h2 { font-size: 32px; line-height: 1.12; margin: 0 0 16px; }
-    h3 { font-size: 22px; line-height: 1.2; margin: 0 0 10px; }
-    h4 { font-size: 18px; margin: 0 0 8px; }
-    p { margin: 0 0 14px; }
-    .lead { font-size: 19px; max-width: 900px; }
+    .sidebar-box strong { color: var(--text); }
+    main { padding: 34px 34px 72px; }
     section {
       background: var(--panel);
       border: 1px solid var(--line);
-      border-radius: 24px;
+      border-radius: var(--radius);
       padding: 28px;
       margin-bottom: 22px;
-      box-shadow: 0 8px 24px rgba(0,0,0,.03);
+      box-shadow: var(--shadow);
     }
-    .tag {
+    .hero {
+      padding: 34px;
+      background: linear-gradient(180deg, #fffdf9 0%, #f7f2ea 100%);
+    }
+    .eyebrow {
       display: inline-block;
-      border-radius: 999px;
-      padding: 6px 10px;
+      margin-bottom: 10px;
       font-size: 12px;
       font-weight: 800;
-      letter-spacing: .04em;
       text-transform: uppercase;
+      letter-spacing: .16em;
+      color: var(--accent);
+    }
+    h1 {
+      margin: 0 0 14px;
+      font-size: 48px;
+      line-height: 1.02;
+      max-width: 950px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: 32px;
+      line-height: 1.12;
+    }
+    h3 {
+      margin: 0 0 10px;
+      font-size: 21px;
+      line-height: 1.22;
+    }
+    h4 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+    p { margin: 0 0 14px; }
+    ul, ol { margin: 0; padding-left: 20px; }
+    li { margin: 7px 0; }
+    .lead {
+      max-width: 930px;
+      font-size: 20px;
+      color: #2c2923;
+    }
+    .quote {
+      font-size: 30px;
+      line-height: 1.28;
+      font-weight: 760;
+      max-width: 920px;
+    }
+    .muted { color: var(--muted); }
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .05em;
       margin-bottom: 12px;
     }
     .purple { background: var(--accent-soft); color: var(--accent); }
     .green { background: var(--green-soft); color: var(--green); }
     .gold { background: var(--gold-soft); color: var(--gold); }
     .red { background: var(--red-soft); color: var(--red); }
-    .grid-two, .grid-three { display: grid; gap: 16px; }
-    .grid-two { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .grid-three { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 18px;
-      background: #fff;
-    }
-    .quote {
-      font-size: 28px;
-      line-height: 1.3;
-      font-weight: 750;
-      max-width: 900px;
-    }
-    .muted { color: var(--muted); }
-    ul, ol { margin: 0; padding-left: 20px; }
-    li { margin: 7px 0; }
-    .toc-inline {
+    .contents {
       margin-top: 18px;
       border: 1px solid var(--line);
-      border-radius: 16px;
+      border-radius: 18px;
       background: #fff;
       overflow: hidden;
     }
-    .toc-inline summary {
-      list-style: none;
+    .contents summary {
       cursor: pointer;
-      padding: 14px 16px;
-      font-weight: 700;
+      list-style: none;
+      padding: 15px 16px;
+      font-weight: 800;
+      font-size: 14px;
     }
-    .toc-inline summary::-webkit-details-marker { display: none; }
-    .toc-inline .toc-grid {
+    .contents summary::-webkit-details-marker { display: none; }
+    .contents-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 10px;
       padding: 0 16px 16px;
     }
-    .toc-inline a {
+    .contents-grid a {
       display: block;
       text-decoration: none;
       color: var(--text);
-      border: 1px solid var(--line);
       background: var(--bg);
-      border-radius: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
       padding: 10px 12px;
-      font-weight: 600;
       font-size: 14px;
+      font-weight: 700;
     }
-    .toc-inline a:hover { border-color: var(--accent); color: var(--accent); }
-    .tableish { display: grid; gap: 12px; }
+    .contents-grid a:hover { border-color: var(--accent); color: var(--accent); }
+    .grid-two, .grid-three, .grid-four {
+      display: grid;
+      gap: 16px;
+    }
+    .grid-two { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+    .grid-three { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .grid-four { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      padding: 18px;
+    }
+    .callout {
+      border-left: 4px solid var(--accent);
+      border-radius: 0 16px 16px 0;
+      background: #faf8ff;
+      padding: 14px 16px;
+      margin: 14px 0 0;
+    }
+    .warning {
+      border-left-color: var(--red);
+      background: #fff7f5;
+    }
+    .good {
+      border-left-color: var(--green);
+      background: #f3fbf8;
+    }
+    .tableish { display: grid; gap: 12px; margin-top: 6px; }
     .row {
       display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 14px;
+      grid-template-columns: 220px 1fr;
+      gap: 16px;
       border-top: 1px solid var(--line);
       padding-top: 12px;
     }
     .row:first-child { border-top: none; padding-top: 0; }
-    .key { font-weight: 750; }
-    .diagram {
-      margin-top: 18px;
-      padding: 16px;
+    .key { font-weight: 760; }
+    .visual {
+      margin-top: 16px;
       border: 1px solid var(--line);
-      border-radius: 18px;
-      background: linear-gradient(180deg, #fff, #f8f5ef);
+      border-radius: 20px;
+      background: linear-gradient(180deg, #fff 0%, #f8f4ec 100%);
+      padding: 18px;
     }
     svg { max-width: 100%; height: auto; display: block; }
-    .flow { display: grid; gap: 12px; margin-top: 14px; }
+    .flow {
+      display: grid;
+      gap: 12px;
+      margin-top: 12px;
+    }
     .step {
+      position: relative;
       border: 1px solid var(--line);
       border-radius: 16px;
       background: #fff;
       padding: 14px 16px;
-      position: relative;
     }
     .step:not(:last-child)::after {
       content: "↓";
       position: absolute;
-      bottom: -19px;
       left: 50%;
+      bottom: -20px;
       transform: translateX(-50%);
       color: var(--muted);
       font-size: 18px;
     }
-    .callout {
-      border-left: 4px solid var(--accent);
-      background: #faf8ff;
-      padding: 14px 16px;
-      border-radius: 0 14px 14px 0;
-      margin: 12px 0;
+    .screenshot {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      overflow: hidden;
     }
-    .sources li { margin-bottom: 8px; }
-    code { background: #f3efe8; padding: 2px 6px; border-radius: 6px; }
+    .screenshot img { width: 100%; height: auto; }
+    .caption {
+      padding: 10px 12px 12px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      background: #fff;
+    }
+    .principles {
+      display: grid;
+      gap: 14px;
+      margin-top: 14px;
+    }
+    .principle {
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: #fff;
+      padding: 16px;
+    }
+    .principle strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+    }
     @media (max-width: 980px) {
       .layout { grid-template-columns: 1fr; }
       aside {
@@ -227,833 +312,553 @@
         height: auto;
         border-right: none;
         border-bottom: 1px solid var(--line);
-        padding: 16px 16px 18px;
+        padding: 16px;
       }
-      .sidebar-menu summary {
-        display: block;
-        cursor: pointer;
-        padding: 12px 14px;
-        border: 1px solid var(--line);
-        border-radius: 12px;
-        background: #fff;
-        font-weight: 700;
-        margin-top: 12px;
-      }
-      .sidebar-menu nav { display: none; margin-top: 10px; }
-      .sidebar-menu[open] nav { display: grid; }
-      .meta-box { display: none; }
-      main { padding: 22px 16px 60px; }
-      h1 { font-size: 34px; }
-      h2 { font-size: 26px; }
+      .sidebar-menu summary { display: block; }
+      .sidebar-menu nav { display: none; }
+      .sidebar-menu[open] nav { display: grid; margin-top: 10px; }
+      .sidebar-box { display: none; }
+      main { padding: 20px 16px 60px; }
+      h1 { font-size: 36px; }
+      h2 { font-size: 27px; }
       .quote { font-size: 24px; }
-      .row { grid-template-columns: 1fr; gap: 4px; }
+      .row { grid-template-columns: 1fr; gap: 6px; }
     }
   </style>
 </head>
 <body>
   <div class="layout">
     <aside>
-      <div class="brand">Implementation Docs</div>
-      <div class="title">Memrise × OpenClaw</div>
-      <div class="intro">Comprehensive implementation documentation for using OpenClaw effectively inside Memrise, with practical workflow design, security, cost, and rollout guidance.</div>
-      <details class="sidebar-menu">
+      <div class="brand">OpenClaw Docs</div>
+      <div class="title">Operating Model Documentation</div>
+      <div class="intro">A documentation-style overview of how OpenClaw should be used as an operating layer: agents, workflows, interfaces, governance, cost control, memory, and who this model is actually for.</div>
+
+      <details class="sidebar-menu" open>
         <summary>☰ Menu</summary>
         <nav>
-          <a href="#overview">1. Overview</a>
-          <a href="#problem">2. Problem & objective</a>
-          <a href="#architecture">3. Architecture</a>
-          <a href="#bmo">4. BMO as first workflow</a>
-          <a href="#practical">5. Practical example: PodChats</a>
-          <a href="#nondev">6. Non-developer operating model</a>
-          <a href="#security">7. Security concerns</a>
-          <a href="#cost">8. Cost model & mitigation</a>
-          <a href="#rollout">9. Rollout plan</a>
-          <a href="#setup">10. Setup prerequisites</a>
-          <a href="#approval">11. Approval matrix</a>
-          <a href="#runbooks">12. Failure modes & runbooks</a>
-          <a href="#checklist">13. Implementation checklist</a>
-          <a href="#research">14. Research basis</a>
-          <a href="#appendix">15. Setup appendix</a>
+          <a href="#overview">Overview</a>
+          <a href="#operating-system">Current operating system</a>
+          <a href="#agents">Who are my agents?</a>
+          <a href="#development">Development use</a>
+          <a href="#interfaces">Interfaces</a>
+          <a href="#management">AI management / mission control</a>
+          <a href="#security">Security</a>
+          <a href="#cost">Cost saving & model routing</a>
+          <a href="#users">Who needs this?</a>
+          <a href="#memory">OpenClaw memory</a>
+          <a href="#principles">Operating gospel</a>
         </nav>
       </details>
-      <div class="meta-box">
-        <strong>Status</strong><br>
-        Research-grounded working draft<br><br>
-        <strong>Generated from</strong><br>
-        external research + local OpenClaw docs + workspace notes
+
+      <div class="sidebar-box">
+        <strong>Document status</strong><br>
+        Rebuilt working draft<br><br>
+        <strong>Intent</strong><br>
+        Not a marketing page. Not generic fluff. This is meant to explain the operating model clearly enough that a team could reason about using it.
       </div>
     </aside>
 
     <main>
       <section class="hero" id="overview">
-        <div class="eyebrow">Recommendation</div>
-        <h1>Memrise × OpenClaw Implementation Documentation</h1>
-        <details class="toc-inline">
+        <div class="eyebrow">OpenClaw</div>
+        <h1>A practical operating system for multi-agent work</h1>
+        <p class="lead">OpenClaw is most useful when it is treated as an <strong>operating layer</strong>, not just a chatbot. Work is split across specialised agents rather than one general-purpose agent, each agent keeps its own session, role, and operating context, and humans stay in control at the points where trust, risk, cost, or ambiguity matter.</p>
+        <details class="contents" open>
           <summary>Contents</summary>
-          <div class="toc-grid">
-            <a href="#problem">Why Memrise needs this</a>
-            <a href="#architecture">Architecture</a>
-            <a href="#bmo">Why BMO first</a>
-            <a href="#practical">Practical example</a>
-            <a href="#security">Security</a>
-            <a href="#cost">Cost and mitigation</a>
-            <a href="#rollout">Rollout plan</a>
-            <a href="#appendix">Appendix</a>
+          <div class="contents-grid">
+            <a href="#operating-system">Current operating system</a>
+            <a href="#agents">Agents and identities</a>
+            <a href="#development">Development workflow</a>
+            <a href="#interfaces">Telegram, Slack, Command Center</a>
+            <a href="#security">Security and governance</a>
+            <a href="#cost">Cost control and model routing</a>
+            <a href="#users">Target users and scope</a>
+            <a href="#memory">Memory and operating state</a>
+            <a href="#principles">Key principles / proposal doctrine</a>
           </div>
         </details>
-        <p class="lead">Memrise should use OpenClaw as a tightly scoped internal AI operating layer, starting with one serious technical workflow rather than a broad multi-agent rollout. The first goal is to prove operational leverage safely, not to maximize visible autonomy.</p>
-        <div class="callout" style="margin-top:16px;"><strong>Recommendation in one sentence:</strong> Memrise should implement OpenClaw as an internal orchestration layer that routes work between people, agents, tools, and approvals — starting with BMO as a bounded coding execution agent and avoiding broad platform sprawl until that path is proven.</div>
-        <div class="callout" style="margin-top:16px;"><strong>The trap to avoid:</strong> trying to turn OpenClaw into a broad AI platform before Memrise has proved one workflow, one review path, one trust model, and one clear owner.</div>
+        <div class="callout"><strong>Core point:</strong> this model keeps context windows smaller, responsibilities clearer, handoffs more structured, and approvals more governable. The win is not “one clever assistant.” The win is a legible operating model for real work.</div>
       </section>
 
-      <section id="problem">
-        <div class="tag purple">Problem & objective</div>
-        <h2>What problem this is actually solving</h2>
-        <p class="quote">The real constraint is not access to powerful models. The real constraint is operating leverage.</p>
+      <section id="operating-system">
+        <div class="tag purple">Current operating system</div>
+        <h2>How the system is set up right now</h2>
+        <p class="quote">The architecture works best when each agent has its own role, its own identity, and its own operating surface — rather than collapsing everything into one giant overloaded session.</p>
         <div class="grid-two" style="margin-top:18px;">
           <div class="card">
-            <h3>Symptoms of the current state</h3>
+            <h3>What this enables</h3>
             <ul>
-              <li>Too many demands on a small team</li>
-              <li>Too much friction between idea, spec, implementation, and review</li>
-              <li>AI experiments remain fragmented and inconsistent</li>
-              <li>Too much dependence on scarce technical bandwidth</li>
+              <li>smaller and more focused contexts</li>
+              <li>clear separation between coordination and execution</li>
+              <li>repeatable handoff from planning to delivery</li>
+              <li>approvals and review at risk points</li>
+              <li>better visibility into multi-step work</li>
             </ul>
           </div>
           <div class="card">
-            <h3>What the implementation should achieve</h3>
+            <h3>Why it matters</h3>
             <ul>
-              <li>Reduce execution friction</li>
-              <li>Create visible trust boundaries</li>
-              <li>Increase throughput without increasing chaos</li>
-              <li>Provide a reusable operating model for future workflows</li>
+              <li>one long conversation holding planning, implementation, review, and reporting becomes expensive and messy</li>
+              <li>specialised sessions are easier to supervise</li>
+              <li>separate identities make permissions cleaner</li>
+              <li>handoffs become explicit instead of accidental</li>
             </ul>
           </div>
         </div>
-        <div class="callout"><strong>Important framing:</strong> OpenClaw should be implemented as Memrise’s <em>AI operating layer</em>, not as “a bot” and not as a general AI platform from day one.</div>
-      </section>
+        <div class="visual">
+          <svg viewBox="0 0 980 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenClaw operating system diagram">
+            <rect x="360" y="24" width="260" height="58" rx="18" fill="#ece8ff" stroke="#d8d1ff"/>
+            <text x="490" y="58" text-anchor="middle" font-size="24" font-weight="800" fill="#5b46ff">OpenClaw</text>
 
-      <section>
-        <div class="tag gold">Strategic recommendation</div>
-        <h2>What I would recommend Memrise do — and not do</h2>
-        <div class="grid-two">
-          <div class="card">
-            <h3>Recommended</h3>
-            <ul>
-              <li>Start with one high-value, bounded workflow</li>
-              <li>Use OpenClaw as the orchestration layer, not the whole product</li>
-              <li>Make BMO the first serious agent because its outputs are inspectable and reviewable</li>
-              <li>Keep Slack as the coordination surface and GitHub as the execution/review surface</li>
-              <li>Invest early in observability, logs, approvals, and reset paths</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Not recommended yet</h3>
-            <ul>
-              <li>Sprawling multi-agent architecture from day one</li>
-              <li>Broad autonomous access across business systems</li>
-              <li>Premature support/marketing automation before technical execution is trusted</li>
-              <li>Using the most expensive models as the default for every step</li>
-              <li>Treating “assistant behavior” as success instead of measurable throughput</li>
-            </ul>
-          </div>
-        </div>
-        <p style="margin-top:14px;">This recommendation is based on a simple prioritization principle: the first implementation should maximize learning and leverage while minimizing operational ambiguity and blast radius.</p>
-      </section>
+            <rect x="365" y="108" width="250" height="58" rx="16" fill="#fff" stroke="#ddd2c2"/>
+            <text x="490" y="143" text-anchor="middle" font-size="18" font-weight="700">Orchestration layer</text>
 
-      <section id="architecture">
-        <div class="tag purple">Architecture</div>
-        <h2>Recommended architecture</h2>
-        <p>The strongest pattern from the research is consistent: serious implementations do not rely on one giant autonomous agent. They use an orchestration layer, bounded specialist roles, explicit integrations, approval boundaries, and observability.</p>
-        <div class="tableish">
-          <div class="row"><div class="key">Runtime layer</div><div>VPS first, potentially Mac mini or hybrid later. Hosts state, secrets, sessions, workspace, and execution surfaces.</div></div>
-          <div class="row"><div class="key">Orchestration layer</div><div>OpenClaw handles routing, memory, channel integration, tools, approvals, and operating logic.</div></div>
-          <div class="row"><div class="key">Agent layer</div><div>Pep for coordination, translation, synthesis, and non-technical workflow handling; BMO for technical execution; future agents added only when a real workflow justifies them.</div></div>
-          <div class="row"><div class="key">Interface layer</div><div>Slack as main collaboration surface; Command Center as observability and control surface; optional Telegram/web later.</div></div>
-          <div class="row"><div class="key">Execution layer</div><div>GitHub, repositories, tests, docs, project tools, email identities, and later other operational systems.</div></div>
-          <div class="row"><div class="key">Governance layer</div><div>Permissions, human approvals, logs, auditability, cost visibility, and failure handling.</div></div>
-        </div>
-        <div class="diagram">
-          <svg viewBox="0 0 980 360" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Memrise OpenClaw hierarchy diagram">
-            <rect x="330" y="20" width="320" height="58" rx="18" fill="#ece8ff" stroke="#d8d1ff"/>
-            <text x="490" y="55" text-anchor="middle" font-size="24" font-weight="800" fill="#5b46ff">Memrise AI Operating Layer</text>
+            <rect x="90" y="220" width="220" height="76" rx="16" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="200" y="252" text-anchor="middle" font-size="18" font-weight="700">Interfaces</text>
+            <text x="200" y="276" text-anchor="middle" font-size="14" fill="#6a645b">Telegram · Slack · Command Center</text>
 
-            <rect x="365" y="110" width="250" height="62" rx="16" fill="#ffffff" stroke="#ddd5c8"/>
-            <text x="490" y="138" text-anchor="middle" font-size="18" font-weight="700">OpenClaw</text>
-            <text x="490" y="160" text-anchor="middle" font-size="14" fill="#666155">orchestration · memory · tools · approvals</text>
-
-            <rect x="100" y="220" width="190" height="76" rx="16" fill="#ffffff" stroke="#ddd5c8"/>
-            <text x="195" y="252" text-anchor="middle" font-size="18" font-weight="700">Interfaces</text>
-            <text x="195" y="276" text-anchor="middle" font-size="14" fill="#666155">Slack · Telegram · Command Center</text>
-
-            <rect x="395" y="220" width="190" height="76" rx="16" fill="#e7f8f1" stroke="#cceee0"/>
+            <rect x="380" y="220" width="220" height="76" rx="16" fill="#e7f8f1" stroke="#cceee0"/>
             <text x="490" y="252" text-anchor="middle" font-size="18" font-weight="800" fill="#0a8c61">Agents</text>
             <text x="490" y="276" text-anchor="middle" font-size="14" fill="#4f7f69">Pep · BMO · future specialists</text>
 
-            <rect x="690" y="220" width="190" height="76" rx="16" fill="#ffffff" stroke="#ddd5c8"/>
-            <text x="785" y="252" text-anchor="middle" font-size="18" font-weight="700">Execution systems</text>
-            <text x="785" y="276" text-anchor="middle" font-size="14" fill="#666155">GitHub · repos · tests · docs</text>
+            <rect x="670" y="220" width="220" height="76" rx="16" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="780" y="252" text-anchor="middle" font-size="18" font-weight="700">Execution systems</text>
+            <text x="780" y="276" text-anchor="middle" font-size="14" fill="#6a645b">GitHub · docs · tasks · tools</text>
 
-            <rect x="330" y="320" width="320" height="28" rx="12" fill="#fff4d6" stroke="#ecdca4"/>
-            <text x="490" y="339" text-anchor="middle" font-size="13" font-weight="700" fill="#8a6500">Governance underneath everything: permissions · logs · costs · review · reset paths</text>
-
-            <path d="M490 78 L490 110" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
-            <path d="M440 172 L225 220" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
-            <path d="M490 172 L490 220" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
-            <path d="M540 172 L755 220" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
+            <path d="M490 82 L490 108" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr)"/>
+            <path d="M440 166 L230 220" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr)"/>
+            <path d="M490 166 L490 220" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr)"/>
+            <path d="M540 166 L750 220" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr)"/>
             <defs>
-              <marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker>
+              <marker id="arr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker>
             </defs>
           </svg>
         </div>
       </section>
 
-      <section>
-        <div class="tag green">Agent roles</div>
-        <h2>Why Pep still matters even in a “one workflow first” model</h2>
-        <p>The recommendation is to start with one serious workflow, not one isolated agent. In practice, Pep remains important because Memrise will often need a translation layer between business intent and technical execution.</p>
+      <section id="agents">
+        <div class="tag green">Who are my agents?</div>
+        <h2>Agent roles, responsibilities, and identity model</h2>
         <div class="grid-two">
           <div class="card">
-            <h3>Pep’s role</h3>
+            <h3>Peppermint Butler — day-to-day workhorse</h3>
+            <p class="muted"><strong>Primary model:</strong> ChatGPT 5.4</p>
             <ul>
-              <li>translate non-technical requests into bounded work</li>
-              <li>collapse ambiguity before it reaches BMO</li>
-              <li>coordinate across Slack, docs, tasks, and agent workflows</li>
-              <li>surface tradeoffs, priorities, blockers, and next steps</li>
-              <li>act as the operator-facing layer rather than raw execution engine</li>
+              <li>reviews meeting notes</li>
+              <li>saves and watches YouTube videos and articles</li>
+              <li>trawls the web for AI news</li>
+              <li>manages all of the other AIs</li>
+              <li>gives daily updates and requests</li>
+              <li>manages accounts</li>
+              <li>orchestrates and routes work</li>
+              <li>sends emails and WhatsApps</li>
+              <li>keeps on top of everything proactively</li>
+            </ul>
+            <h4 style="margin-top:16px;">Identity and access</h4>
+            <ul>
+              <li>dedicated email address</li>
+              <li>dedicated GitHub account</li>
+              <li>access to personal productivity and coordination workflows</li>
+              <li>access to approved communication channels</li>
+              <li>access to planning, routing, and orchestration tools</li>
             </ul>
           </div>
           <div class="card">
-            <h3>How Pep works with BMO</h3>
+            <h3>BMO — coding agent</h3>
+            <p class="muted"><strong>Model mix:</strong> ChatGPT 5.4 / Claude Sonnet / Claude Opus</p>
             <ul>
-              <li>Pep frames the problem</li>
-              <li>BMO executes the technical work</li>
-              <li>Pep translates technical output back into business-relevant terms</li>
-              <li>Pep is also the better place for workflows involving planning, Asana, bets, and cross-thread synthesis</li>
+              <li>picks up tasks from GitHub Projects</li>
+              <li>breaks work into clear technical steps</li>
+              <li>writes code and builds features</li>
+              <li>prototypes quickly from rough briefs</li>
+              <li>refactors and improves existing code</li>
+              <li>debugs errors and fixes broken flows</li>
+              <li>reviews work for quality and completeness</li>
+              <li>writes docs, setup notes, and handovers</li>
+              <li>supports PRs and QA workflows</li>
+              <li>escalates blockers or risky actions</li>
+              <li>uses the best model for the job</li>
+            </ul>
+            <h4 style="margin-top:16px;">Identity and access</h4>
+            <ul>
+              <li>dedicated email address</li>
+              <li>dedicated GitHub account</li>
+              <li>access to repository-linked project workflows</li>
+              <li>access to development environments and code tools</li>
+              <li>access to technical delivery, debugging, and documentation workflows</li>
             </ul>
           </div>
         </div>
-        <div class="callout"><strong>Important distinction:</strong> “one workflow first” means one primary implementation path to prove value. It does not mean Pep disappears. It means Pep should not be treated as an unbounded all-purpose platform while BMO is still being proven.</div>
+
+        <div class="tag gold" style="margin-top:18px;">Why individual accounts?</div>
+        <div class="grid-three">
+          <div class="card"><h3>Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, which keeps responsibilities easier to manage.</p></div>
+          <div class="card"><h3>Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
+          <div class="card"><h3>Safer permissions design</h3><p>Access can be scoped by workflow, rather than giving one general-purpose identity broad access to everything.</p></div>
+          <div class="card"><h3>Controlled autonomy</h3><p>Agents can act independently within defined boundaries while still escalating sensitive or higher-risk actions.</p></div>
+          <div class="card"><h3>Cleaner handoffs</h3><p>A coordination agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
+        </div>
+
+        <div class="grid-three" style="margin-top:18px;">
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576211508_Screenshot+2026-03-15+at+12.40.34.png" alt="Pep interface screenshot" />
+            <figcaption class="caption">Example of Pep in use: lightweight, conversational, and operational.</figcaption>
+          </figure>
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576413875_Screenshot+2026-03-15+at+13.06.49.png" alt="Pep interface screenshot 2" />
+            <figcaption class="caption">Pep as a practical command surface, not just a chat toy.</figcaption>
+          </figure>
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576866081_Screenshot+2026-03-15+at+13.14.19.png" alt="Pep interface screenshot 3" />
+            <figcaption class="caption">Examples should function as proof of operating behavior, not as decorative screenshots.</figcaption>
+          </figure>
+        </div>
       </section>
 
-      <section id="bmo">
-        <div class="tag green">First workflow</div>
-        <h2>Why BMO should be the first serious implementation</h2>
-        <p>BMO is the right first workflow because coding execution is more concrete and measurable than many broader internal AI use cases. It has clearer inputs, clearer outputs, and a natural human review boundary via GitHub.</p>
-        <div class="callout"><strong>Why I would prioritize this at Memrise:</strong> it creates the fastest path to proving whether OpenClaw can move real work forward without requiring the company to trust it with ambiguous customer, brand, or operational decisions too early.</div>
-        <div class="grid-two">
+      <section id="development">
+        <div class="tag green">Development use</div>
+        <h2>Development workflow: agent chaining and repository-linked execution</h2>
+        <p>Agent chaining means one agent does not have to do everything itself. Work can be passed between specialised agents, with each one handling a distinct part of the workflow.</p>
+        <div class="grid-two" style="margin-top:16px;">
           <div class="card">
-            <h3>Why it is strong as phase 1</h3>
+            <h3>In this model</h3>
             <ul>
-              <li>Tasks can be bounded</li>
-              <li>Artifacts are visible: files, diffs, tests, PRs</li>
-              <li>Quality can be evaluated concretely</li>
-              <li>Review and approval already have a natural home</li>
+              <li>Peppermint Butler handles scoping, coordination, and task shaping</li>
+              <li>BMO handles technical execution</li>
+              <li>other agents can be added later for review, security, support, or reporting</li>
             </ul>
           </div>
           <div class="card">
-            <h3>What BMO requires</h3>
-            <ul>
-              <li>Dedicated email</li>
-              <li>Dedicated GitHub account</li>
-              <li>Slack identity or presence</li>
-              <li>Repo access</li>
-              <li>Bounded permissions</li>
-              <li>Evidence-bound reporting contract</li>
-            </ul>
+            <h3>Why this matters</h3>
+            <ol>
+              <li><strong>It keeps context smaller.</strong> Separate agents help avoid one long, bloated conversation trying to hold planning, implementation, review, and reporting all at once.</li>
+              <li><strong>It creates clearer responsibilities.</strong> A coordinator agent can own scoping and routing while a builder agent owns execution.</li>
+              <li><strong>It makes governance easier.</strong> Clear approval rules, role separation, and bounded autonomy are easier to reason about.</li>
+            </ol>
           </div>
         </div>
-        <div class="flow">
-          <div class="step"><strong>1. Intake</strong> — a task or issue arrives via Slack or GitHub.</div>
-          <div class="step"><strong>2. Routing</strong> — OpenClaw routes the work and attaches context and tools.</div>
-          <div class="step"><strong>3. Inspection</strong> — BMO inspects relevant repo state, code paths, constraints, and history.</div>
-          <div class="step"><strong>4. Execution</strong> — BMO edits files, runs checks, and produces real artifacts.</div>
-          <div class="step"><strong>5. Reporting</strong> — BMO reports with commands, changed files, test results, blockers, and next step.</div>
-          <div class="step"><strong>6. Review</strong> — human reviews and either requests changes or merges.</div>
-        </div>
-        <div class="callout"><strong>Key behavioral rule:</strong> BMO should never report vibes. BMO should report traces.</div>
-      </section>
 
-      <section id="practical">
-        <div class="tag green">Practicality</div>
-        <h2>Practical example: building PodChats with a non-developer requester</h2>
-        <p>This is the kind of section that makes the architecture real rather than conceptual. Imagine Memrise wants to build or evolve a product like <strong>PodChats</strong>, and the requester is not deeply technical.</p>
-        <div class="grid-two">
-          <div class="card">
-            <h3>Business-side request</h3>
-            <p>“We want PodChats to do X. Here’s what we’re trying to achieve. Here are the user outcomes we care about.”</p>
-          </div>
-          <div class="card">
-            <h3>Technical challenge</h3>
-            <p>The requester may not know the repo, system constraints, architecture boundaries, or implementation sequence needed to turn the idea into work.</p>
-          </div>
-        </div>
-        <div class="diagram">
-          <svg viewBox="0 0 980 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Non-developer to BMO workflow diagram">
-            <rect x="20" y="60" width="160" height="78" rx="18" fill="#fff" stroke="#ddd5c8"/>
-            <text x="100" y="92" text-anchor="middle" font-size="18" font-weight="700">Non-developer</text>
-            <text x="100" y="117" text-anchor="middle" font-size="14" fill="#666155">goal, problem, request</text>
-            <rect x="225" y="50" width="170" height="98" rx="18" fill="#ece8ff" stroke="#d8d1ff"/>
-            <text x="310" y="86" text-anchor="middle" font-size="20" font-weight="800" fill="#5b46ff">Pep</text>
-            <text x="310" y="111" text-anchor="middle" font-size="14" fill="#4f41b8">translate request</text>
-            <text x="310" y="130" text-anchor="middle" font-size="14" fill="#4f41b8">define scope + ambiguities</text>
-            <rect x="440" y="50" width="170" height="98" rx="18" fill="#e7f8f1" stroke="#cceee0"/>
-            <text x="525" y="86" text-anchor="middle" font-size="20" font-weight="800" fill="#0a8c61">BMO</text>
-            <text x="525" y="111" text-anchor="middle" font-size="14" fill="#4f7f69">inspect repo</text>
-            <text x="525" y="130" text-anchor="middle" font-size="14" fill="#4f7f69">implement bounded task</text>
-            <rect x="655" y="60" width="145" height="78" rx="18" fill="#fff" stroke="#ddd5c8"/>
-            <text x="727.5" y="92" text-anchor="middle" font-size="18" font-weight="700">GitHub</text>
-            <text x="727.5" y="117" text-anchor="middle" font-size="14" fill="#666155">branch / PR / diff</text>
-            <rect x="845" y="60" width="115" height="78" rx="18" fill="#fff" stroke="#ddd5c8"/>
-            <text x="902.5" y="92" text-anchor="middle" font-size="18" font-weight="700">Review</text>
-            <text x="902.5" y="117" text-anchor="middle" font-size="14" fill="#666155">human decision</text>
-            <path d="M180 99 L225 99" stroke="#8a867b" stroke-width="2.5" marker-end="url(#p)"/>
-            <path d="M395 99 L440 99" stroke="#8a867b" stroke-width="2.5" marker-end="url(#p)"/>
-            <path d="M610 99 L655 99" stroke="#8a867b" stroke-width="2.5" marker-end="url(#p)"/>
-            <path d="M800 99 L845 99" stroke="#8a867b" stroke-width="2.5" marker-end="url(#p)"/>
-            <defs><marker id="p" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
+        <div class="visual">
+          <svg viewBox="0 0 980 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Development workflow diagram">
+            <rect x="24" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="99" y="93" text-anchor="middle" font-size="18" font-weight="700">Idea / request</text>
+            <text x="99" y="117" text-anchor="middle" font-size="14" fill="#6a645b">human intent</text>
+
+            <rect x="220" y="50" width="180" height="96" rx="18" fill="#ece8ff" stroke="#d8d1ff"/>
+            <text x="310" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#5b46ff">Pep</text>
+            <text x="310" y="112" text-anchor="middle" font-size="14" fill="#4f41b8">scope · route · shape</text>
+            <text x="310" y="132" text-anchor="middle" font-size="14" fill="#4f41b8">create project + tasks</text>
+
+            <rect x="446" y="50" width="180" height="96" rx="18" fill="#e7f8f1" stroke="#cceee0"/>
+            <text x="536" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#0a8c61">BMO</text>
+            <text x="536" y="112" text-anchor="middle" font-size="14" fill="#4f7f69">inspect · build · debug</text>
+            <text x="536" y="132" text-anchor="middle" font-size="14" fill="#4f7f69">tests · handover · QA</text>
+
+            <rect x="672" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="747" y="93" text-anchor="middle" font-size="18" font-weight="700">GitHub Project</text>
+            <text x="747" y="117" text-anchor="middle" font-size="14" fill="#6a645b">tracked execution</text>
+
+            <rect x="848" y="60" width="110" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="903" y="93" text-anchor="middle" font-size="18" font-weight="700">Review</text>
+            <text x="903" y="117" text-anchor="middle" font-size="14" fill="#6a645b">approve / merge</text>
+
+            <path d="M174 98 L220 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+            <path d="M400 98 L446 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+            <path d="M626 98 L672 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+            <path d="M822 98 L848 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+            <defs>
+              <marker id="flowarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker>
+            </defs>
           </svg>
         </div>
-        <h3 style="margin-top:18px;">How it should work</h3>
-        <ol>
-          <li>The non-technical stakeholder states the outcome they want.</li>
-          <li>Pep turns that into a bounded problem statement, surfaces ambiguities, and identifies likely systems touched.</li>
-          <li>BMO inspects the codebase and produces a feasible technical plan or directly implements a safe bounded slice.</li>
-          <li>Artifacts come back in a human-reviewable form.</li>
-          <li>If the request is under-specified or risky, the system stops and asks for clarification rather than inventing certainty.</li>
-        </ol>
-        <h3 style="margin-top:18px;">Worked example: PodChats feature request</h3>
-        <div class="grid-two" style="margin-top:12px;">
-          <div class="card">
-            <h4>Business request</h4>
-            <p>“For PodChats, we want users to be able to continue a conversation after finishing an episode, and we want to test whether that increases retention.”</p>
-          </div>
-          <div class="card">
-            <h4>What Pep should extract</h4>
-            <ul>
-              <li>What exactly counts as “continue a conversation”?</li>
-              <li>What surfaces are affected: mobile UI, backend, content pipeline, analytics?</li>
-              <li>What is the smallest shippable slice?</li>
-              <li>What metric matters: session length, repeat use, lesson completion?</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4>What BMO should do next</h4>
-            <ul>
-              <li>inspect the PodChats repo or relevant services</li>
-              <li>identify touchpoints: conversation state, transcript access, UI entry points, analytics hooks</li>
-              <li>propose a bounded implementation plan</li>
-              <li>implement the first safe slice: e.g. “resume conversation” button + stored thread state</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4>What comes back to humans</h4>
-            <ul>
-              <li>files changed</li>
-              <li>summary of architectural impact</li>
-              <li>tests run</li>
-              <li>known risks or unresolved questions</li>
-              <li>what would be needed for phase 2</li>
-            </ul>
-          </div>
+
+        <div class="flow">
+          <div class="step"><strong>Peppermint Butler handles project scoping and orchestration.</strong> It translates a request into a repository-linked GitHub project, creates the implementation task list, and structures the execution flow.</div>
+          <div class="step"><strong>BMO handles technical delivery.</strong> It works through the queued tasks, building and refining outputs until the work is complete, while escalating blockers, ambiguities, or higher-risk actions for review.</div>
+          <div class="step"><strong>Result.</strong> A repeatable path from idea → scoped project → tracked execution → completed work.</div>
         </div>
-        <p style="margin-top:14px;">This is the practical pattern Memrise needs: non-technical intent gets translated into a technically bounded change set, rather than being dumped raw onto a coding agent.</p>
-        <div class="callout"><strong>Practical implication:</strong> BMO is not just a developer assistant. BMO becomes a translation layer between non-technical intent and technical execution — but only if Pep or another coordination layer does the scope translation first.</div>
+
+        <div class="grid-two" style="margin-top:18px;">
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773573567519_Screenshot+2026-03-15+at+12.19.12.png" alt="GitHub project screenshot" />
+            <figcaption class="caption">Repository-linked project tracking turns a request into visible execution.</figcaption>
+          </figure>
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576714596_Screenshot+2026-03-15+at+13.11.46.png" alt="GitHub project screenshot 2" />
+            <figcaption class="caption">The point is not just code generation; it is a trackable workflow from intake to review.</figcaption>
+          </figure>
+        </div>
       </section>
 
-      <section id="nondev">
-        <div class="tag green">Operating model</div>
-        <h2>How a non-developer should use this system</h2>
-        <p>One of the important design questions is whether the system can be useful to somebody who does not understand the repo, environment, or implementation details. The answer is yes, but only if the workflow is designed properly.</p>
-        <div class="grid-three">
+      <section id="interfaces">
+        <div class="tag purple">Interfaces</div>
+        <h2>Interfaces: Telegram, Slack, and the practical command surface</h2>
+        <div class="grid-two">
           <div class="card">
-            <h3>What non-developers provide</h3>
+            <h3>Telegram</h3>
+            <p>Telegram works well as a lightweight, mobile-first interface into a much more powerful system.</p>
             <ul>
-              <li>desired business outcome</li>
-              <li>constraints and urgency</li>
-              <li>examples / references</li>
-              <li>acceptance criteria at a product level</li>
+              <li>easy to spin up multiple bots for different agents or workflows</li>
+              <li>keeps sessions and context more contained</li>
+              <li>fast session reset and recovery when an agent gets stuck or drifts</li>
+              <li>useful on the go for quick requests, updates, and approvals</li>
+              <li>still powerful despite the simple surface</li>
+              <li>low-friction desktop companion for snippets and quick asks</li>
             </ul>
           </div>
           <div class="card">
-            <h3>What Pep does</h3>
+            <h3>Slack</h3>
+            <p>Slack is where a lot of operational communication already happens, so it reduces friction by meeting people in an existing workflow rather than forcing a separate tool.</p>
             <ul>
-              <li>turn goal into bounded technical work</li>
-              <li>surface ambiguities</li>
-              <li>decide whether BMO can act or needs clarification</li>
-              <li>translate output back into understandable language</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>What BMO does</h3>
-            <ul>
-              <li>inspect code and systems</li>
-              <li>implement or propose exact technical changes</li>
-              <li>run checks</li>
-              <li>return evidence, not abstraction</li>
+              <li>central place to manage multiple agents</li>
+              <li>useful for both direct requests and workflow updates</li>
+              <li>supports team visibility</li>
+              <li>good for approvals and human-in-the-loop workflows</li>
+              <li>works well with GitHub, task boards, support systems, and internal workflows</li>
+              <li>helpful for ongoing agent management and supervision</li>
             </ul>
           </div>
         </div>
-        <p style="margin-top:16px;">This is important because a lot of companies make the mistake of assuming that a coding agent should talk directly to non-technical stakeholders as if both sides speak the same language. In practice, the translation/orchestration layer matters.</p>
+
+        <div class="grid-three" style="margin-top:18px;">
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575808160_Screenshot+2026-03-15+at+12.56.42.png" alt="Telegram screenshot" />
+            <figcaption class="caption">Telegram as a lightweight but surprisingly capable interface.</figcaption>
+          </figure>
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575677387_Screenshot+2026-03-15+at+12.54.34.png" alt="Telegram screenshot 2" />
+            <figcaption class="caption">Mobile-first interaction matters because real operational use happens away from the desk too.</figcaption>
+          </figure>
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575721043_Screenshot+2026-03-15+at+12.55.17.png" alt="Slack screenshot" />
+            <figcaption class="caption">Slack is strong when the work needs visibility, approvals, and coordination across people.</figcaption>
+          </figure>
+        </div>
       </section>
 
-      <section>
-        <div class="tag gold">Future agents</div>
-        <h2>Future agent directions after BMO is proven</h2>
-        <div class="grid-three">
+      <section id="management">
+        <div class="tag purple">AI management</div>
+        <h2>Control layer / mission control</h2>
+        <p>One of the biggest challenges in agent-based systems is visibility. It is not enough for agents to be capable of doing useful work. Operators need to be able to see what is happening, what has already happened, and where intervention may be needed.</p>
+        <div class="callout good"><strong>Mission control is not just monitoring.</strong> It is a way to supervise autonomous work without manually inspecting every conversation or workflow step. It reduces the black-box feeling that makes people distrust agentic systems.</div>
+        <div class="grid-two" style="margin-top:16px;">
           <div class="card">
-            <h3>Data agent</h3>
-            <p>Potentially valuable for analytics, reporting, experiment reads, and insight generation — but only with very strong data-access boundaries, query scoping, and auditability.</p>
+            <h3>Key advantages</h3>
+            <ul>
+              <li>visibility into what each agent is doing</li>
+              <li>active sessions and running workflows</li>
+              <li>task status and workflow progress</li>
+              <li>approvals and exceptions in one place</li>
+              <li>failures, retries, and stuck states are easier to spot</li>
+              <li>clearer auditability of actions across the system</li>
+              <li>easier intervention through reset, reroute, or stop controls</li>
+              <li>cost and usage can be monitored alongside activity</li>
+            </ul>
           </div>
-          <div class="card">
-            <h3>Pep-driven operations</h3>
-            <p>Planning and operating workflows through Pep makes sense for task systems, Asana-style coordination, bets, prioritization, and cross-functional synthesis.</p>
-          </div>
-          <div class="card">
-            <h3>What should wait</h3>
-            <p>Any agent with broad data access, customer-facing autonomy, or rights to modify important business systems should come later, after BMO and core trust patterns are proven.</p>
-          </div>
+          <figure class="screenshot">
+            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773577392079_Screenshot+2026-03-11+at+16.16.14.png" alt="Mission control dashboard screenshot" />
+            <figcaption class="caption">A control layer makes the system legible: active agents, workflow state, cost, failures, and intervention points.</figcaption>
+          </figure>
         </div>
-        <div class="callout"><strong>Security caveat on a future data agent:</strong> this is exactly the kind of agent that can become dangerous if it is over-permissioned. It should be built around narrow questions, approved data sources, strong logging, and explicit boundaries on what can be queried, summarized, or exported.</div>
       </section>
 
       <section id="security">
         <div class="tag red">Security</div>
-        <h2>Security concerns and real-world implications</h2>
-        <p>The research repeatedly points to the same thing: agentic systems alter the threat model. They consume untrusted input, reason dynamically, and cross boundaries between systems.</p>
+        <h2>Security, governance, and bounded autonomy</h2>
+        <p>This model is only useful if the controls are part of the operating design rather than something bolted on later.</p>
         <div class="grid-two">
           <div class="card">
-            <h3>Main risks</h3>
+            <h3>Key principles</h3>
             <ul>
-              <li>Prompt injection from web pages, docs, tickets, or repo content</li>
-              <li>Over-permissioned agents with too much tool access</li>
-              <li>Secrets exposure through environment or broad runtime access</li>
-              <li>Unsafe writes or merges without review</li>
-              <li>Opaque actions without audit trails</li>
-              <li>Identity confusion between human and agent accounts</li>
+              <li>not all actions should execute automatically</li>
+              <li>explicit approvals at key risk points</li>
+              <li>clear draft versus execute boundaries</li>
+              <li>escalation when requirements are unclear</li>
+              <li>humans remain accountable for high-impact decisions</li>
+              <li>autonomy should expand only where trust has been earned</li>
             </ul>
           </div>
           <div class="card">
-            <h3>What the research suggests</h3>
+            <h3>Structural controls</h3>
             <ul>
-              <li>Do not trust agents with secrets by default</li>
-              <li>Give each agent its own identity</li>
-              <li>Use least privilege and narrow scopes</li>
-              <li>Require approval for consequential actions</li>
-              <li>Make logs and decision traces queryable</li>
-              <li>Use external validation, not model self-validation</li>
+              <li>dedicated identities per agent</li>
+              <li>least-privilege access by role</li>
+              <li>scoped credentials and tool permissions</li>
+              <li>clearer separation between orchestration and execution</li>
+              <li>isolated sessions and workspaces where possible</li>
+              <li>stronger traceability of actions taken</li>
+              <li>approval gates for sensitive external or high-impact actions</li>
+              <li>auditability</li>
             </ul>
           </div>
         </div>
-        <h3 style="margin-top:18px;">Security posture recommended for Memrise</h3>
-        <div class="tableish">
-          <div class="row"><div class="key">GitHub</div><div>BMO may inspect and open PR-ready changes, but merging should remain human-reviewed.</div></div>
-          <div class="row"><div class="key">Secrets</div><div>Keep agent credentials scoped and task-specific. Avoid broad secret exposure in shared runtime contexts.</div></div>
-          <div class="row"><div class="key">Email</div><div>Agent email is useful, but external sending still requires human confirmation.</div></div>
-          <div class="row"><div class="key">Browser/session access</div><div>Treat live browser relay as high-trust access. It should be used intentionally, not casually.</div></div>
-          <div class="row"><div class="key">Logs</div><div>Store enough traces to reconstruct who asked for what, which tools were used, and what happened.</div></div>
-        </div>
-        <h3 style="margin-top:18px;">Operational security checklist</h3>
-        <div class="grid-two" style="margin-top:12px;">
-          <div class="card">
-            <h4>Identity controls</h4>
-            <ul>
-              <li>one identity per agent</li>
-              <li>no shared long-lived credentials where avoidable</li>
-              <li>separate human and agent accounts clearly</li>
-              <li>use org membership and repo permissions intentionally</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4>Runtime controls</h4>
-            <ul>
-              <li>limit tools by workflow and channel where possible</li>
-              <li>keep dangerous actions behind explicit review</li>
-              <li>prefer bounded runtimes and scoped repos</li>
-              <li>treat browser relay and live sessions as privileged access</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4>Data controls</h4>
-            <ul>
-              <li>avoid dumping sensitive context into prompts unnecessarily</li>
-              <li>move durable facts into docs/issues rather than chat transcripts</li>
-              <li>use retrieval selectively instead of broad context stuffing</li>
-              <li>mask or avoid secrets in logs and status updates</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h4>Human controls</h4>
-            <ul>
-              <li>review before merge</li>
-              <li>review before external send</li>
-              <li>review before permission expansion</li>
-              <li>reset sessions that show drift instead of trusting momentum</li>
-            </ul>
-          </div>
-        </div>
+        <div class="callout warning"><strong>Important:</strong> this should not be sold as “autonomous agents everywhere.” It is strongest when autonomy is narrow, supervised, and earned through reliability.</div>
       </section>
 
       <section id="cost">
-        <div class="tag gold">Cost</div>
-        <h2>Cost model and mitigation tactics</h2>
-        <p>A serious implementation document has to deal with cost, because agent systems can become expensive quickly — especially if the workflow is vague, context windows are bloated, or multi-agent complexity is introduced too early.</p>
-        <div class="grid-two">
+        <div class="tag gold">Cost saving</div>
+        <h2>Cost control and model routing</h2>
+        <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The recurring pattern is simple: stop sending every task to a premium model, add a cheap routing layer in front, keep sessions narrow, and track spend centrally through a gateway such as LiteLLM.</p>
+        <div class="grid-three" style="margin-top:16px;">
           <div class="card">
-            <h3>Where cost actually comes from</h3>
+            <h3>Tier A — ultra-cheap / local</h3>
             <ul>
-              <li>large context windows</li>
-              <li>re-sending too much history</li>
-              <li>using premium models for low-value steps</li>
-              <li>redundant multi-agent handoffs</li>
-              <li>wasted loops and fake-progress turns</li>
-              <li>tool/API calls outside the model bill itself</li>
+              <li>reminders</li>
+              <li>status checks</li>
+              <li>cron summaries</li>
+              <li>simple formatting</li>
+              <li>classification</li>
+              <li>simple retrieval triggers</li>
             </ul>
           </div>
           <div class="card">
-            <h3>What good teams do</h3>
+            <h3>Tier B — cheap but capable</h3>
             <ul>
-              <li>route simple tasks to cheaper models</li>
-              <li>reserve stronger models for hard reasoning</li>
-              <li>use compaction/summaries for long contexts</li>
-              <li>cache repeated lookups</li>
-              <li>track cost per workflow, not just total spend</li>
-              <li>keep orchestration deterministic where possible</li>
+              <li>simple updates</li>
+              <li>note summarisation</li>
+              <li>project hygiene</li>
+              <li>rough requests → task lists</li>
+              <li>lightweight web checks</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Tier C / D — stronger and premium</h3>
+            <ul>
+              <li>planning</li>
+              <li>multi-step reasoning</li>
+              <li>debugging</li>
+              <li>code review</li>
+              <li>major architecture decisions</li>
+              <li>high-stakes external outputs</li>
             </ul>
           </div>
         </div>
-        <h3 style="margin-top:18px;">Recommended cost controls for Memrise</h3>
-        <ol>
-          <li><strong>Default to one agent with tools before multi-agent expansion.</strong> Microsoft’s pattern guidance and broader enterprise best practices both support this.</li>
-          <li><strong>Use model routing.</strong> Low-risk classification, summarization, and retrieval tasks should not always hit the most expensive model.</li>
-          <li><strong>Compact context aggressively.</strong> Preserve architecture decisions, blockers, and recent artifacts; discard redundant history.</li>
-          <li><strong>Make status updates evidence-based.</strong> This is not just honesty — it is cost control. Every “working on it” without output burns tokens without creating value.</li>
-          <li><strong>Use PR/issue artifacts as memory anchors.</strong> Put stable facts in GitHub and docs instead of repeatedly re-explaining them in chat context.</li>
-          <li><strong>Set turn and time budgets.</strong> If BMO has not produced a real artifact by a defined point, the system should escalate, not continue to churn.</li>
-          <li><strong>Measure cost per useful outcome.</strong> For example: cost per bug fixed, cost per scoped task, cost per merged PR, or cost per PodChats feature slice.</li>
-        </ol>
-        <h3 style="margin-top:18px;">Practical cost model for a Memrise workflow</h3>
-        <div class="grid-three" style="margin-top:12px;">
-          <div class="card">
-            <h4>Cheap layer</h4>
-            <p>classification, summarization, issue cleanup, lightweight retrieval, status formatting</p>
-          </div>
-          <div class="card">
-            <h4>Medium layer</h4>
-            <p>repo inspection, implementation planning, code explanation, test triage</p>
-          </div>
-          <div class="card">
-            <h4>Expensive layer</h4>
-            <p>multi-step implementation loops, long-context coding sessions, repeated review cycles, premium models on ambiguous work</p>
-          </div>
-        </div>
-        <p style="margin-top:14px;">A sane Memrise deployment should deliberately push as much work as possible into the cheap and medium layers, and reserve the expensive layer for tasks that genuinely require it.</p>
-        <h3 style="margin-top:18px;">Budgeting logic worth using</h3>
-        <ul>
-          <li><strong>Per-task budget:</strong> cap spend/turns for a single request before escalating to a human.</li>
-          <li><strong>Per-workflow budget:</strong> track what a PodChats feature slice or bug fix typically costs.</li>
-          <li><strong>Per-agent budget:</strong> if BMO’s sessions start becoming long and unproductive, intervene.</li>
-          <li><strong>Per-outcome metric:</strong> compare cost against meaningful business outputs, not just token totals.</li>
-        </ul>
-        <div class="callout"><strong>Important implication:</strong> “agent quality” and “agent cost efficiency” are coupled. A drifting or theatrical agent is not just annoying — it is economically bad.</div>
-      </section>
 
-      <section>
-        <div class="tag gold">Organizational implications</div>
-        <h2>What this would mean inside Memrise</h2>
-        <div class="grid-two">
-          <div class="card">
-            <h3>Ownership</h3>
-            <ul>
-              <li>someone needs to own the operating model, not just the code</li>
-              <li>agent behavior, permissions, and evaluation need an accountable steward</li>
-              <li>repo maintainers still own technical review quality</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>What could go wrong organizationally</h3>
-            <ul>
-              <li>people treat the system like magic instead of bounded infrastructure</li>
-              <li>unclear ownership leads to drift and poor trust</li>
-              <li>non-technical requests hit BMO without proper translation</li>
-              <li>the system expands socially faster than it matures operationally</li>
-            </ul>
-          </div>
-        </div>
-        <p style="margin-top:14px;">A Head of AI recommendation has to account not just for technical architecture, but for the fact that organizational ambiguity can kill agent deployments even when the tooling works.</p>
-      </section>
+        <div class="visual">
+          <svg viewBox="0 0 980 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cost routing diagram">
+            <rect x="30" y="108" width="150" height="80" rx="18" fill="#fff" stroke="#ddd2c2"/>
+            <text x="105" y="143" text-anchor="middle" font-size="18" font-weight="700">Request</text>
+            <text x="105" y="167" text-anchor="middle" font-size="14" fill="#6a645b">message / task</text>
 
-      <section>
-        <div class="tag purple">Mission control</div>
-        <h2>How the system would be managed and maintained</h2>
-        <p>OpenClaw should not be treated as a black box. One of the reasons Command Center matters is that it gives Memrise an operational surface for managing the system, not just a conversational surface for using it.</p>
-        <div class="grid-two">
-          <div class="card">
-            <h3>What Mission Control is for</h3>
-            <ul>
-              <li>seeing live sessions and which agents are active</li>
-              <li>tracking usage and model consumption</li>
-              <li>monitoring cost and session health</li>
-              <li>spotting drift, idle sessions, or abnormal behavior</li>
-              <li>understanding whether the system is saving time or just burning tokens</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Why this matters for Memrise</h3>
-            <ul>
-              <li>it creates operator trust</li>
-              <li>it gives AI work an observable control plane</li>
-              <li>it makes debugging and governance practical</li>
-              <li>it supports cost control rather than vague optimism</li>
-            </ul>
-          </div>
-        </div>
-        <div class="grid-two" style="margin-top:16px;">
-          <div class="diagram" style="text-align:center;">
-            <img src="assets/command-center.jpg" alt="OpenClaw Command Center screenshot showing sessions, cost, usage, and system health" style="max-width:78%; border-radius:14px; border:1px solid var(--line);" />
-            <p class="muted" style="margin-top:10px; font-size:14px;">High-level Mission Control view: sessions, cost, usage, and system health.</p>
-          </div>
-          <div class="diagram" style="text-align:center;">
-            <img src="assets/command-center-detail.jpg" alt="OpenClaw Command Center detail screenshot" style="max-width:78%; border-radius:14px; border:1px solid var(--line);" />
-            <p class="muted" style="margin-top:10px; font-size:14px;">Operational detail view: active sessions and ongoing workload visibility.</p>
-          </div>
-        </div>
-        <p class="muted" style="margin-top:12px;">This is how the system should be operated day to day: not just by prompting agents, but by supervising usage, costs, sessions, and health through Mission Control.</p>
-      </section>
+            <rect x="220" y="94" width="190" height="108" rx="20" fill="#fff4d6" stroke="#ecdca4"/>
+            <text x="315" y="128" text-anchor="middle" font-size="19" font-weight="800" fill="#8a6500">Router model</text>
+            <text x="315" y="153" text-anchor="middle" font-size="14" fill="#7a6425">routine / complex / uncertain</text>
+            <text x="315" y="175" text-anchor="middle" font-size="14" fill="#7a6425">cheap classifier first</text>
 
-      <section id="rollout">
-        <div class="tag green">Rollout</div>
-        <h2>Recommended rollout plan</h2>
-        <div class="tableish">
-          <div class="row"><div class="key">Phase 0 — stabilize the base</div><div>Stabilize OpenClaw runtime, Slack behavior, Command Center visibility, and BMO behavioral contract.</div></div>
-          <div class="row"><div class="key">Phase 1 — establish BMO</div><div>Create and connect BMO identity, repo access, and bounded execution flow. Validate on real tasks.</div></div>
-          <div class="row"><div class="key">Phase 2 — harden</div><div>Add templates, runbooks, approvals, stronger observability, and more explicit operating rules.</div></div>
-          <div class="row"><div class="key">Phase 3 — expand</div><div>Only after BMO is truly reliable, add adjacent workflows such as planning support, support triage, or marketing assistance.</div></div>
-        </div>
-        <div class="grid-two" style="margin-top:18px;">
-          <div class="card">
-            <h3>Success signals</h3>
-            <ul>
-              <li>BMO completes bounded work with low babysitting</li>
-              <li>Artifacts are reviewable and useful</li>
-              <li>Non-developers can make requests without breaking the system</li>
-              <li>Security and cost remain legible</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Failure signals</h3>
-            <ul>
-              <li>too much ambiguity reaches BMO directly</li>
-              <li>status theater continues</li>
-              <li>observability is weak</li>
-              <li>cost rises faster than value</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+            <rect x="460" y="34" width="190" height="70" rx="16" fill="#e7f8f1" stroke="#cceee0"/>
+            <text x="555" y="65" text-anchor="middle" font-size="18" font-weight="800" fill="#0a8c61">Cheap default path</text>
+            <text x="555" y="86" text-anchor="middle" font-size="13" fill="#4f7f69">summaries · routing · admin</text>
 
-      <section id="setup">
-        <div class="tag green">Setup</div>
-        <h2>Setup prerequisites and dependency map</h2>
-        <p>This is the minimum viable dependency chain required before Memrise can realistically use OpenClaw for agentic work.</p>
-        <div class="tableish">
-          <div class="row"><div class="key">Runtime</div><div>Working VPS or equivalent host, OpenClaw installed, workspace persistent, dashboard accessible.</div></div>
-          <div class="row"><div class="key">Channels</div><div>Slack working reliably with the intended agent identities and routing rules.</div></div>
-          <div class="row"><div class="key">Identities</div><div>Pep and BMO need dedicated email identities; BMO needs GitHub; both may need Slack presence depending on workflow.</div></div>
-          <div class="row"><div class="key">Repos</div><div>BMO must have access only to the target repositories for phase 1.</div></div>
-          <div class="row"><div class="key">Execution</div><div>Tests, install commands, and local build paths need to be known and reproducible.</div></div>
-          <div class="row"><div class="key">Trust layer</div><div>Command Center / logs / session visibility must be usable before autonomy expands.</div></div>
-        </div>
-        <div class="diagram">
-          <svg viewBox="0 0 980 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Dependency map">
-            <rect x="20" y="70" width="130" height="70" rx="16" fill="#fff" stroke="#ddd5c8"/><text x="85" y="98" text-anchor="middle" font-size="17" font-weight="700">Runtime</text><text x="85" y="121" text-anchor="middle" font-size="13" fill="#666155">VPS + OpenClaw</text>
-            <rect x="185" y="70" width="130" height="70" rx="16" fill="#fff" stroke="#ddd5c8"/><text x="250" y="98" text-anchor="middle" font-size="17" font-weight="700">Channels</text><text x="250" y="121" text-anchor="middle" font-size="13" fill="#666155">Slack</text>
-            <rect x="350" y="70" width="130" height="70" rx="16" fill="#fff" stroke="#ddd5c8"/><text x="415" y="98" text-anchor="middle" font-size="17" font-weight="700">Identity</text><text x="415" y="121" text-anchor="middle" font-size="13" fill="#666155">Email + GitHub</text>
-            <rect x="515" y="70" width="130" height="70" rx="16" fill="#fff" stroke="#ddd5c8"/><text x="580" y="98" text-anchor="middle" font-size="17" font-weight="700">Repos</text><text x="580" y="121" text-anchor="middle" font-size="13" fill="#666155">Access + workflow</text>
-            <rect x="680" y="70" width="130" height="70" rx="16" fill="#fff" stroke="#ddd5c8"/><text x="745" y="98" text-anchor="middle" font-size="17" font-weight="700">Execution</text><text x="745" y="121" text-anchor="middle" font-size="13" fill="#666155">Tests + artifacts</text>
-            <rect x="845" y="70" width="115" height="70" rx="16" fill="#e7f8f1" stroke="#cceee0"/><text x="902.5" y="98" text-anchor="middle" font-size="17" font-weight="800" fill="#0a8c61">Trust</text><text x="902.5" y="121" text-anchor="middle" font-size="13" fill="#4f7f69">Logs + review</text>
-            <path d="M150 105 L185 105" stroke="#8a867b" stroke-width="2.5" marker-end="url(#d1)"/>
-            <path d="M315 105 L350 105" stroke="#8a867b" stroke-width="2.5" marker-end="url(#d1)"/>
-            <path d="M480 105 L515 105" stroke="#8a867b" stroke-width="2.5" marker-end="url(#d1)"/>
-            <path d="M645 105 L680 105" stroke="#8a867b" stroke-width="2.5" marker-end="url(#d1)"/>
-            <path d="M810 105 L845 105" stroke="#8a867b" stroke-width="2.5" marker-end="url(#d1)"/>
-            <defs><marker id="d1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
+            <rect x="460" y="120" width="190" height="70" rx="16" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="555" y="151" text-anchor="middle" font-size="18" font-weight="700">Mid-tier path</text>
+            <text x="555" y="172" text-anchor="middle" font-size="13" fill="#6a645b">scoping · drafting · normal code</text>
+
+            <rect x="460" y="206" width="190" height="70" rx="16" fill="#faebe7" stroke="#efc9c0"/>
+            <text x="555" y="237" text-anchor="middle" font-size="18" font-weight="800" fill="#b14d3f">Premium sparse path</text>
+            <text x="555" y="258" text-anchor="middle" font-size="13" fill="#9d564a">hard debugging · architecture</text>
+
+            <rect x="706" y="94" width="234" height="108" rx="20" fill="#ece8ff" stroke="#d8d1ff"/>
+            <text x="823" y="128" text-anchor="middle" font-size="19" font-weight="800" fill="#5b46ff">Gateway + logging</text>
+            <text x="823" y="153" text-anchor="middle" font-size="14" fill="#4f41b8">LiteLLM / spend limits / logs</text>
+            <text x="823" y="175" text-anchor="middle" font-size="14" fill="#4f41b8">budgets by agent and workflow</text>
+
+            <path d="M180 148 L220 148" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M410 124 L460 69" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M410 148 L460 155" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M410 172 L460 241" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M650 69 L706 120" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M650 155 L706 148" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M650 241 L706 176" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <defs>
+              <marker id="costarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker>
+            </defs>
           </svg>
         </div>
-      </section>
 
-      <section id="approval">
-        <div class="tag gold">Approvals</div>
-        <h2>Approval matrix</h2>
-        <p>One of the strongest recurring research patterns is that high-trust implementations are explicit about where autonomy ends.</p>
-        <div class="tableish">
-          <div class="row"><div class="key">Repo inspection</div><div><strong>Agent allowed:</strong> yes. Low risk if scope is bounded.</div></div>
-          <div class="row"><div class="key">Local code changes</div><div><strong>Agent allowed:</strong> yes, in bounded repos / worktrees, with reporting.</div></div>
-          <div class="row"><div class="key">Running tests</div><div><strong>Agent allowed:</strong> yes, assuming no dangerous side effects.</div></div>
-          <div class="row"><div class="key">Opening PR-ready changes</div><div><strong>Agent allowed:</strong> yes. This is a core expected path.</div></div>
-          <div class="row"><div class="key">Merging to important branches</div><div><strong>Human approval required:</strong> yes.</div></div>
-          <div class="row"><div class="key">External email send</div><div><strong>Human approval required:</strong> yes, always.</div></div>
-          <div class="row"><div class="key">Broad permission changes</div><div><strong>Human approval required:</strong> yes.</div></div>
-          <div class="row"><div class="key">Production-impacting system writes</div><div><strong>Human approval required:</strong> yes, unless a later explicitly safe automation exists.</div></div>
-        </div>
-      </section>
-
-      <section id="runbooks">
-        <div class="tag red">Runbooks</div>
-        <h2>Failure modes and operating runbooks</h2>
-        <div class="grid-two">
+        <div class="grid-two" style="margin-top:16px;">
           <div class="card">
-            <h3>Failure mode: fake progress</h3>
-            <ul>
-              <li>Symptom: reassuring updates without artifacts</li>
-              <li>Action: require changed files / commands / tests / blockers</li>
-              <li>Escalation: reset session if pattern persists</li>
-            </ul>
+            <h3>Practical moves</h3>
+            <ol>
+              <li>Put a gateway in front of OpenClaw</li>
+              <li>Create a cheap router model before the expensive model</li>
+              <li>Define task classes before choosing models</li>
+              <li>Make the cheap model the default, not the premium one</li>
+              <li>Route by workflow step, not just by agent</li>
+              <li>Keep contexts small on purpose</li>
+            </ol>
           </div>
           <div class="card">
-            <h3>Failure mode: context drift</h3>
-            <ul>
-              <li>Symptom: increasingly vague or ungrounded responses</li>
-              <li>Action: compact context, reset stale sessions, re-anchor in repo/docs</li>
-              <li>Escalation: move durable facts into docs/issues instead of chat history</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Failure mode: security ambiguity</h3>
-            <ul>
-              <li>Symptom: unclear whether a tool/action is safe</li>
-              <li>Action: stop and require review</li>
-              <li>Escalation: narrow permissions, add explicit approval gates</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Failure mode: cost overrun</h3>
-            <ul>
-              <li>Symptom: long sessions, repeated loops, oversized context</li>
-              <li>Action: compact aggressively, use cheaper model tiers, add stop conditions</li>
-              <li>Escalation: measure cost per useful outcome and cut failing workflows</li>
-            </ul>
+            <h3>More important than it sounds</h3>
+            <ol start="7">
+              <li>Externalize memory instead of paying to “remember”</li>
+              <li>Cap spend with virtual keys and per-agent budgets</li>
+              <li>Use shadow logging and weekly review</li>
+              <li>Treat “uncertain” as a policy decision</li>
+              <li>Separate heartbeat jobs from thinking jobs</li>
+              <li>Build “escalate on failure,” not “premium from the start”</li>
+            </ol>
           </div>
         </div>
+
+        <div class="callout"><strong>Most practical summary:</strong> route through a gateway, use a cheap router, make lower-cost models the default, reserve premium models for hard work, keep sessions narrow, and review spend by agent and workflow every week.</div>
       </section>
 
-      <section id="checklist">
-        <div class="tag green">Checklist</div>
-        <h2>Implementation checklist</h2>
+      <section id="users">
+        <div class="tag purple">Who needs this?</div>
+        <h2>Target users and operating scope</h2>
+        <p>This model is unlikely to be the right default for everybody in the company. It is strongest when used in targeted workflows where there is a clear owner, a repeatable process, and a meaningful coordination burden that can be reduced.</p>
         <div class="grid-two">
           <div class="card">
-            <h3>Foundations</h3>
+            <h3>Best suited to</h3>
             <ul>
-              <li>OpenClaw stable on VPS</li>
-              <li>Slack connected and routing correctly</li>
-              <li>Command Center accessible</li>
-              <li>Workspace and logs persistent</li>
+              <li>workflow owners and operators</li>
+              <li>product and project leads</li>
+              <li>support, lifecycle, or coordination-heavy roles</li>
+              <li>teams with repeatable, high-friction processes</li>
+              <li>users willing to supervise and review outputs</li>
             </ul>
           </div>
           <div class="card">
-            <h3>Identity</h3>
+            <h3>Less suitable as a default</h3>
             <ul>
-              <li>Pep email connected</li>
-              <li>BMO email connected</li>
-              <li>Pep GitHub connected</li>
-              <li>BMO GitHub connected</li>
-              <li>Org membership and repo access correct</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Workflow</h3>
-            <ul>
-              <li>BMO execution contract enforced</li>
-              <li>Evidence-bound update template active</li>
-              <li>Test/build commands known per repo</li>
-              <li>Review path defined</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Governance</h3>
-            <ul>
-              <li>Approval boundaries explicit</li>
-              <li>Secrets access scoped</li>
-              <li>Runbooks for drift and reset exist</li>
-              <li>Cost and observability measures in place</li>
+              <li>everyone in the company by default</li>
+              <li>workflows with unclear ownership</li>
+              <li>high-risk actions without human review</li>
+              <li>contexts where deterministic outputs are essential</li>
+              <li>uncontrolled experimentation at scale</li>
             </ul>
           </div>
         </div>
+        <p class="muted" style="margin-top:14px;">The goal is targeted leverage, not universal rollout.</p>
       </section>
 
-      <section id="research">
-        <div class="tag purple">Research basis</div>
-        <h2>What research this documentation is based on</h2>
-        <p>This documentation is not speculative. It is grounded in external research plus local OpenClaw and Memrise notes.</p>
-        <div class="grid-two">
-          <div class="card">
-            <h3>External sources used</h3>
-            <ul class="sources">
-              <li><strong>Bain</strong> — why agentic AI requires a new enterprise architecture</li>
-              <li><strong>Microsoft Learn</strong> — orchestration patterns and minimum viable complexity</li>
-              <li><strong>GitHub Docs</strong> — coding-agent PR-based execution model</li>
-              <li><strong>GitHub Blog</strong> — security architecture of agentic workflows</li>
-              <li><strong>Slack Blog</strong> — coding agents in Slack as context-rich collaborators</li>
-              <li><strong>OpenAI Codex guide</strong> — AI-native engineering workflows</li>
-              <li><strong>Intercom Fin</strong> — layered agent design, handoff, analytics</li>
-              <li><strong>Dropbox Dash</strong> — knowledge layer, retrieval, access control</li>
-              <li>Additional cost and security sources on token optimization, context compaction, observability, prompt injection, least privilege, and audit trails</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Local sources used</h3>
-            <ul class="sources">
-              <li>OpenClaw docs on dashboard, Slack, and VPS hosting</li>
-              <li>Existing Memrise/OpenClaw architecture notes in the workspace</li>
-              <li><code>memrise-openclaw-research-2026-03-13.md</code></li>
-              <li><code>memrise-openclaw-implementation-doc.md</code></li>
-            </ul>
-          </div>
+      <section id="memory">
+        <div class="tag gold">OpenClaw memory</div>
+        <h2>Memory should be externalized, structured, and intentionally reused</h2>
+        <p>One of the practical strengths of this model is that it does not rely entirely on the model’s context window as memory. Ongoing project state can live in GitHub Projects, documentation, structured notes, and durable files, then be retrieved as needed.</p>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card"><h3>Why that matters</h3><p>It reduces repeated token burn and stops long conversations becoming the only source of truth.</p></div>
+          <div class="card"><h3>What to store externally</h3><p>project state, task lists, accepted decisions, repository notes, operating rules, and workflow-specific memory.</p></div>
+          <div class="card"><h3>What not to do</h3><p>keep re-pasting giant blobs of history into chat or expect the model to “just remember” everything indefinitely.</p></div>
         </div>
-        <p class="muted" style="margin-top:16px;">The patterns that kept repeating were: orchestration layer, specialized bounded agents, approvals, logs/observability, and a narrow high-value first workflow.</p>
+        <div class="callout good"><strong>Practical rule:</strong> pass summaries, task lists, issue references, and documents between agents — not full conversational histories unless there is a very specific reason.</div>
       </section>
 
-      <section id="appendix">
-        <div class="tag green">Appendix</div>
-        <h2>Practical setup appendix</h2>
-        <div class="grid-two">
-          <div class="card">
-            <h3>Current known setup components</h3>
-            <ul>
-              <li>OpenClaw running on VPS/container</li>
-              <li>Command Center available by SSH tunnel</li>
-              <li>Memrise planning docs served locally via HTTP</li>
-              <li>Pep GitHub connected</li>
-              <li>Pep and BMO email identities connected via Maton</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>What still needs care</h3>
-            <ul>
-              <li>BMO GitHub auth and org access must be fully finished and verified</li>
-              <li>target repo selection for phase 1</li>
-              <li>repo-specific commands and test paths</li>
-              <li>clear merge/review policy for BMO work</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Suggested repo onboarding checklist</h3>
-            <ul>
-              <li>confirm repo ownership and branch protections</li>
-              <li>document install/test/dev commands</li>
-              <li>document secrets or env assumptions</li>
-              <li>decide whether BMO works via direct branch or PR-only flow</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Suggested first-success criteria</h3>
-            <ul>
-              <li>one real bounded feature or bugfix shipped with low babysitting</li>
-              <li>all updates evidence-bound</li>
-              <li>review path feels safe and lightweight</li>
-              <li>cost and execution time are acceptable</li>
-            </ul>
-          </div>
+      <section id="principles">
+        <div class="tag red">Operating gospel</div>
+        <h2>These are the principles the proposal should revolve around</h2>
+        <p>This should not just be implied throughout the document. These principles should be concreted in as the core doctrine the implementation will be built around.</p>
+        <div class="principles">
+          <div class="principle"><strong>Workflow-first, not chat-first.</strong> The point is not to give everyone another AI chat surface. The point is to improve real workflows.</div>
+          <div class="principle"><strong>Specialised agents over one overloaded agent.</strong> Split coordination, execution, review, and support where it creates clarity and control.</div>
+          <div class="principle"><strong>Dedicated identities per agent.</strong> Keep roles, permissions, and auditability clean.</div>
+          <div class="principle"><strong>Human approvals at key risk points.</strong> External sends, sensitive actions, merges, and permission expansion should not happen casually.</div>
+          <div class="principle"><strong>Evidence beats narration.</strong> Agents should report commands, files, tests, artifacts, blockers, and concrete results.</div>
+          <div class="principle"><strong>Mission control is part of the product.</strong> Visibility, intervention, session health, approvals, failures, and costs need a control layer.</div>
+          <div class="principle"><strong>Cost is an operating discipline.</strong> Use routing, cheap-first defaults, session narrowing, and central spend tracking.</div>
+          <div class="principle"><strong>Memory belongs in systems, not just context windows.</strong> Externalize durable state into docs, projects, and structured files.</div>
+          <div class="principle"><strong>Autonomy should expand only where trust has been earned.</strong> Start bounded, prove leverage, then widen scope deliberately.</div>
+          <div class="principle"><strong>Targeted leverage beats universal rollout.</strong> This model is strongest in coordination-heavy workflows with clear owners and repeatable patterns.</div>
         </div>
       </section>
     </main>

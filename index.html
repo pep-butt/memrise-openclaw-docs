@@ -400,28 +400,14 @@
       <section id="operating-system">
         <div class="tag purple">Current operating system</div>
         <h2>Why it is structured this way</h2>
-        <p>At a practical level, the architecture is built to stop one agent from trying to hold planning, execution, review, and reporting all at once. Each agent gets its own role and operating surface, which makes the system easier to manage and easier to trust.</p>
-        <div class="grid-two" style="margin-top:18px;">
-          <div class="card">
-            <h3>What this enables</h3>
-            <ul>
-              <li>smaller and more focused contexts</li>
-              <li>clear separation between coordination and execution</li>
-              <li>repeatable handoff from planning to delivery</li>
-              <li>approvals and review at risk points</li>
-              <li>better visibility into multi-step work</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Why it matters</h3>
-            <ul>
-              <li>one long conversation holding planning, implementation, review, and reporting becomes expensive and messy</li>
-              <li>specialised sessions are easier to supervise</li>
-              <li>separate identities make permissions cleaner</li>
-              <li>handoffs become explicit instead of accidental</li>
-            </ul>
-          </div>
-        </div>
+        <p>This system is structured around specialised agents, separate identities, lightweight interfaces, and explicit control layers because the goal is not just to make AI available. The goal is to make it usable, governable, and effective in real workflows.</p>
+        <p>A single general-purpose agent quickly becomes overloaded. It has to hold too much context, switch between too many responsibilities, and operate across too many systems at once. That increases cost, reduces clarity, and makes failures harder to understand. By splitting work across specialised agents, each agent can operate with a narrower role, a smaller context window, and a clearer operating boundary.</p>
+        <p>Separate identities and scoped permissions are used so that agents can act independently without collapsing into one shared, opaque system. This improves auditability, makes permissions easier to reason about, and supports safer autonomy. A coordination agent and an execution agent should not have identical access or responsibilities.</p>
+        <p>The interfaces are also chosen deliberately. Lightweight interfaces such as Telegram make it easy to interact with agents quickly and on the go, while Slack provides a more shared operational layer for team visibility, approvals, and coordination. The aim is to let agents fit into existing workflows rather than forcing people into a new tool or habit.</p>
+        <p>The control layer is included because visibility is essential. Once work is distributed across multiple agents, operators need to be able to see what is running, what has completed, what is blocked, what has failed, and where intervention is needed. Without that, the system becomes a black box. With it, autonomy becomes manageable.</p>
+        <p>This structure also supports better cost control. Smaller sessions, clearer handoffs, and model routing make it possible to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks. That keeps the system more sustainable and prevents complexity from turning into unnecessary spend.</p>
+        <p>Overall, the structure is designed to balance autonomy with control. Agents are able to move work forward independently, but within a model that keeps responsibilities clear, permissions bounded, costs more manageable, and humans in control where it matters.</p>
+        <div class="callout good"><strong>Short version:</strong> specialised agents keep roles and context clear; separate identities improve auditability and permissions design; lightweight interfaces reduce friction; control layers make autonomous work visible and manageable; approvals preserve human judgment where risk matters; and model routing helps control cost.</div>
         <div class="visual">
           <svg viewBox="0 0 1080 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenClaw operating model diagram">
             <rect x="40" y="128" width="150" height="74" rx="18" fill="#ffffff" stroke="#ddd2c2"/>

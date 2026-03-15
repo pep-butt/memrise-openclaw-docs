@@ -409,6 +409,7 @@
           <a href="#individual-accounts">Why individual accounts</a>
           <a href="#pilot">Pilot with technical teams first</a>
           <a href="#strengths">OpenClaw: strengths and constraints</a>
+          <a href="#hosting">Hosting options</a>
           <a href="#management">Control layer / mission control</a>
           <a href="#security">Security and governance</a>
           <a href="#cost">Cost control and model routing</a>
@@ -915,8 +916,72 @@
         <div class="callout"><strong>Bottom takeaway:</strong> high upside, but only with deliberate setup, control, and staged adoption.</div>
       </section>
 
+      <section id="hosting">
+        <div class="tag purple">12. Hosting options</div>
+        <h2>Trade-offs between control, convenience, and reliability</h2>
+        <p>Where OpenClaw runs changes how secure, shareable, and maintainable the system is.</p>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card">
+            <h3>Option 1: Mac mini</h3>
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>more controlled environment</li>
+              <li>good for sensitive or semi-private workflows</li>
+              <li>persistent always-on machine</li>
+              <li>good for bounded internal experimentation</li>
+              <li>better separation from personal user environments</li>
+            </ul>
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>still operational overhead</li>
+              <li>less convenient for broad team access than a hosted service</li>
+              <li>hardware is a single point of failure</li>
+              <li>scaling is limited</li>
+            </ul>
+            <p class="muted"><strong>Best for:</strong> early pilot phase, more sensitive workflows, controlled experimentation, bounded internal use cases.</p>
+          </div>
+          <div class="card">
+            <h3>Option 2: VPS / cloud host</h3>
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>better uptime and accessibility</li>
+              <li>cleaner for shared operational use</li>
+              <li>easier to centralize dashboards and mission control</li>
+              <li>more scalable</li>
+              <li>less dependent on one person’s hardware</li>
+            </ul>
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>needs stronger security design</li>
+              <li>larger blast radius if misconfigured</li>
+              <li>can feel less contained</li>
+              <li>requires more deliberate governance</li>
+            </ul>
+            <p class="muted"><strong>Best for:</strong> shared team workflows, mission control, multi-user access, later-stage rollout after controls are proven.</p>
+          </div>
+          <div class="card">
+            <h3>Option 3: Someone’s personal machine</h3>
+            <p><strong>Pros</strong></p>
+            <ul>
+              <li>fastest way to get started</li>
+              <li>useful for personal workflows</li>
+              <li>no extra infrastructure needed initially</li>
+            </ul>
+            <p><strong>Cons</strong></p>
+            <ul>
+              <li>weakest operational setup</li>
+              <li>blurs personal and system boundaries</li>
+              <li>poor for team trust and shared use</li>
+              <li>harder to secure properly</li>
+              <li>not a good base for scale</li>
+            </ul>
+            <p class="muted"><strong>Best for:</strong> solo testing, personal prototyping.</p>
+          </div>
+        </div>
+      </section>
+
       <section id="management">
-        <div class="tag purple">12. Control layer / mission control</div>
+        <div class="tag purple">13. Control layer / mission control</div>
         <h2>Memrise would need a real control layer</h2>
         <p>If Memrise adopted a model like this, mission control would stop being a nice-to-have and become part of the operating model. Once work is distributed across multiple agents, people need to see what is running, what has completed, what is blocked, what has failed, and where intervention is required.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -938,7 +1003,7 @@
       </section>
 
       <section id="security">
-        <div class="tag red">13. Security and governance</div>
+        <div class="tag red">14. Security and governance</div>
         <h2>Security and governance need to be designed in from day one</h2>
         <p>Moving from a personal operating system to a company workflow changes the requirements. In a personal setup, some trust can sit with the operator. In a team setting, permissions, approvals, scoping, and auditability have to be explicit.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -991,7 +1056,7 @@
       </section>
 
       <section id="cost">
-        <div class="tag gold">14. Cost control and model routing</div>
+        <div class="tag gold">15. Cost control and model routing</div>
         <h2>Cheap-first routing, clear tiers, and explicit escalation</h2>
         <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The goal is to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -1026,7 +1091,7 @@
       
 
       <section id="principles">
-        <div class="tag red">15. Memrise AI operating rules</div>
+        <div class="tag red">16. Memrise AI operating rules</div>
         <h2>A small set of rules to keep the model useful, visible, and manageable</h2>
         <p>These are not abstract principles. They are practical constraints designed to keep the system governable as it moves from a personal setup into a company workflow.</p>
         <div class="grid-three" style="margin-top:16px;">
@@ -1039,7 +1104,7 @@
       </section>
 
       <section id="success">
-        <div class="tag green">16. Success criteria for a Memrise pilot</div>
+        <div class="tag green">17. Success criteria for a Memrise pilot</div>
         <h2>How we would know this is working</h2>
         <p>A pilot should not be judged on whether the agents look impressive. It should be judged on whether they create measurable operational leverage without introducing unacceptable cost, risk, or supervision burden.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -1084,7 +1149,7 @@
       </section>
 
       <section id="closing">
-        <div class="tag green">17. Closing takeaway</div>
+        <div class="tag green">18. Closing takeaway</div>
         <h2>This is not a chatbot rollout</h2>
         <p>This is an operating model for selected workflows. The point is to increase leverage without losing control: show the system working in miniature, then design the cleaner, safer, more governable version that a company context would require.</p>
       </section>

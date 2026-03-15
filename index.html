@@ -189,6 +189,15 @@
     .mini-tag.green { background:#edf9f3; color:#0a8c61; }
     .mini-tag.purple { background:#efe8ff; color:#5b46ff; }
     .mini-tag.gold { background:#fff4d6; color:#8a6500; }
+    .hl {
+      background: var(--accent-soft);
+      color: var(--accent);
+      padding: 0 .26em;
+      border-radius: .42em;
+      font-weight: 700;
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
     .purple { background: var(--accent-soft); color: var(--accent); }
     .green { background: var(--green-soft); color: var(--green); }
     .gold { background: var(--gold-soft); color: var(--gold); }
@@ -445,7 +454,7 @@
       <section id="operating-system">
         <div class="tag purple">1. Overview</div>
         <h2>My personal model</h2>
-        <p>This system is structured around specialised agents, separate identities, lightweight interfaces, and explicit control layers because the goal is not just to make AI available. The goal is to make it usable, governable, and effective in real workflows.</p>
+        <p>This system is structured around <span class="hl">specialised agents</span>, <span class="hl">separate identities</span>, lightweight interfaces, and <span class="hl">explicit control layers</span> because the goal is not just to make AI available. The goal is to make it usable, governable, and effective in real workflows.</p>
         <p>A single general-purpose agent quickly becomes overloaded. It has to hold too much context, switch between too many responsibilities, and operate across too many systems at once. That increases cost, reduces clarity, and makes failures harder to understand. By splitting work across specialised agents, each agent can operate with a narrower role, a smaller context window, and a clearer operating boundary.</p>
         <p>The result is a system that is easier to supervise, easier to scale, and less likely to become an expensive black box.</p>
         <div class="visual">
@@ -674,7 +683,7 @@
           <li>broad rollout before usage patterns are understood is likely to be inefficient</li>
           <li>cost control has to be part of the operating model, not an afterthought</li>
         </ul>
-        <div class="callout"><strong>Bottom line:</strong> The model is promising, but only if cost discipline is built in from day one.</div>
+        <div class="callout"><strong>Bottom line:</strong> The model is promising, but only if <span class="hl">cost discipline</span> is built in from day one.</div>
       </section>
 
       
@@ -693,7 +702,7 @@
       <section id="memrise-system">
         <div class="tag purple">6. How Memrise would be set up</div>
         <h2>Translating the model into Memrise</h2>
-        <p>The point is not to clone the personal setup exactly. The point is to apply the same system logic in a Memrise-shaped way: shared Slack surface, separated bot identities, clear roles, a control layer, and explicit account boundaries.</p>
+        <p>The point is not to clone the personal setup exactly. The point is to apply the same system logic in a Memrise-shaped way: <span class="hl">shared Slack surface</span>, <span class="hl">separated bot identities</span>, clear roles, a control layer, and explicit account boundaries.</p>
         <div class="visual">
           <svg viewBox="0 0 1180 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Memrise operating model diagram">
             <rect x="40" y="218" width="180" height="88" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
@@ -744,7 +753,7 @@
             <text x="965" y="460" text-anchor="middle" font-size="13" fill="#846800">own Slack / data identity</text>
 
             <rect x="515" y="388" width="230" height="98" rx="22" fill="#fff7f5" stroke="#f0d5cf"/>
-            <text x="630" y="424" text-anchor="middle" font-size="22" font-weight="800" fill="#c65b45">Mission control</text>
+            <text x="630" y="424" text-anchor="middle" font-size="22" font-weight="800" fill="#c65b45"><span class="hl">Mission control</span></text>
             <text x="630" y="447" text-anchor="middle" font-size="13" fill="#8b5f54">usage · failures</text>
             <text x="630" y="465" text-anchor="middle" font-size="13" fill="#8b5f54">approvals · cost</text>
 
@@ -763,7 +772,7 @@
       <section id="memrise-agents">
         <div class="tag green">7. First candidate agents for Memrise</div>
         <h2>Start with agents that reduce operational drag, improve visibility, and fit naturally into reviewable workflows</h2>
-        <p>The strongest first-wave candidates are not the flashiest ones. They are the ones that sit in repeatable workflows, produce measurable value, and still allow for human review where needed.</p>
+        <p>The strongest first-wave candidates are not the flashiest ones. They are the ones that sit in repeatable workflows, produce measurable value, and still allow for <span class="hl">human review</span> where needed.</p>
         <div class="grid-two" style="margin-top:16px;">
           <div class="card">
             <div class="agent-head">
@@ -911,7 +920,7 @@
             <defs><marker id="pilotarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
           </svg>
         </div>
-        <div class="callout"><strong>Bottom line:</strong> Start narrow, learn fast, then expand selectively.</div>
+        <div class="callout"><strong>Bottom line:</strong> <span class="hl">Start narrow</span>, learn fast, then expand selectively.</div>
       </section>
 
       <section id="strengths">
@@ -1089,7 +1098,7 @@
         <div class="tag gold">15. Cost control and model routing</div>
         <h2>Cheap-first routing, clear tiers, and explicit escalation</h2>
         <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The goal is to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks.</p>
-        <div class="callout"><strong>Illustrative pricing examples:</strong> GPT-5 mini is roughly <strong>$0.25 / $2.00</strong> per 1M input/output tokens, Gemini 2.5 Flash is roughly <strong>$0.30 / $2.50</strong>, Gemini 2.5 Flash-Lite is roughly <strong>$0.10 / $0.40</strong>, while Claude Sonnet 4.6 is roughly <strong>$3.00 / $15.00</strong>. The point is not the exact cents — it is that premium defaults can become dramatically more expensive than cheap-first routing. </div>
+        <div class="callout"><strong>Illustrative pricing examples:</strong> GPT-5 mini is roughly <strong>$0.25 / $2.00</strong> per 1M input/output tokens, Gemini 2.5 Flash is roughly <strong>$0.30 / $2.50</strong>, Gemini 2.5 Flash-Lite is roughly <strong>$0.10 / $0.40</strong>, while Claude Sonnet 4.6 is roughly <strong>$3.00 / $15.00</strong>. The point is not the exact cents — it is that premium defaults can become dramatically more expensive than <span class="hl">cheap-first routing</span>. </div>
         <div class="grid-two" style="margin-top:16px;">
           <div class="card">
             <div style="width:38px;height:38px;border-radius:12px;background:#efe8ff;color:#5b46ff;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:12px;">⚡</div><h3>Tier 1 — cheapest / fastest</h3>

@@ -298,6 +298,16 @@
       box-shadow: 0 6px 18px rgba(0,0,0,.10);
       flex: 0 0 auto;
     }
+    .agent-avatar.badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #5b46ff, #0a8c61);
+      color: #fff;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
     .screenshot img { width: 100%; height: auto; }
     .caption {
       padding: 10px 12px 12px;
@@ -305,6 +315,38 @@
       color: var(--muted);
       border-top: 1px solid var(--line);
       background: #fff;
+    }
+    .zoomable { cursor: zoom-in; }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(12, 10, 8, 0.84);
+      z-index: 9999;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: min(1200px, 92vw);
+      max-height: 88vh;
+      border-radius: 18px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      background: #fff;
+    }
+    .lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      border: none;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      width: 40px;
+      height: 40px;
+      font-size: 24px;
+      cursor: pointer;
     }
     .principles {
       display: grid;
@@ -468,34 +510,27 @@
 
       <section id="agents">
         <div class="tag green">Who are my agents?</div>
-        <h2>Agent roles, responsibilities, and identity model</h2>
+        <h2>From personal setup to a Memrise-ready agent model</h2>
+        <p>The first part of this story is the personal setup: a coordination agent and a coding agent, each with a distinct role, identity, and operating surface. That gives a concrete proof point for how the model works in practice. The next step is not to copy Peppermint Butler and BMO literally into Memrise, but to translate the underlying pattern into agent roles that make sense for the organisation.</p>
+
+        <div class="tag purple" style="margin-top:18px;">Current personal setup</div>
         <div class="grid-two">
           <div class="card">
             <div class="agent-head">
               <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Peppermint Butler avatar" />
               <div>
                 <h3>Peppermint Butler — day-to-day workhorse</h3>
-                <p class="muted"><strong>Primary model:</strong> ChatGPT 5.4</p>
+                <p class="muted"><strong>Default tier:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
               </div>
             </div>
             <ul>
-              <li>reviews meeting notes</li>
-              <li>saves and watches YouTube videos and articles</li>
-              <li>trawls the web for AI news</li>
-              <li>manages all of the other AIs</li>
-              <li>gives daily updates and requests</li>
-              <li>manages accounts</li>
-              <li>orchestrates and routes work</li>
-              <li>sends emails and WhatsApps</li>
-              <li>keeps on top of everything proactively</li>
-            </ul>
-            <h4 style="margin-top:16px;">Identity and access</h4>
-            <ul>
-              <li>dedicated email address</li>
-              <li>dedicated GitHub account</li>
-              <li>access to personal productivity and coordination workflows</li>
-              <li>access to approved communication channels</li>
-              <li>access to planning, routing, and orchestration tools</li>
+              <li>meeting-note summaries</li>
+              <li>AI news scans</li>
+              <li>inbox triage</li>
+              <li>task routing</li>
+              <li>project setup drafts</li>
+              <li>account and workflow management</li>
+              <li>proactive updates and coordination</li>
             </ul>
           </div>
           <div class="card">
@@ -503,29 +538,16 @@
               <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="BMO avatar" />
               <div>
                 <h3>BMO — coding agent</h3>
-                <p class="muted"><strong>Model mix:</strong> ChatGPT 5.4 / Claude Sonnet / Claude Opus</p>
+                <p class="muted"><strong>Default tier:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
               </div>
             </div>
             <ul>
-              <li>picks up tasks from GitHub Projects</li>
-              <li>breaks work into clear technical steps</li>
-              <li>writes code and builds features</li>
-              <li>prototypes quickly from rough briefs</li>
-              <li>refactors and improves existing code</li>
-              <li>debugs errors and fixes broken flows</li>
-              <li>reviews work for quality and completeness</li>
-              <li>writes docs, setup notes, and handovers</li>
-              <li>supports PRs and QA workflows</li>
-              <li>escalates blockers or risky actions</li>
-              <li>uses the best model for the job</li>
-            </ul>
-            <h4 style="margin-top:16px;">Identity and access</h4>
-            <ul>
-              <li>dedicated email address</li>
-              <li>dedicated GitHub account</li>
-              <li>access to repository-linked project workflows</li>
-              <li>access to development environments and code tools</li>
-              <li>access to technical delivery, debugging, and documentation workflows</li>
+              <li>coding tasks and implementation</li>
+              <li>refactors and debugging</li>
+              <li>PR support and code review</li>
+              <li>technical documentation</li>
+              <li>repo-linked workflow execution</li>
+              <li>escalation on blockers or risky actions</li>
             </ul>
           </div>
         </div>
@@ -543,18 +565,71 @@
         </div>
         <div class="callout" style="margin-top:16px;"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
 
+        <div class="tag purple" style="margin-top:22px;">Proposed Memrise translation</div>
+        <p>Memrise probably should not have Peppermint Butler or BMO by name. But it can adopt the concepts behind them: coordination, execution, and visibility as distinct roles with different model tiers and access boundaries.</p>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card">
+            <div class="agent-head">
+              <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Workflow coordination agent avatar" />
+              <div>
+                <h3>Workflow Coordination Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+              </div>
+            </div>
+            <ul>
+              <li>intake and scoping</li>
+              <li>task shaping</li>
+              <li>meeting-note synthesis</li>
+              <li>routing between agents and systems</li>
+              <li>project setup and follow-up</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="agent-head">
+              <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="Technical delivery agent avatar" />
+              <div>
+                <h3>Technical Delivery Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
+              </div>
+            </div>
+            <ul>
+              <li>implementation and coding</li>
+              <li>debugging and refactors</li>
+              <li>PR support and QA</li>
+              <li>technical documentation</li>
+              <li>repository-linked execution</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="agent-head">
+              <span class="agent-avatar badge" aria-hidden="true">IR</span>
+              <div>
+                <h3>Insights & Reporting Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+              </div>
+            </div>
+            <ul>
+              <li>weekly summaries and reporting</li>
+              <li>cross-system visibility</li>
+              <li>operational digests</li>
+              <li>exception spotting and follow-up</li>
+              <li>lightweight approvals and escalation prep</li>
+            </ul>
+          </div>
+        </div>
+
         <div class="grid-three" style="margin-top:18px;">
           <figure class="screenshot">
             <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576211508_Screenshot+2026-03-15+at+12.40.34.png" alt="Pep interface screenshot" />
-            <figcaption class="caption">Example of Pep in use: lightweight, conversational, and operational.</figcaption>
+            <figcaption class="caption">Current personal setup: useful because it shows the pattern already working in practice.</figcaption>
           </figure>
           <figure class="screenshot">
             <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576413875_Screenshot+2026-03-15+at+13.06.49.png" alt="Pep interface screenshot 2" />
-            <figcaption class="caption">Pep as a practical command surface, not just a chat toy.</figcaption>
+            <figcaption class="caption">The story starts with a personal setup, then translates the operating pattern into an org-ready model.</figcaption>
           </figure>
           <figure class="screenshot">
             <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576866081_Screenshot+2026-03-15+at+13.14.19.png" alt="Pep interface screenshot 3" />
-            <figcaption class="caption">Examples should function as proof of operating behavior, not as decorative screenshots.</figcaption>
+            <figcaption class="caption">What matters is not the names — it is the role separation, identity design, and operating logic.</figcaption>
           </figure>
         </div>
       </section>
@@ -934,5 +1009,43 @@
       </section>
     </main>
   </div>
+
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">×</button>
+    <img id="lightboxImage" alt="Expanded image" />
+  </div>
+
+  <script>
+    (() => {
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxClose = document.getElementById('lightboxClose');
+      const clickableImages = document.querySelectorAll('.screenshot img');
+
+      clickableImages.forEach(img => {
+        img.classList.add('zoomable');
+        img.addEventListener('click', () => {
+          lightboxImage.src = img.src;
+          lightboxImage.alt = img.alt || 'Expanded image';
+          lightbox.classList.add('open');
+          lightbox.setAttribute('aria-hidden', 'false');
+        });
+      });
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        lightboxImage.src = '';
+      };
+
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+      });
+    })();
+  </script>
 </body>
 </html>

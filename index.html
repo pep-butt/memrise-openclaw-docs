@@ -669,40 +669,66 @@
         <h2>Translating the model into Memrise</h2>
         <p>The point is not to clone the personal setup exactly. The point is to apply the same system logic in a Memrise-shaped way: shared Slack surface, separated bot identities, clear roles, a control layer, and explicit account boundaries.</p>
         <div class="visual">
-          <svg viewBox="0 0 1120 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Memrise operating model diagram">
-            <rect x="42" y="150" width="180" height="90" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="132" y="184" text-anchor="middle" font-size="24" font-weight="800">Memrise team</text>
-            <text x="132" y="210" text-anchor="middle" font-size="14" fill="#6a645b">operators · leads · developers</text>
-            <rect x="280" y="140" width="190" height="110" rx="22" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="375" y="178" text-anchor="middle" font-size="24" font-weight="800">Slack</text>
-            <text x="375" y="205" text-anchor="middle" font-size="14" fill="#6a645b">shared operating surface</text>
-            <text x="375" y="225" text-anchor="middle" font-size="14" fill="#6a645b">threads · approvals · visibility</text>
-            <rect x="530" y="130" width="230" height="130" rx="26" fill="#ece8ff" stroke="#d8d1ff"/>
-            <text x="645" y="176" text-anchor="middle" font-size="28" font-weight="800" fill="#5b46ff">OpenClaw</text>
-            <text x="645" y="204" text-anchor="middle" font-size="15" fill="#4f41b8">routing · tools · memory</text>
-            <text x="645" y="225" text-anchor="middle" font-size="15" fill="#4f41b8">handoffs · permissions · approvals</text>
-            <rect x="820" y="38" width="250" height="112" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="945" y="72" text-anchor="middle" font-size="20" font-weight="800">Workflow Coordination Bot</text>
-            <text x="945" y="97" text-anchor="middle" font-size="14" fill="#6a645b">triage · planning · routing</text>
-            <text x="945" y="118" text-anchor="middle" font-size="14" fill="#6a645b">own Slack / email identity</text>
-            <rect x="820" y="178" width="250" height="112" rx="20" fill="#e7f8f1" stroke="#cceee0"/>
-            <text x="945" y="212" text-anchor="middle" font-size="20" font-weight="800" fill="#0a8c61">Technical Delivery Bot</text>
-            <text x="945" y="237" text-anchor="middle" font-size="14" fill="#4f7f69">build · debug · repo work</text>
-            <text x="945" y="258" text-anchor="middle" font-size="14" fill="#4f7f69">own Slack / GitHub identity</text>
-            <rect x="820" y="318" width="250" height="112" rx="20" fill="#fff4d6" stroke="#ecdca4"/>
-            <text x="945" y="352" text-anchor="middle" font-size="20" font-weight="800" fill="#8a6500">Insights / Data Bot</text>
-            <text x="945" y="377" text-anchor="middle" font-size="14" fill="#846800">reporting · summaries · data</text>
-            <text x="945" y="398" text-anchor="middle" font-size="14" fill="#846800">own Slack / email identity</text>
-            <rect x="530" y="322" width="230" height="96" rx="22" fill="#fff7f5" stroke="#f0d5cf"/>
-            <text x="645" y="356" text-anchor="middle" font-size="22" font-weight="800" fill="#c65b45">Mission control</text>
-            <text x="645" y="381" text-anchor="middle" font-size="14" fill="#8b5f54">usage · failures · approvals</text>
-            <text x="645" y="401" text-anchor="middle" font-size="14" fill="#8b5f54">costs · intervention points</text>
-            <path d="M222 195 L280 195" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
-            <path d="M470 195 L530 195" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
-            <path d="M760 195 L820 94" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
-            <path d="M760 195 L820 234" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
-            <path d="M760 195 L820 374" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
-            <path d="M645 260 L645 322" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+          <svg viewBox="0 0 1180 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Memrise operating model diagram">
+            <rect x="40" y="218" width="180" height="88" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="130" y="250" text-anchor="middle" font-size="24" font-weight="800">Memrise team</text>
+            <text x="130" y="273" text-anchor="middle" font-size="13" fill="#6a645b">operators · leads</text>
+            <text x="130" y="292" text-anchor="middle" font-size="13" fill="#6a645b">developers</text>
+
+            <rect x="270" y="208" width="190" height="108" rx="22" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="365" y="244" text-anchor="middle" font-size="24" font-weight="800">Slack</text>
+            <text x="365" y="267" text-anchor="middle" font-size="13" fill="#6a645b">shared surface</text>
+            <text x="365" y="286" text-anchor="middle" font-size="13" fill="#6a645b">threads · approvals</text>
+
+            <rect x="515" y="198" width="230" height="128" rx="26" fill="#ece8ff" stroke="#d8d1ff"/>
+            <text x="630" y="242" text-anchor="middle" font-size="28" font-weight="800" fill="#5b46ff">OpenClaw</text>
+            <text x="630" y="268" text-anchor="middle" font-size="14" fill="#4f41b8">routing · tools · memory</text>
+            <text x="630" y="288" text-anchor="middle" font-size="14" fill="#4f41b8">permissions · handoffs</text>
+
+            <rect x="820" y="28" width="270" height="98" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
+            <circle cx="858" cy="60" r="20" fill="#fff4d6" stroke="#ecdca4"/><text x="858" y="66" text-anchor="middle" font-size="12" font-weight="800" fill="#8a6500">CS</text>
+            <text x="962" y="58" text-anchor="middle" font-size="20" font-weight="800">Customer Service</text>
+            <text x="962" y="82" text-anchor="middle" font-size="13" fill="#6a645b">triage · drafts · escalation</text>
+            <text x="962" y="100" text-anchor="middle" font-size="13" fill="#6a645b">own Slack / support identity</text>
+
+            <rect x="820" y="148" width="270" height="98" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
+            <g>
+              <clipPath id="memPepClip"><circle cx="858" cy="180" r="20"/></clipPath>
+              <image href="assets/pep-avatar.jpg" x="838" y="160" width="40" height="40" clip-path="url(#memPepClip)" preserveAspectRatio="xMidYMid slice"/>
+              <circle cx="858" cy="180" r="20" fill="none" stroke="#ffffff" stroke-width="3"/>
+            </g>
+            <text x="965" y="178" text-anchor="middle" font-size="20" font-weight="800">Workflow Planning</text>
+            <text x="965" y="202" text-anchor="middle" font-size="13" fill="#6a645b">triage · planning · routing</text>
+            <text x="965" y="220" text-anchor="middle" font-size="13" fill="#6a645b">own Slack / email identity</text>
+
+            <rect x="820" y="268" width="270" height="98" rx="20" fill="#e7f8f1" stroke="#cceee0"/>
+            <g>
+              <clipPath id="memBmoClip"><circle cx="858" cy="300" r="20"/></clipPath>
+              <image href="assets/bmo-avatar.jpg" x="838" y="280" width="40" height="40" clip-path="url(#memBmoClip)" preserveAspectRatio="xMidYMid slice"/>
+              <circle cx="858" cy="300" r="20" fill="none" stroke="#ffffff" stroke-width="3"/>
+            </g>
+            <text x="965" y="298" text-anchor="middle" font-size="20" font-weight="800" fill="#0a8c61">Technical Delivery</text>
+            <text x="965" y="322" text-anchor="middle" font-size="13" fill="#4f7f69">build · debug · repo work</text>
+            <text x="965" y="340" text-anchor="middle" font-size="13" fill="#4f7f69">own Slack / GitHub identity</text>
+
+            <rect x="820" y="388" width="270" height="98" rx="20" fill="#fff4d6" stroke="#ecdca4"/>
+            <circle cx="858" cy="420" r="20" fill="#fff" stroke="#ecdca4"/><text x="858" y="426" text-anchor="middle" font-size="12" font-weight="800" fill="#8a6500">IR</text>
+            <text x="965" y="418" text-anchor="middle" font-size="20" font-weight="800" fill="#8a6500">Insights / Reporting</text>
+            <text x="965" y="442" text-anchor="middle" font-size="13" fill="#846800">reporting · summaries · data</text>
+            <text x="965" y="460" text-anchor="middle" font-size="13" fill="#846800">own Slack / data identity</text>
+
+            <rect x="515" y="388" width="230" height="98" rx="22" fill="#fff7f5" stroke="#f0d5cf"/>
+            <text x="630" y="424" text-anchor="middle" font-size="22" font-weight="800" fill="#c65b45">Mission control</text>
+            <text x="630" y="447" text-anchor="middle" font-size="13" fill="#8b5f54">usage · failures</text>
+            <text x="630" y="465" text-anchor="middle" font-size="13" fill="#8b5f54">approvals · cost</text>
+
+            <path d="M220 262 L270 262" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M460 262 L515 262" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M745 262 L820 77" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M745 262 L820 197" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M745 262 L820 317" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M745 262 L820 437" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
+            <path d="M630 326 L630 388" stroke="#8a867b" stroke-width="2.5" marker-end="url(#memarr)"/>
             <defs><marker id="memarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
           </svg>
         </div>

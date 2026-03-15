@@ -3,88 +3,429 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>OpenClaw × Memrise — Developer how-to</title>
+  <title>OpenClaw × Memrise — Dev how-to</title>
+  <meta name="description" content="Developer how-to for getting started with OpenClaw: VPS-first setup, messaging, model routing, memory, cost control, safety, and first workflows." />
   <style>
-    :root { --bg:#f7f3ec; --card:#fffdf9; --text:#1f1f1f; --muted:#6a645b; --line:#ddd2c2; --accent:#5b46ff; --accent-soft:#efe8ff; }
-    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background:var(--bg); color:var(--text); }
-    .wrap { max-width: 960px; margin: 0 auto; padding: 36px 20px 64px; }
-    .hero,.card { background:var(--card); border:1px solid var(--line); border-radius:24px; padding:24px; box-shadow:0 10px 30px rgba(29,25,20,.05); }
-    .hero { margin-bottom:24px; }
-    h1,h2,h3 { margin:0 0 12px; line-height:1.1; }
-    p, li { color:var(--muted); line-height:1.55; }
-    .eyebrow { display:inline-block; margin-bottom:10px; font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.08em; color:var(--accent); }
-    .grid { display:grid; gap:18px; }
-    .grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); }
-    .button { display:inline-block; padding:10px 14px; border-radius:999px; background:var(--accent-soft); color:var(--accent); text-decoration:none; font-weight:700; margin-right:10px; }
-    @media (max-width: 760px) { .grid.two { grid-template-columns:1fr; } }
+    :root {
+      --bg:#f7f3ec;
+      --card:#fffdf9;
+      --text:#1f1f1f;
+      --muted:#6a645b;
+      --line:#ddd2c2;
+      --accent:#5b46ff;
+      --accent-soft:#efe8ff;
+      --green:#0a8c61;
+      --green-soft:#edf9f3;
+      --gold:#8a6500;
+      --gold-soft:#fff4d6;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+    a { color: var(--accent); }
+    .layout {
+      display:grid;
+      grid-template-columns: 300px minmax(0, 1fr);
+      min-height:100vh;
+    }
+    aside {
+      position:sticky;
+      top:0;
+      align-self:start;
+      height:100vh;
+      overflow:auto;
+      background:#f4efe7;
+      border-right:1px solid var(--line);
+      padding:28px 20px 36px;
+    }
+    .brand {
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.16em;
+      color:var(--accent);
+      margin-bottom:12px;
+    }
+    .title {
+      font-size:22px;
+      font-weight:800;
+      margin-bottom:18px;
+    }
+    .sidebar-menu summary {
+      display:none;
+      cursor:pointer;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px 14px;
+      font-weight:700;
+    }
+    nav { display:grid; gap:6px; }
+    nav a {
+      text-decoration:none;
+      color:var(--muted);
+      font-size:14px;
+      padding:8px 10px;
+      border-radius:10px;
+    }
+    nav a:hover, nav a.active {
+      color:var(--accent);
+      background:var(--accent-soft);
+      font-weight:700;
+    }
+    main { padding:28px 28px 72px; }
+    section + section { margin-top:26px; }
+    .hero, .card {
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:24px;
+      box-shadow:0 10px 30px rgba(29,25,20,.05);
+    }
+    .hero { padding:28px; }
+    .eyebrow {
+      display:inline-block;
+      margin-bottom:10px;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--accent);
+    }
+    .tag {
+      display:inline-block;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      margin-bottom:12px;
+      background:var(--accent-soft);
+      color:var(--accent);
+    }
+    .tag::before { content:"🦞 "; }
+    h1 { font-size:48px; line-height:1.02; margin:0 0 12px; }
+    h2 { font-size:34px; line-height:1.08; margin:0 0 12px; }
+    h3 { margin:0 0 10px; font-size:20px; }
+    p, li { color:var(--muted); line-height:1.6; }
+    ul { margin:0; padding-left:20px; }
+    .lead { font-size:18px; max-width:900px; }
+    .grid-two { display:grid; gap:18px; grid-template-columns:repeat(2,minmax(0,1fr)); }
+    .grid-three { display:grid; gap:18px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .callout {
+      margin-top:16px;
+      padding:14px 16px;
+      border-radius:18px;
+      border:1px solid var(--line);
+      background:#fff;
+    }
+    .callout.good { background:var(--green-soft); color:var(--green); border-color:#cceee0; }
+    .callout.warn { background:var(--gold-soft); color:var(--gold); border-color:#ecdca4; }
+    .mini-tag {
+      display:inline-block;
+      padding:4px 8px;
+      border-radius:999px;
+      font-size:11px;
+      font-weight:800;
+      line-height:1;
+      background:var(--green-soft);
+      color:var(--green);
+      margin-top:8px;
+    }
+    .button-row { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+    .button {
+      display:inline-block;
+      padding:10px 14px;
+      border-radius:999px;
+      background:var(--accent-soft);
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:700;
+    }
+    .step-list { display:grid; gap:12px; margin-top:14px; }
+    .step {
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:#fff;
+    }
+    @media (max-width: 980px) {
+      .layout { grid-template-columns:1fr; }
+      aside {
+        position:sticky;
+        top:0;
+        z-index:40;
+        height:auto;
+        border-right:none;
+        border-bottom:1px solid var(--line);
+        padding:16px;
+      }
+      .sidebar-menu summary { display:block; }
+      .sidebar-menu nav { display:none; }
+      .sidebar-menu[open] nav { display:grid; margin-top:10px; }
+      main { padding:20px 16px 60px; }
+      h1 { font-size:38px; }
+      h2 { font-size:28px; }
+      .grid-two, .grid-three { grid-template-columns:1fr; }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <section class="hero">
-      <div class="eyebrow">🦞 Developer how-to</div>
-      <h1>How to get started with OpenClaw</h1>
-      <p>This page is for developers and technical operators who want the sane first path: one workflow, one agent, one review point, and no unnecessary mess.</p>
-      <a class="button" href="./index.html">Back to main exploration</a>
-      <a class="button" href="./mission-control.html">Mission Control</a>
-    </section>
+  <div class="layout">
+    <aside>
+      <div class="brand">🦞 OpenClaw Docs</div>
+      <div class="title">Dev how-to</div>
+      <details class="sidebar-menu" open>
+        <summary>☰ Chapters</summary>
+        <nav>
+          <a href="#overview">Overview</a>
+          <a href="#hosting">VPS-first hosting</a>
+          <a href="#models">Connecting models</a>
+          <a href="#telegram">Telegram setup</a>
+          <a href="#google">Google Workspace</a>
+          <a href="#routing">Model routing</a>
+          <a href="#automation">Cron vs heartbeat</a>
+          <a href="#brain">Workspace files</a>
+          <a href="#memory">Memory optimisation</a>
+          <a href="#costs">Cost optimisation</a>
+          <a href="#advanced">Advanced usage</a>
+          <a href="#safety">Safety and recovery</a>
+          <a href="#use-cases">Useful first workflows</a>
+          <a href="#first-week">First-week checklist</a>
+        </nav>
+      </details>
+    </aside>
+    <main>
+      <section class="hero" id="overview">
+        <div class="eyebrow">🦞 Developer how-to</div>
+        <h1>How to get started with OpenClaw</h1>
+        <p class="lead">This page is for developers and technical operators. The goal is not to build a huge agent zoo. The goal is to get one useful setup working in a way that is visible, cheap enough, and safe enough to iterate on.</p>
+        <div class="button-row">
+          <a class="button" href="./index.html">Main exploration</a>
+          <a class="button" href="./mission-control.html">Mission Control</a>
+        </div>
+        <div class="callout good"><strong>Recommended first path:</strong> start <strong>VPS-first</strong>, connect one or two models, set up Telegram, prove one useful workflow, then layer in memory, routing, and additional integrations.</div>
+      </section>
 
-    <div class="grid two">
-      <section class="card">
-        <h2>1. Before you start</h2>
+      <section id="hosting">
+        <div class="tag">1. VPS-first hosting</div>
+        <h2>Choose the hosting environment deliberately</h2>
+        <p>There are three common ways to run OpenClaw: a personal machine, a Mac mini, or a VPS. For most developer setups, a <strong>VPS is the best first choice</strong> because it runs 24/7 and keeps the bot separated from your personal files and environment.</p>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card"><h3>VPS</h3><p>Best default for most people. Always on, cleaner for remote access, easier to isolate from your daily machine.</p><p class="mini-tag">Recommended starting point</p></div>
+          <div class="card"><h3>Mac mini</h3><p>Good for a more controlled internal host, especially if you want tighter physical/runtime control.</p></div>
+          <div class="card"><h3>Personal machine</h3><p>Fine for proving the idea, weak for trust, uptime, security, and team use.</p></div>
+        </div>
+        <div class="callout warn"><strong>Cost tip:</strong> KVM1 is enough for API-based workflows. Use KVM4 or similar only if you plan to run local models like Ollama.</div>
+      </section>
+
+      <section id="models">
+        <div class="tag">2. Connecting models</div>
+        <h2>Start with Anthropic and OpenAI, then add routing</h2>
+        <div class="grid-two">
+          <div class="card">
+            <h3>Anthropic</h3>
+            <ul>
+              <li>add an Anthropic API key</li>
+              <li>the setup guidance recommends funding enough to reach <strong>Tier 2</strong></li>
+              <li>that improves rate limits substantially and makes setup less frustrating</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>OpenAI</h3>
+            <ul>
+              <li>add an OpenAI API key</li>
+              <li>set a monthly spend cap in the provider dashboard</li>
+              <li>do this before experimentation gets messy</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout"><strong>Safety net:</strong> set a monthly limit early (for example $100) so mistakes do not become surprise bills.</div>
+      </section>
+
+      <section id="telegram">
+        <div class="tag">3. Telegram setup</div>
+        <h2>Telegram is still one of the best first interfaces</h2>
+        <div class="step-list">
+          <div class="step"><strong>Use @BotFather.</strong> Create a bot, give it a name, and choose a unique username ending in <code>bot</code>.</div>
+          <div class="step"><strong>Add the API token to OpenClaw.</strong> Then message the bot yourself.</div>
+          <div class="step"><strong>Pair your account.</strong> The pairing code adds your Telegram ID to an allow list so only authorised users can talk to the assistant.</div>
+        </div>
+      </section>
+
+      <section id="google">
+        <div class="tag">4. Google Workspace</div>
+        <h2>This is the tedious bit</h2>
+        <p>Expect this part to take around 10–15 minutes. It is not hard exactly; it is just annoying.</p>
+        <div class="grid-two">
+          <div class="card">
+            <h3>What you need to do</h3>
+            <ul>
+              <li>create a Google Cloud project</li>
+              <li>enable Gmail, Calendar, Drive, and any other needed APIs</li>
+              <li>configure the OAuth consent screen</li>
+              <li>download the client secret JSON</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>How the pairing works</h3>
+            <ul>
+              <li>send the client secret JSON to the bot</li>
+              <li>follow the auth link</li>
+              <li>authorise access</li>
+              <li>test both read and write actions</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout"><strong>Good test:</strong> add a dummy calendar event and then ask the bot to read it back. Verify both directions.</div>
+      </section>
+
+      <section id="routing">
+        <div class="tag">5. Model routing</div>
+        <h2>Do not run premium models for everything</h2>
+        <p>OpenClaw gets expensive when every message loads a big workspace and long history into a premium model. The sane pattern is to route by task difficulty.</p>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card"><h3>Tier 1</h3><p>Complex reasoning and planning.</p><p class="mini-tag">Use sparingly</p></div>
+          <div class="card"><h3>Tier 2</h3><p>Default for daily tasks.</p><p class="mini-tag">Strong default</p></div>
+          <div class="card"><h3>Tier 3</h3><p>Routine tasks, summaries, and heartbeats.</p><p class="mini-tag">Cheap by default</p></div>
+        </div>
+        <div class="callout"><strong>Free / cheap fallback:</strong> keep a fallback model available so the bot does not fail silently if credits run out.</div>
+      </section>
+
+      <section id="automation">
+        <div class="tag">6. Automation</div>
+        <h2>Cron jobs vs heartbeat</h2>
+        <div class="grid-two">
+          <div class="card">
+            <h3>Cron jobs</h3>
+            <p>Use for exact timings.</p>
+            <ul>
+              <li>morning email/calendar summary</li>
+              <li>nightly backups</li>
+              <li>specific scheduled syncs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Heartbeat</h3>
+            <p>Use for lightweight urgency checks.</p>
+            <ul>
+              <li>watch for important changes</li>
+              <li>avoid stuffing routine tasks into it</li>
+              <li>otherwise it will burn tokens constantly</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="brain">
+        <div class="tag">7. Workspace files</div>
+        <h2>The markdown files are the brain</h2>
+        <div class="grid-two">
+          <div class="card"><h3>AGENTS.md</h3><p>Stable workflow rules and operational constraints.</p></div>
+          <div class="card"><h3>SOUL.md</h3><p>Personality, tone, and how the assistant behaves.</p></div>
+          <div class="card"><h3>USER.md</h3><p>Context about the person being helped.</p></div>
+          <div class="card"><h3>MEMORY.md + daily notes</h3><p>Long-term facts plus short-term logs of what happened.</p></div>
+        </div>
+      </section>
+
+      <section id="memory">
+        <div class="tag">8. Memory optimisation</div>
+        <h2>Memory only works well if you maintain it deliberately</h2>
         <ul>
-          <li>decide whether this is personal, pilot, or shared team use</li>
-          <li>choose where it runs: personal machine, Mac mini, or VPS</li>
-          <li>make sure repo / Slack / tool access is explicit</li>
-          <li>don’t mix personal credentials into shared runtimes</li>
+          <li>improve the memory-flush prompt so it captures durable facts, not noise</li>
+          <li>enable session indexing so past work can be found again</li>
+          <li>periodically curate the markdown files by hand</li>
+          <li>externalise important relationships rather than hoping context will carry them</li>
+        </ul>
+        <div class="callout"><strong>Rule of thumb:</strong> memory quality matters more than memory quantity.</div>
+      </section>
+
+      <section id="costs">
+        <div class="tag">9. Cost optimisation</div>
+        <h2>OpenClaw can be made dramatically cheaper</h2>
+        <ul>
+          <li>reset sessions when switching topics</li>
+          <li>use compaction / summarisation rather than dragging huge histories forever</li>
+          <li>switch heartbeats to cheaper or local models</li>
+          <li>reserve premium models for genuinely difficult work</li>
+          <li>use local Ollama models for low-value background checks if you have the setup</li>
+        </ul>
+        <div class="callout warn"><strong>Reality check:</strong> heartbeats alone can become expensive if they run on premium models all month.</div>
+      </section>
+
+      <section id="advanced">
+        <div class="tag">10. Advanced usage</div>
+        <h2>Sub-agents and voice are where things get fun</h2>
+        <div class="grid-two">
+          <div class="card">
+            <h3>Sub-agents</h3>
+            <p>Useful when you want parallel research or bounded delegated work. Think: three small employees, not one bloated chat.</p>
+          </div>
+          <div class="card">
+            <h3>Voice</h3>
+            <p>Whisper for transcription plus EdgeTTS or similar for output can make the bot much easier to use on the move.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="safety">
+        <div class="tag">11. Safety and recovery</div>
+        <h2>Snapshots, stop commands, and not being reckless</h2>
+        <ul>
+          <li>take a snapshot before major config changes</li>
+          <li>keep a stop command or VPS-level kill path ready</li>
+          <li>treat external writes and credentials as high-risk</li>
+          <li>use deterministic sanitisation and restricted write permissions where possible</li>
         </ul>
       </section>
-      <section class="card">
-        <h2>2. Recommended first path</h2>
-        <ul>
-          <li>start with one workflow, not many</li>
-          <li>pick one interface, usually Slack or Telegram</li>
-          <li>use one agent first, then add specialisation later</li>
-          <li>keep one clear human review point</li>
-        </ul>
+
+      <section id="use-cases">
+        <div class="tag">12. Useful first workflows</div>
+        <h2>Good first things to build</h2>
+        <div class="grid-two">
+          <div class="card"><h3>Customer support</h3><p>Triage, draft responses, escalate edge cases, and surface recurring themes.</p></div>
+          <div class="card"><h3>Planning / workflow support</h3><p>Shape requests, create tasks, route work, and reduce coordination drag.</p></div>
+          <div class="card"><h3>Knowledge base</h3><p>Drop articles, videos, and notes into a searchable system that can return summaries.</p></div>
+          <div class="card"><h3>Technical delivery</h3><p>Use only once repo access, review patterns, and failure handling are clean enough.</p></div>
+        </div>
       </section>
-      <section class="card">
-        <h2>3. First useful setup</h2>
-        <ul>
-          <li>connect the basic tools you actually need</li>
-          <li>create one agent with one clear role</li>
-          <li>test one workflow end to end</li>
-          <li>make sure the output is visible and recoverable</li>
-        </ul>
+
+      <section id="first-week">
+        <div class="tag">13. First-week checklist</div>
+        <h2>The sane first week</h2>
+        <div class="step-list">
+          <div class="step"><strong>Day 1:</strong> choose VPS, connect models, set spending limits.</div>
+          <div class="step"><strong>Day 2:</strong> pair Telegram, verify basic messaging, test one simple workflow.</div>
+          <div class="step"><strong>Day 3:</strong> connect Google Workspace if needed.</div>
+          <div class="step"><strong>Day 4:</strong> set up routing and cheaper defaults.</div>
+          <div class="step"><strong>Day 5:</strong> test one repeatable workflow end to end and decide whether it is actually useful.</div>
+        </div>
+        <div class="callout good"><strong>Success looks like:</strong> one workflow that is genuinely useful, cheap enough to keep, and simple enough to explain.</div>
       </section>
-      <section class="card">
-        <h2>4. Keep it safe and cheap</h2>
-        <ul>
-          <li>use dedicated identities</li>
-          <li>scope permissions tightly</li>
-          <li>cheap-first routing by default</li>
-          <li>manage context windows and reset bloated sessions</li>
-        </ul>
-      </section>
-      <section class="card">
-        <h2>5. Good first workflows</h2>
-        <ul>
-          <li>planning / triage</li>
-          <li>customer support drafts</li>
-          <li>scoped technical delivery</li>
-          <li>reporting / status summaries</li>
-        </ul>
-      </section>
-      <section class="card">
-        <h2>6. What success looks like</h2>
-        <ul>
-          <li>real work moves faster</li>
-          <li>users trust the outputs within clear boundaries</li>
-          <li>failures are visible and recoverable</li>
-          <li>the setup is repeatable without chaos</li>
-        </ul>
-      </section>
-    </div>
+    </main>
   </div>
+  <script>
+    (() => {
+      const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+      const sections = navLinks.map(link => ({ link, section: document.querySelector(link.getAttribute('href')) })).filter(x => x.section);
+      const setActive = () => {
+        const y = window.scrollY + 140;
+        let current = sections[0];
+        sections.forEach(item => { if (item.section.offsetTop <= y) current = item; });
+        navLinks.forEach(link => link.classList.remove('active'));
+        if (current) current.link.classList.add('active');
+      };
+      const menu = document.querySelector('.sidebar-menu');
+      if (window.innerWidth <= 980 && menu) menu.removeAttribute('open');
+      setActive();
+      window.addEventListener('scroll', setActive, { passive:true });
+      window.addEventListener('resize', setActive);
+    })();
+  </script>
 </body>
 </html>

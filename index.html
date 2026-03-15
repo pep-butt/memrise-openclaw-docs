@@ -530,14 +530,18 @@
           </div>
         </div>
 
-        <div class="tag gold" style="margin-top:18px;">Why individual accounts?</div>
-        <div class="grid-three">
-          <div class="card"><h3>Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, which keeps responsibilities easier to manage.</p></div>
+        <div class="tag gold" style="margin-top:22px;">Why individual accounts?</div>
+        <h3>Dedicated identities make agent-based workflows easier to manage, safer to operate, and clearer to supervise.</h3>
+        <div class="grid-three" style="margin-top:14px;">
+          <div class="card"><h3>Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
           <div class="card"><h3>Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
-          <div class="card"><h3>Safer permissions design</h3><p>Access can be scoped by workflow, rather than giving one general-purpose identity broad access to everything.</p></div>
-          <div class="card"><h3>Controlled autonomy</h3><p>Agents can act independently within defined boundaries while still escalating sensitive or higher-risk actions.</p></div>
-          <div class="card"><h3>Cleaner handoffs</h3><p>A coordination agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
+          <div class="card"><h3>Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
+          <div class="card"><h3>Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries, while still escalating sensitive or higher-risk actions.</p></div>
+          <div class="card"><h3>Cleaner handoffs between agents</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
+          <div class="card"><h3>Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
+          <div class="card"><h3>More resilient workflow design</h3><p>If one agent drifts, fails, or needs to be reset, it can be managed without disrupting the whole system.</p></div>
         </div>
+        <div class="callout" style="margin-top:16px;"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
 
         <div class="grid-three" style="margin-top:18px;">
           <figure class="screenshot">
@@ -739,76 +743,96 @@
         <div class="tag gold">Cost saving</div>
         <h2>Cost control and model routing</h2>
         <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The recurring pattern is simple: stop sending every task to a premium model, add a cheap routing layer in front, keep sessions narrow, and track spend centrally through a gateway such as LiteLLM.</p>
-        <div class="grid-three" style="margin-top:16px;">
+        <div class="grid-two" style="margin-top:16px;">
           <div class="card">
-            <h3>Tier A — ultra-cheap / local</h3>
+            <h3>Tier 1 — cheapest / fastest</h3>
+            <p><strong>Use for:</strong></p>
             <ul>
-              <li>reminders</li>
-              <li>status checks</li>
-              <li>cron summaries</li>
-              <li>simple formatting</li>
               <li>classification</li>
-              <li>simple retrieval triggers</li>
+              <li>tagging</li>
+              <li>daily digests</li>
+              <li>reminders</li>
+              <li>simple summaries</li>
+              <li>lightweight routing</li>
+              <li>inbox triage</li>
             </ul>
+            <p style="margin-top:12px;"><strong>Example models:</strong> Gemini 2.5 Flash-Lite · GPT-5 mini · Claude Haiku 4.5</p>
           </div>
           <div class="card">
-            <h3>Tier B — cheap but capable</h3>
+            <h3>Tier 2 — low-cost general work</h3>
+            <p><strong>Use for:</strong></p>
             <ul>
-              <li>simple updates</li>
-              <li>note summarisation</li>
-              <li>project hygiene</li>
-              <li>rough requests → task lists</li>
-              <li>lightweight web checks</li>
+              <li>project shaping</li>
+              <li>rough drafting</li>
+              <li>meeting-note synthesis</li>
+              <li>task breakdown</li>
+              <li>lightweight web or docs work</li>
+              <li>agent-to-agent routing summaries</li>
             </ul>
+            <p style="margin-top:12px;"><strong>Example models:</strong> Gemini 2.5 Flash · GPT-5 mini · Claude Haiku 4.5 / low-cost Sonnet path</p>
           </div>
           <div class="card">
-            <h3>Tier C / D — stronger and premium</h3>
+            <h3>Tier 3 — strong default production model</h3>
+            <p><strong>Use for:</strong></p>
             <ul>
-              <li>planning</li>
-              <li>multi-step reasoning</li>
-              <li>debugging</li>
+              <li>most coding work</li>
+              <li>non-trivial planning</li>
+              <li>implementation steps</li>
               <li>code review</li>
-              <li>major architecture decisions</li>
-              <li>high-stakes external outputs</li>
+              <li>debugging</li>
+              <li>quality-sensitive drafting</li>
+              <li>higher-stakes internal reasoning</li>
             </ul>
+            <p style="margin-top:12px;"><strong>Example models:</strong> GPT-5.4 · Claude Sonnet 4.6 · Gemini 2.5 Pro</p>
+          </div>
+          <div class="card">
+            <h3>Tier 4 — premium / sparse use</h3>
+            <p><strong>Use for:</strong></p>
+            <ul>
+              <li>hardest debugging</li>
+              <li>architecture decisions</li>
+              <li>difficult synthesis</li>
+              <li>large codebase reasoning</li>
+              <li>final pass on critical outputs</li>
+              <li>gnarly edge cases where cheaper models fail</li>
+            </ul>
+            <p style="margin-top:12px;"><strong>Example models:</strong> Claude Opus 4.6 · GPT-5.4 high-reasoning · Gemini 2.5 Pro</p>
           </div>
         </div>
 
         <div class="visual">
           <svg viewBox="0 0 980 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cost routing diagram">
-            <rect x="30" y="108" width="150" height="80" rx="18" fill="#fff" stroke="#ddd2c2"/>
-            <text x="105" y="143" text-anchor="middle" font-size="18" font-weight="700">Request</text>
-            <text x="105" y="167" text-anchor="middle" font-size="14" fill="#6a645b">message / task</text>
+            <rect x="24" y="108" width="140" height="80" rx="18" fill="#fff" stroke="#ddd2c2"/>
+            <text x="94" y="143" text-anchor="middle" font-size="18" font-weight="700">Request</text>
+            <text x="94" y="167" text-anchor="middle" font-size="14" fill="#6a645b">task / message</text>
 
-            <rect x="220" y="94" width="190" height="108" rx="20" fill="#fff4d6" stroke="#ecdca4"/>
-            <text x="315" y="128" text-anchor="middle" font-size="19" font-weight="800" fill="#8a6500">Router model</text>
-            <text x="315" y="153" text-anchor="middle" font-size="14" fill="#7a6425">routine / complex / uncertain</text>
-            <text x="315" y="175" text-anchor="middle" font-size="14" fill="#7a6425">cheap classifier first</text>
+            <rect x="204" y="94" width="180" height="108" rx="20" fill="#fff4d6" stroke="#ecdca4"/>
+            <text x="294" y="126" text-anchor="middle" font-size="18" font-weight="800" fill="#8a6500">Router / policy</text>
+            <text x="294" y="151" text-anchor="middle" font-size="14" fill="#7a6425">routine · complex · uncertain</text>
+            <text x="294" y="173" text-anchor="middle" font-size="14" fill="#7a6425">cheap-first where safe</text>
 
-            <rect x="460" y="34" width="190" height="70" rx="16" fill="#e7f8f1" stroke="#cceee0"/>
-            <text x="555" y="65" text-anchor="middle" font-size="18" font-weight="800" fill="#0a8c61">Cheap default path</text>
-            <text x="555" y="86" text-anchor="middle" font-size="13" fill="#4f7f69">summaries · routing · admin</text>
+            <rect x="430" y="28" width="170" height="56" rx="16" fill="#e7f8f1" stroke="#cceee0"/>
+            <text x="515" y="62" text-anchor="middle" font-size="18" font-weight="800" fill="#0a8c61">Tier 1 / Tier 2</text>
+            <rect x="430" y="122" width="170" height="56" rx="16" fill="#ffffff" stroke="#ddd2c2"/>
+            <text x="515" y="156" text-anchor="middle" font-size="18" font-weight="700">Tier 3</text>
+            <rect x="430" y="216" width="170" height="56" rx="16" fill="#faebe7" stroke="#efc9c0"/>
+            <text x="515" y="250" text-anchor="middle" font-size="18" font-weight="800" fill="#b14d3f">Tier 4</text>
 
-            <rect x="460" y="120" width="190" height="70" rx="16" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="555" y="151" text-anchor="middle" font-size="18" font-weight="700">Mid-tier path</text>
-            <text x="555" y="172" text-anchor="middle" font-size="13" fill="#6a645b">scoping · drafting · normal code</text>
+            <rect x="658" y="52" width="290" height="192" rx="22" fill="#ece8ff" stroke="#d8d1ff"/>
+            <text x="803" y="88" text-anchor="middle" font-size="20" font-weight="800" fill="#5b46ff">Gateway + control layer</text>
+            <text x="803" y="114" text-anchor="middle" font-size="14" fill="#4f41b8">LiteLLM / spend limits / logs / virtual keys</text>
+            <text x="803" y="144" text-anchor="middle" font-size="15" fill="#4f41b8">Pep defaults to Tier 1 / Tier 2</text>
+            <text x="803" y="167" text-anchor="middle" font-size="15" fill="#4f41b8">Escalate to Tier 3 when judgment is needed</text>
+            <text x="803" y="197" text-anchor="middle" font-size="15" fill="#4f41b8">BMO defaults to Tier 3</text>
+            <text x="803" y="220" text-anchor="middle" font-size="15" fill="#4f41b8">Escalate to Tier 4 for stubborn or high-risk work</text>
 
-            <rect x="460" y="206" width="190" height="70" rx="16" fill="#faebe7" stroke="#efc9c0"/>
-            <text x="555" y="237" text-anchor="middle" font-size="18" font-weight="800" fill="#b14d3f">Premium sparse path</text>
-            <text x="555" y="258" text-anchor="middle" font-size="13" fill="#9d564a">hard debugging · architecture</text>
-
-            <rect x="706" y="94" width="234" height="108" rx="20" fill="#ece8ff" stroke="#d8d1ff"/>
-            <text x="823" y="128" text-anchor="middle" font-size="19" font-weight="800" fill="#5b46ff">Gateway + logging</text>
-            <text x="823" y="153" text-anchor="middle" font-size="14" fill="#4f41b8">LiteLLM / spend limits / logs</text>
-            <text x="823" y="175" text-anchor="middle" font-size="14" fill="#4f41b8">budgets by agent and workflow</text>
-
-            <path d="M180 148 L220 148" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M410 124 L460 69" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M410 148 L460 155" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M410 172 L460 241" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M650 69 L706 120" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M650 155 L706 148" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M650 241 L706 176" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M164 148 L204 148" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M384 120 L430 56" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M384 148 L430 150" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M384 176 L430 244" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M600 56 L658 96" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M600 150 L658 150" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
+            <path d="M600 244 L658 212" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
             <defs>
               <marker id="costarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker>
             </defs>
@@ -817,30 +841,37 @@
 
         <div class="grid-two" style="margin-top:16px;">
           <div class="card">
-            <h3>Practical moves</h3>
-            <ol>
-              <li>Put a gateway in front of OpenClaw</li>
-              <li>Create a cheap router model before the expensive model</li>
-              <li>Define task classes before choosing models</li>
-              <li>Make the cheap model the default, not the premium one</li>
-              <li>Route by workflow step, not just by agent</li>
-              <li>Keep contexts small on purpose</li>
-            </ol>
+            <h3>Peppermint Butler</h3>
+            <p><strong>Default:</strong> Tier 1 or Tier 2</p>
+            <p><strong>For:</strong></p>
+            <ul>
+              <li>daily briefings</li>
+              <li>meeting-note summaries</li>
+              <li>inbox triage</li>
+              <li>AI news scans</li>
+              <li>task routing</li>
+              <li>project setup drafts</li>
+            </ul>
+            <p style="margin-top:12px;"><strong>Escalate to Tier 3 when:</strong> the request is ambiguous, the email is sensitive, planning gets complex, or the output needs stronger judgment.</p>
           </div>
           <div class="card">
-            <h3>More important than it sounds</h3>
-            <ol start="7">
-              <li>Externalize memory instead of paying to “remember”</li>
-              <li>Cap spend with virtual keys and per-agent budgets</li>
-              <li>Use shadow logging and weekly review</li>
-              <li>Treat “uncertain” as a policy decision</li>
-              <li>Separate heartbeat jobs from thinking jobs</li>
-              <li>Build “escalate on failure,” not “premium from the start”</li>
-            </ol>
+            <h3>BMO</h3>
+            <p><strong>Default:</strong> Tier 3</p>
+            <p><strong>For:</strong></p>
+            <ul>
+              <li>coding tasks</li>
+              <li>refactors</li>
+              <li>implementation</li>
+              <li>debugging</li>
+              <li>PR support</li>
+              <li>technical documentation</li>
+            </ul>
+            <p style="margin-top:12px;"><strong>Escalate to Tier 4 when:</strong> the bug is stubborn, the repo is large and messy, architecture is unclear, repeated attempts fail, or quality risk is high.</p>
           </div>
         </div>
 
-        <div class="callout"><strong>Most practical summary:</strong> route through a gateway, use a cheap router, make lower-cost models the default, reserve premium models for hard work, keep sessions narrow, and review spend by agent and workflow every week.</div>
+        <div class="callout"><strong>Clean slide copy:</strong> Tier 1 is cheapest / fastest for routing, summaries, classification, and routine ops. Tier 2 handles low-cost general work for drafting, shaping, and lightweight synthesis. Tier 3 is the strong default for coding, planning, debugging, and quality-sensitive work. Tier 4 is reserved for hard reasoning, architecture, and stubborn edge cases.</div>
+        <p class="muted" style="margin-top:14px;">This maps cleanly onto current model positioning: GPT-5.4 / Sonnet 4.6 / Gemini Pro as strong production defaults; GPT-5 mini, Flash, Flash-Lite, and Haiku as lower-cost routing and synthesis options; Opus and higher-reasoning paths reserved for the hardest work.</p>
       </section>
 
       <section id="users">

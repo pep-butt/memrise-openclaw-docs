@@ -426,16 +426,22 @@
 
     <main>
       <section class="hero" id="overview">
-        <div class="eyebrow">OpenClaw</div>
-        <h1>From a personal operating system to an organizational operating model</h1>
-        <p class="lead">This document should be read as a two-part story. Part 1 shows how the current system works in practice today using Peppermint Butler and BMO. Part 2 shifts from personal productivity into organizational design and explains what would matter if a model like this were implemented more formally inside Memrise.</p>
-        <div class="callout"><strong>Reading note:</strong> Part 1 is about showing the machine in motion: real workflows, real agents, real interfaces, real examples. Part 2 is about what would need to be true to make the same pattern viable, safe, and useful in a company context.</div>
-      </section>
-
-      <section id="part1">
-        <div class="tag purple">Part 1 — Current operating system</div>
-        <h2>How the current system works in practice</h2>
-        <p>This first part is deliberately concrete. The point is not to talk about agent architecture in the abstract. The point is to show how a small multi-agent operating system already works today in practice: what it is, what problem it solves, why specialization matters, and how the different parts fit together.</p>
+        <div class="eyebrow">Proposal</div>
+        <h1>OpenClaw × Memrise</h1>
+        <p class="lead">A proposal for how a multi-agent operating model could be used inside Memrise: starting from a working personal setup, then translating it into a clearer team model built around separated identities, Slack-based workflows, tracked execution, mission control, and controlled rollout.</p>
+        <div class="grid-two" style="margin-top:18px; align-items:start;">
+          <div class="card">
+            <h3>What this proposal says</h3>
+            <ul>
+              <li>use specialised agents rather than one overloaded assistant</li>
+              <li>separate each agent with its own identity, permissions, and accounts</li>
+              <li>use Slack as the primary Memrise operating surface</li>
+              <li>make work visible through tracked workflows and mission control</li>
+              <li>pilot with technical teams first, then expand selectively</li>
+            </ul>
+          </div>
+          <div class="callout"><strong>Reading note:</strong> the document first shows the current system working in practice, then translates that logic into a Memrise-specific proposal with clearer governance, rollout logic, and account separation.</div>
+        </div>
       </section>
 
       <section id="operating-system">
@@ -602,17 +608,27 @@
         <p>The interfaces should look cleaner because they are doing different kinds of work. Telegram is the lightweight direct line into the system. Slack is the shared operational surface where people can see what is happening and intervene when needed.</p>
 
         <div class="card" style="margin-top:16px;">
-          <h3>Telegram</h3>
-          <p>Telegram works well as the fast personal interface: low friction, mobile-first, good for direct requests, quick check-ins, and lightweight coordination.</p>
-          <div class="grid-two" style="margin-top:16px;">
-            <figure class="screenshot">
-              <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575808160_Screenshot+2026-03-15+at+12.56.42.png" alt="Telegram screenshot" />
-              <figcaption class="caption">Telegram is good for fast, low-friction interaction.</figcaption>
-            </figure>
-            <figure class="screenshot">
-              <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575677387_Screenshot+2026-03-15+at+12.54.34.png" alt="Telegram screenshot 2" />
-              <figcaption class="caption">It works particularly well as a lightweight companion interface.</figcaption>
-            </figure>
+          <div class="grid-two" style="align-items:start; grid-template-columns: minmax(0, 1.5fr) minmax(240px, .9fr);">
+            <div>
+              <h3>Telegram</h3>
+              <p>Telegram works well as the fast personal interface: low friction, mobile-first, good for direct requests, quick check-ins, and lightweight coordination.</p>
+              <ul>
+                <li>quick interaction on the go</li>
+                <li>simple direct requests and updates</li>
+                <li>easy reset and recovery</li>
+                <li>good for lightweight personal workflows</li>
+              </ul>
+            </div>
+            <div style="display:grid; gap:12px; align-content:start;">
+              <figure class="screenshot">
+                <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575808160_Screenshot+2026-03-15+at+12.56.42.png" alt="Telegram screenshot" />
+                <figcaption class="caption">Fast, low-friction interaction.</figcaption>
+              </figure>
+              <figure class="screenshot">
+                <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575677387_Screenshot+2026-03-15+at+12.54.34.png" alt="Telegram screenshot 2" />
+                <figcaption class="caption">Works well as a lightweight companion interface.</figcaption>
+              </figure>
+            </div>
           </div>
         </div>
 

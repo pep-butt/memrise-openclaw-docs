@@ -886,30 +886,56 @@
 
       <section id="security">
         <div class="tag red">12. Security and governance</div>
-        <h2>What would need to be true inside Memrise</h2>
-        <div class="grid-two">
+        <h2>Security and governance need to be designed in from day one</h2>
+        <p>Moving from a personal operating system to a company workflow changes the requirements. In a personal setup, some trust can sit with the operator. In a team setting, permissions, approvals, scoping, and auditability have to be explicit.</p>
+        <div class="grid-two" style="margin-top:16px;">
           <div class="card">
-            <h3>Controls that matter</h3>
+            <h3>1. Security and governance need to be designed in from day one</h3>
             <ul>
-              <li>dedicated Slack bot identities</li>
-              <li>separate email address per agent where messaging matters</li>
-              <li>separate GitHub account per agent where code / repo actions matter</li>
-              <li>least privilege</li>
-              <li>approval gates</li>
-              <li>auditability</li>
-              <li>clear draft vs execute boundary</li>
-              <li>hosting model chosen intentionally</li>
+              <li>OpenClaw is strongest by default as a personal-assistant system, not a broad shared-user platform</li>
+              <li>multi-user or team use needs tighter sandboxing and clearer workflow boundaries</li>
+              <li>security is not just about model behavior, but about tool access, execution rights, and identity design</li>
+              <li>governance has to cover approvals, permissions, and auditability from the start</li>
+              <li>the goal is bounded autonomy, not unrestricted execution</li>
             </ul>
+            <div class="callout"><strong>Speaker note:</strong> once this becomes a shared operational system, the question is no longer just what the agent can do. It becomes what it is allowed to do, where it can act, and how those actions are reviewed and traced.</div>
           </div>
           <div class="card">
-            <h3>Design implications</h3>
+            <h3>2. Practical security controls</h3>
             <ul>
-              <li>not all actions should execute automatically</li>
-              <li>humans stay accountable for high-impact decisions</li>
-              <li>memory and context should be externalized, not hidden in giant chats</li>
-              <li>autonomy should expand only where trust has been earned</li>
-              <li>identity separation is part of the control model, not cosmetic polish</li>
+              <li>use dedicated agent identities rather than shared human accounts</li>
+              <li>apply least-privilege permissions by role</li>
+              <li>restrict tools using allowlists, deny lists, or tool profiles</li>
+              <li>keep execution behind explicit approval gates</li>
+              <li>scope filesystem access to project workspaces, not broad machine access</li>
+              <li>treat skills and skill folders as trusted code and restrict who can modify them</li>
+              <li>keep sensitive credentials and personal accounts off shared runtimes</li>
             </ul>
+            <div class="callout"><strong>Speaker note:</strong> the right pattern is dedicated identities, narrow permissions, workspace-scoped access, and approval-backed execution.</div>
+          </div>
+          <div class="card">
+            <h3>3. Execution must be gated, not assumed safe</h3>
+            <ul>
+              <li>keep execution behind approvals</li>
+              <li>require intentional node pairing before remote execution is possible</li>
+              <li>prefer ask + allowlist rather than broad full access</li>
+              <li>deny execution when the action cannot be cleanly bound to a clear context or file operand</li>
+              <li>bind execution to specific approved nodes where possible</li>
+              <li>fail closed if the approval path is unavailable</li>
+            </ul>
+            <div class="callout"><strong>Speaker note:</strong> execution is where things become real. The right approach is to keep command running behind a safety interlock and require approval or allowlisting for anything that touches a real machine.</div>
+          </div>
+          <div class="card">
+            <h3>4. Governance model for Memrise</h3>
+            <ul>
+              <li>pilot with technically strong teams first</li>
+              <li>use Mission Control and central logging to watch sessions, approvals, failures, and usage</li>
+              <li>keep high-risk external actions behind human review</li>
+              <li>separate draft from execute</li>
+              <li>review permissions, costs, and failure cases before expanding to other teams</li>
+              <li>avoid broad rollout until workflows are repeatable and supervision is reliable</li>
+            </ul>
+            <div class="callout"><strong>Core idea:</strong> useful with guardrails, not trusted by default.</div>
           </div>
         </div>
       </section>
@@ -984,6 +1010,7 @@
           <div class="card"><h3>🌱 Start narrow, scale carefully</h3><p>Prove leverage in selected workflows before broadening autonomy.</p></div>
           <div class="card"><h3>🧠 Externalize memory</h3><p>Important context should live in durable systems, not only inside huge chat histories.</p></div>
           <div class="card"><h3>🤝 Teach the humans too</h3><p>Adoption depends on training, consultation, and trust — especially with developers and workflow owners.</p></div>
+          <div class="card"><h3>🛡 Useful with guardrails</h3><p>The right goal is bounded usefulness with supervision, not trust-by-default or unrestricted execution.</p></div>
         </div>
       </section>
 

@@ -400,12 +400,12 @@
         <nav>
           <a href="#overview">Overview</a>
           <a href="#current-setup">Current setup</a>
-          <a href="#individual-accounts">Why individual accounts</a>
           <a href="#development">Development workflow</a>
           <a href="#interfaces">Interfaces</a>
           <a href="#part2">Applying this to Memrise</a>
           <a href="#memrise-system">How Memrise would be set up</a>
           <a href="#memrise-agents">Candidate use cases / agents</a>
+          <a href="#individual-accounts">Why individual accounts</a>
           <a href="#pilot">Pilot with technical teams first</a>
           <a href="#strengths">OpenClaw: strengths and constraints</a>
           <a href="#management">Control layer / mission control</a>
@@ -532,23 +532,10 @@
         <div class="callout good"><strong>How they work together:</strong> Pep shapes work, routes it, and keeps the workflow legible. BMO picks up the execution-heavy technical path. That split is what lets planning and implementation remain connected without turning into one muddled session.</div>
       </section>
 
-      <section id="individual-accounts">
-        <div class="tag gold">3. Why individual accounts</div>
-        <h2>Dedicated identities make agent-based workflows easier to manage, safer to operate, and cleaner to supervise.</h2>
-        <p>Separate identities are not cosmetic. They are part of the operating model. Once multiple agents are doing real work, identity separation is what keeps roles legible, permissions narrower, and workflows easier to reason about.</p>
-        <div class="grid-three" style="margin-top:16px;">
-          <div class="card"><h3>🎭 Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
-          <div class="card"><h3>🧾 Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
-          <div class="card"><h3>🔐 Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
-          <div class="card"><h3>🪜 Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries while still escalating higher-risk actions.</p></div>
-          <div class="card"><h3>🔄 Cleaner handoffs</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
-          <div class="card"><h3>👀 Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
-        </div>
-        <div class="callout"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
-      </section>
+      
 
       <section id="development">
-        <div class="tag green">4. Development workflow</div>
+        <div class="tag green">3. Development workflow</div>
         <h2>From scoping to tracked execution</h2>
         <p>This is the clearest place to show the system working in miniature. A request can come in from Telegram while I am on the move, half-distracted, or frankly on the toilet; Pep can still turn it into a structured project, BMO can take the technical path, and the work becomes visible rather than disappearing into a chat thread.</p>
         <div class="visual" style="margin-top:16px;">
@@ -590,7 +577,7 @@
       </section>
 
       <section id="interfaces">
-        <div class="tag purple">5. Interfaces</div>
+        <div class="tag purple">4. Interfaces</div>
         <h2>Telegram and Slack serve different jobs</h2>
         <p>The interfaces should look cleaner because they are doing different kinds of work. Telegram is the lightweight direct line into the system. Slack is the shared operational surface where people can see what is happening and intervene when needed.</p>
 
@@ -653,7 +640,7 @@
       
 
       <section id="memrise-system">
-        <div class="tag purple">6. How Memrise would be set up</div>
+        <div class="tag purple">5. How Memrise would be set up</div>
         <h2>The same system logic, translated into a company operating model</h2>
         <p>The point is not to clone the personal setup exactly. The point is to apply the same system logic in a Memrise-shaped way: shared Slack surface, separated bot identities, clear roles, a control layer, and explicit account boundaries.</p>
         <div class="visual">
@@ -704,7 +691,7 @@
       </section>
 
       <section id="memrise-agents">
-        <div class="tag green">7. First candidate agents for Memrise</div>
+        <div class="tag green">6. First candidate agents for Memrise</div>
         <h2>Start with agents that reduce operational drag, improve visibility, and fit naturally into reviewable workflows</h2>
         <p>The strongest first-wave candidates are not the flashiest ones. They are the ones that sit in repeatable workflows, produce measurable value, and still allow for human review where needed.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -765,8 +752,23 @@
         <div class="callout"><strong>Bottom line:</strong> start with agents that reduce operational drag, improve visibility, and fit naturally into reviewable workflows.</div>
       </section>
 
+      <section id="individual-accounts">
+        <div class="tag gold">8. Why individual accounts</div>
+        <h2>Dedicated identities make agent-based workflows easier to manage, safer to operate, and cleaner to supervise.</h2>
+        <p>Separate identities are not cosmetic. They are part of the operating model. Once multiple agents are doing real work, identity separation is what keeps roles legible, permissions narrower, and workflows easier to reason about.</p>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card"><h3>🎭 Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
+          <div class="card"><h3>🧾 Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
+          <div class="card"><h3>🔐 Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
+          <div class="card"><h3>🪜 Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries while still escalating higher-risk actions.</p></div>
+          <div class="card"><h3>🔄 Cleaner handoffs</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
+          <div class="card"><h3>👀 Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
+        </div>
+        <div class="callout"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
+      </section>
+
       <section id="pilot">
-        <div class="tag purple">8. Pilot with technical teams first</div>
+        <div class="tag purple">9. Pilot with technical teams first</div>
         <h2>Broad rollout is probably not the right starting point</h2>
         <p>Before rolling out a system like this more broadly, it makes sense to test it with technically strong teams and developers first.</p>
         <p>This is particularly important for coding workflows, where the upside can be high but the setup burden is also significant. The point of the pilot phase is not just to prove that the tools work. It is to understand where they are worth the setup cost, where they need refinement, and where they should not yet be trusted without closer supervision.</p>
@@ -818,7 +820,7 @@
       </section>
 
       <section id="strengths">
-        <div class="tag purple">9. OpenClaw: strengths and constraints</div>
+        <div class="tag purple">10. OpenClaw: strengths and constraints</div>
         <h2>High upside, but only with deliberate setup, control, and staged adoption</h2>
         <div class="grid-two">
           <div class="card">
@@ -845,7 +847,7 @@
       </section>
 
       <section id="management">
-        <div class="tag purple">10. Control layer / mission control</div>
+        <div class="tag purple">11. Control layer / mission control</div>
         <h2>Memrise would need a real control layer</h2>
         <p>If Memrise adopted a model like this, mission control would stop being a nice-to-have and become part of the operating model. Once work is distributed across multiple agents, people need to see what is running, what has completed, what is blocked, what has failed, and where intervention is required.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -867,7 +869,7 @@
       </section>
 
       <section id="security">
-        <div class="tag red">11. Security and governance</div>
+        <div class="tag red">12. Security and governance</div>
         <h2>Security and governance need to be designed in from day one</h2>
         <p>Moving from a personal operating system to a company workflow changes the requirements. In a personal setup, some trust can sit with the operator. In a team setting, permissions, approvals, scoping, and auditability have to be explicit.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -920,7 +922,7 @@
       </section>
 
       <section id="cost">
-        <div class="tag gold">12. Cost control and model routing</div>
+        <div class="tag gold">13. Cost control and model routing</div>
         <h2>Cheap-first routing, clear tiers, and explicit escalation</h2>
         <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The goal is to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks.</p>
         <div class="grid-two" style="margin-top:16px;">
@@ -953,7 +955,7 @@
       
 
       <section id="rebel">
-        <div class="tag purple">13. Why this is better than Rebel</div>
+        <div class="tag purple">14. Why this is better than Rebel</div>
         <h2>Why this model creates more practical leverage</h2>
         <div class="grid-two">
           <div class="card">
@@ -983,7 +985,7 @@
       </section>
 
       <section id="principles">
-        <div class="tag red">14. Bible verses / key principles</div>
+        <div class="tag red">15. Bible verses / key principles</div>
         <h2>The non-negotiable ideas this should revolve around</h2>
         <p>These are the “Bible verses” of the model: the short governing ideas that should keep the system honest as it grows.</p>
         <div class="grid-three" style="margin-top:16px;">
@@ -1001,7 +1003,7 @@
       </section>
 
       <section id="closing">
-        <div class="tag green">15. Closing takeaway</div>
+        <div class="tag green">16. Closing takeaway</div>
         <h2>This is not a chatbot rollout</h2>
         <p>This is an operating model for selected workflows. The point is to increase leverage without losing control: show the system working in miniature, then design the cleaner, safer, more governable version that a company context would require.</p>
       </section>

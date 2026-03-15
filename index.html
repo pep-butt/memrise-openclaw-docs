@@ -926,33 +926,33 @@
           <div class="card">
             <h3>1. Security and governance need to be designed in from day one</h3>
             <ul>
-              <li>OpenClaw is strongest by default as a personal-assistant system, not a broad shared-user platform</li>
-              <li>multi-user or team use needs tighter sandboxing and clearer workflow boundaries</li>
-              <li>security is not just about model behavior, but about tool access, execution rights, and identity design</li>
-              <li>governance has to cover approvals, permissions, and auditability from the start</li>
+              <li>best by default as a personal-assistant system, not a broad shared-user platform</li>
+              <li>team use needs tighter sandboxing and clearer workflow boundaries</li>
+              <li>security is about tool access, execution rights, and identity design</li>
+              <li>governance must cover approvals, permissions, and auditability</li>
               <li>the goal is bounded autonomy, not unrestricted execution</li>
             </ul>
           </div>
           <div class="card">
             <h3>2. Practical security controls</h3>
             <ul>
-              <li>use dedicated agent identities rather than shared human accounts</li>
+              <li>use dedicated agent identities, not shared human accounts</li>
               <li>apply least-privilege permissions by role</li>
-              <li>restrict tools using allowlists, deny lists, or tool profiles</li>
+              <li>restrict tools with allowlists, deny lists, or tool profiles</li>
               <li>keep execution behind explicit approval gates</li>
-              <li>scope filesystem access to project workspaces, not broad machine access</li>
-              <li>treat skills and skill folders as trusted code and restrict who can modify them</li>
-              <li>keep sensitive credentials and personal accounts off shared runtimes</li>
+              <li>scope filesystem access to project workspaces</li>
+              <li>treat skills as trusted code and restrict who can modify them</li>
+              <li>keep sensitive credentials off shared runtimes</li>
             </ul>
           </div>
           <div class="card">
             <h3>3. Execution must be gated, not assumed safe</h3>
             <ul>
               <li>keep execution behind approvals</li>
-              <li>require intentional node pairing before remote execution is possible</li>
-              <li>prefer ask + allowlist rather than broad full access</li>
-              <li>deny execution when the action cannot be cleanly bound to a clear context or file operand</li>
-              <li>bind execution to specific approved nodes where possible</li>
+              <li>require intentional node pairing for remote execution</li>
+              <li>prefer ask + allowlist over broad access</li>
+              <li>deny execution when context or file binding is unclear</li>
+              <li>bind execution to approved nodes where possible</li>
               <li>fail closed if the approval path is unavailable</li>
             </ul>
           </div>
@@ -960,11 +960,11 @@
             <h3>4. Governance model for Memrise</h3>
             <ul>
               <li>pilot with technically strong teams first</li>
-              <li>use Mission Control and central logging to watch sessions, approvals, failures, and usage</li>
+              <li>use Mission Control and logging to watch sessions, approvals, failures, and usage</li>
               <li>keep high-risk external actions behind human review</li>
               <li>separate draft from execute</li>
-              <li>review permissions, costs, and failure cases before expanding to other teams</li>
-              <li>avoid broad rollout until workflows are repeatable and supervision is reliable</li>
+              <li>review permissions, costs, and failure cases before expanding</li>
+              <li>avoid broad rollout until workflows are repeatable</li>
             </ul>
             <div class="callout"><strong>Core idea:</strong> useful with guardrails, not trusted by default.</div>
           </div>

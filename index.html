@@ -1040,6 +1040,27 @@
       document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
       });
+
+      const navLinks = Array.from(document.querySelectorAll('nav a[href^="#"]'));
+      const sections = navLinks
+        .map(link => ({ link, section: document.querySelector(link.getAttribute('href')) }))
+        .filter(item => item.section);
+
+      const setActiveSection = () => {
+        const scrollY = window.scrollY + 140;
+        let current = sections[0];
+
+        sections.forEach(item => {
+          if (item.section.offsetTop <= scrollY) current = item;
+        });
+
+        navLinks.forEach(link => link.classList.remove('active'));
+        if (current) current.link.classList.add('active');
+      };
+
+      setActiveSection();
+      window.addEventListener('scroll', setActiveSection, { passive: true });
+      window.addEventListener('resize', setActiveSection);
     })();
   </script>
 </body>

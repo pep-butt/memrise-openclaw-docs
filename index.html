@@ -132,14 +132,16 @@
       max-width: 950px;
     }
     h2 {
-      margin: 0 0 14px;
-      font-size: 32px;
-      line-height: 1.12;
+      margin: 0 0 12px;
+      font-size: 28px;
+      line-height: 1.14;
+      font-weight: 740;
     }
     h3 {
-      margin: 0 0 10px;
-      font-size: 21px;
+      margin: 0 0 9px;
+      font-size: 20px;
       line-height: 1.22;
+      font-weight: 700;
     }
     h4 {
       margin: 0 0 8px;
@@ -376,8 +378,22 @@
     <main>
       <section class="hero" id="overview">
         <div class="eyebrow">OpenClaw</div>
-        <h1>A practical operating system for multi-agent work</h1>
-        <p class="lead">OpenClaw is most useful when it is treated as an <strong>operating layer</strong>, not just a chatbot. Work is split across specialised agents rather than one general-purpose agent, each agent keeps its own session, role, and operating context, and humans stay in control at the points where trust, risk, cost, or ambiguity matter.</p>
+        <h1>How the system is structured today</h1>
+        <p class="lead">OpenClaw works best as a coordination and execution layer for real workflows. Instead of putting everything into one giant conversation, it separates work across dedicated agents, sessions, identities, and interfaces so requests can be routed, executed, reviewed, and monitored clearly.</p>
+        <div class="grid-three" style="margin-top:18px;">
+          <div class="card">
+            <h3>What it is</h3>
+            <p>A multi-agent operating layer that connects people, agents, tools, channels, and approvals.</p>
+          </div>
+          <div class="card">
+            <h3>What it changes</h3>
+            <p>It reduces context sprawl, clarifies responsibilities, and makes handoffs and review points more explicit.</p>
+          </div>
+          <div class="card">
+            <h3>Why it matters</h3>
+            <p>The win is not one clever assistant. The win is a system that makes real work more legible and governable.</p>
+          </div>
+        </div>
         <details class="contents" open>
           <summary>Contents</summary>
           <div class="contents-grid">
@@ -392,13 +408,12 @@
             <a href="#principles">Key principles / proposal doctrine</a>
           </div>
         </details>
-        <div class="callout"><strong>Core point:</strong> this model keeps context windows smaller, responsibilities clearer, handoffs more structured, and approvals more governable. The win is not “one clever assistant.” The win is a legible operating model for real work.</div>
       </section>
 
       <section id="operating-system">
         <div class="tag purple">Current operating system</div>
-        <h2>How the system is set up right now</h2>
-        <p class="quote">The architecture works best when each agent has its own role, its own identity, and its own operating surface — rather than collapsing everything into one giant overloaded session.</p>
+        <h2>Why it is structured this way</h2>
+        <p>At a practical level, the architecture is built to stop one agent from trying to hold planning, execution, review, and reporting all at once. Each agent gets its own role and operating surface, which makes the system easier to manage and easier to trust.</p>
         <div class="grid-two" style="margin-top:18px;">
           <div class="card">
             <h3>What this enables</h3>

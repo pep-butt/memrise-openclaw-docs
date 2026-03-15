@@ -401,10 +401,10 @@
           <a href="#development">Development workflow</a>
           <a href="#interfaces">Interfaces</a>
           <a href="#part2">Applying this to Memrise</a>
-          <a href="#memrise-why">Why this could matter for Memrise</a>
           <a href="#memrise-system">How Memrise would be set up</a>
           <a href="#memrise-agents">Candidate use cases / agents</a>
           <a href="#pilot">Pilot with technical teams first</a>
+          <a href="#strengths">OpenClaw: strengths and constraints</a>
           <a href="#management">Control layer / mission control</a>
           <a href="#security">Security and governance</a>
           <a href="#cost">Cost control and model routing</a>
@@ -431,7 +431,7 @@
 
       <section id="operating-system">
         <div class="tag purple">1. Overview</div>
-        <h2>How the current operating model is structured</h2>
+        <h2>My personal model</h2>
         <p>This system is structured around specialised agents, separate identities, lightweight interfaces, and explicit control layers because the goal is not just to make AI available. The goal is to make it usable, governable, and effective in real workflows.</p>
         <p>A single general-purpose agent quickly becomes overloaded. It has to hold too much context, switch between too many responsibilities, and operate across too many systems at once. That increases cost, reduces clarity, and makes failures harder to understand. By splitting work across specialised agents, each agent can operate with a narrower role, a smaller context window, and a clearer operating boundary.</p>
         <p>The result is a system that is easier to supervise, easier to scale, and less likely to become an expensive black box.</p>
@@ -448,7 +448,12 @@
             <text x="620" y="178" text-anchor="middle" font-size="15" fill="#4f41b8">routing · memory · tools</text>
             <text x="620" y="199" text-anchor="middle" font-size="15" fill="#4f41b8">orchestration · approvals</text>
             <rect x="790" y="40" width="220" height="132" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="900" y="74" text-anchor="middle" font-size="21" font-weight="800">Pep</text>
+            <g>
+              <clipPath id="pepClip"><circle cx="835" cy="74" r="20"/></clipPath>
+              <image href="assets/pep-avatar.jpg" x="815" y="54" width="40" height="40" clip-path="url(#pepClip)" preserveAspectRatio="xMidYMid slice"/>
+              <circle cx="835" cy="74" r="20" fill="none" stroke="#ffffff" stroke-width="3"/>
+            </g>
+            <text x="910" y="74" text-anchor="middle" font-size="21" font-weight="800">Pep</text>
             <text x="900" y="99" text-anchor="middle" font-size="14" fill="#6a645b">coordination and orchestration</text>
             <rect x="815" y="116" width="58" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="844" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">routing</text>
             <rect x="879" y="116" width="72" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="915" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">accounts</text>
@@ -456,14 +461,19 @@
             <rect x="830" y="146" width="67" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="863.5" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">updates</text>
             <rect x="903" y="146" width="83" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="944.5" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">messaging</text>
             <rect x="790" y="194" width="220" height="132" rx="20" fill="#e7f8f1" stroke="#cceee0"/>
-            <text x="900" y="228" text-anchor="middle" font-size="21" font-weight="800" fill="#0a8c61">BMO</text>
+            <g>
+              <clipPath id="bmoClip"><circle cx="835" cy="228" r="20"/></clipPath>
+              <image href="assets/bmo-avatar.jpg" x="815" y="208" width="40" height="40" clip-path="url(#bmoClip)" preserveAspectRatio="xMidYMid slice"/>
+              <circle cx="835" cy="228" r="20" fill="none" stroke="#ffffff" stroke-width="3"/>
+            </g>
+            <text x="913" y="228" text-anchor="middle" font-size="21" font-weight="800" fill="#0a8c61">BMO</text>
             <text x="900" y="253" text-anchor="middle" font-size="14" fill="#4f7f69">technical execution</text>
             <rect x="815" y="270" width="54" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="842" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">build</text>
             <rect x="875" y="270" width="61" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="905.5" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">debug</text>
             <rect x="942" y="270" width="50" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="967" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">docs</text>
             <rect x="830" y="300" width="76" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="868" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">GitHub</text>
             <rect x="912" y="300" width="62" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="943" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">QA</text>
-            <rect x="790" y="348" width="220" height="48" rx="18" fill="#fff4d6" stroke="#ecdca4"/><text x="900" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#8a6500">Future specialists</text>
+            <rect x="790" y="348" width="220" height="48" rx="18" fill="#fff4d6" stroke="#ecdca4"/><circle cx="835" cy="372" r="18" fill="#fff" stroke="#ecdca4"/><text x="835" y="378" text-anchor="middle" font-size="16" font-weight="800" fill="#8a6500">+</text><text x="925" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#8a6500">Future specialists</text>
             <path d="M190 165 L250 165" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
             <path d="M450 165 L510 165" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
             <path d="M730 165 L790 106" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
@@ -477,7 +487,7 @@
       <section id="current-setup">
         <div class="tag green">2. The current setup</div>
         <h2>Peppermint Butler, BMO, and why the split matters</h2>
-        <p>The current setup uses two primary agents with different roles. Pep handles orchestration, synthesis, routing, and day-to-day operational support. BMO handles technical execution. Keeping those roles separate is what makes the whole thing practical.</p>
+        <p>The current setup uses two primary agents with different roles. Pep handles orchestration, synthesis, routing, and day-to-day operational support. BMO handles technical execution. Keeping those roles separate is what makes the whole thing practical. It is not about creating an army of agents. It is about creating a small number of specialised agents that are genuinely good at different jobs.</p>
         <div class="grid-two">
           <div class="card">
             <div class="agent-head">
@@ -506,11 +516,12 @@
               </div>
             </div>
             <ul>
-              <li>coding tasks and implementation</li>
+              <li>coding tasks and implementation via Claude Code</li>
               <li>refactors and debugging</li>
               <li>PR support and code review</li>
               <li>technical documentation</li>
               <li>repo-linked workflow execution</li>
+              <li>specialised QA helpers when needed</li>
               <li>escalation on blockers or risky actions</li>
             </ul>
           </div>
@@ -520,15 +531,15 @@
 
       <section id="individual-accounts">
         <div class="tag gold">3. Why individual accounts</div>
-        <h2>Dedicated identities make agent-based workflows easier to manage, safer to operate, and clearer to supervise.</h2>
+        <h2>Dedicated identities make agent-based workflows easier to manage, safer to operate, and cleaner to supervise.</h2>
         <p>Separate identities are not cosmetic. They are part of the operating model. Once multiple agents are doing real work, identity separation is what keeps roles legible, permissions narrower, and workflows easier to reason about.</p>
         <div class="grid-three" style="margin-top:16px;">
-          <div class="card"><h3>Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
-          <div class="card"><h3>Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
-          <div class="card"><h3>Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
-          <div class="card"><h3>Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries while still escalating higher-risk actions.</p></div>
-          <div class="card"><h3>Cleaner handoffs</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
-          <div class="card"><h3>Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
+          <div class="card"><h3>🎭 Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
+          <div class="card"><h3>🧾 Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
+          <div class="card"><h3>🔐 Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
+          <div class="card"><h3>🪜 Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries while still escalating higher-risk actions.</p></div>
+          <div class="card"><h3>🔄 Cleaner handoffs</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
+          <div class="card"><h3>👀 Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
         </div>
         <div class="callout"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
       </section>
@@ -536,7 +547,7 @@
       <section id="development">
         <div class="tag green">4. Development workflow</div>
         <h2>From scoping to tracked execution</h2>
-        <p>This is the clearest place to show the system working in miniature. A request comes in, Pep shapes it into a structured project, BMO takes the technical path, and the work becomes visible rather than disappearing into a chat thread.</p>
+        <p>This is the clearest place to show the system working in miniature. A request can come in from Telegram while I am on the move, half-distracted, or frankly on the toilet; Pep can still turn it into a structured project, BMO can take the technical path, and the work becomes visible rather than disappearing into a chat thread.</p>
         <div class="visual" style="margin-top:16px;">
             <svg viewBox="0 0 980 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Development workflow diagram">
               <rect x="24" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
@@ -629,41 +640,17 @@
 
       
 
-      <section id="part2" class="hero">
+      <section id="part2" class="hero" style="min-height:320px; display:flex; flex-direction:column; justify-content:center;">
         <div class="eyebrow">Guide</div>
         <div class="tag red">Applying this model to Memrise</div>
-        <h2>How this could be introduced at Memrise</h2>
+        <h2>Memrise implementation guide</h2>
         <p class="lead">From here, the document shifts from the current personal setup to a more practical guide for how the same operating logic could be adapted inside Memrise.</p>
       </section>
 
-      <section id="memrise-why">
-        <div class="tag purple">6. Why this could matter for Memrise</div>
-        <h2>From personal leverage to organizational leverage</h2>
-        <div class="callout"><strong>Default interface recommendation for Memrise:</strong> use <strong>Slack</strong> as the primary operating surface. It fits the team context better than Telegram because it supports shared visibility, thread-based coordination, approvals, and clear separation between different bot identities.</div>
-        <div class="grid-two">
-          <div class="card">
-            <h3>Why the pattern matters</h3>
-            <ul>
-              <li>lean team</li>
-              <li>growing demand</li>
-              <li>coordination overhead</li>
-              <li>specialist bandwidth constraints</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>The key shift</h3>
-            <ul>
-              <li>not just AI chat</li>
-              <li>not just one assistant surface</li>
-              <li>workflow leverage across real operational paths</li>
-              <li>more throughput without losing control</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      
 
       <section id="memrise-system">
-        <div class="tag purple">7. How Memrise would be set up</div>
+        <div class="tag purple">6. How Memrise would be set up</div>
         <h2>The same system logic, translated into a company operating model</h2>
         <p>The point is not to clone the personal setup exactly. The point is to apply the same system logic in a Memrise-shaped way: shared Slack surface, separated bot identities, clear roles, a control layer, and explicit account boundaries.</p>
         <div class="visual">
@@ -714,7 +701,7 @@
       </section>
 
       <section id="memrise-agents">
-        <div class="tag green">8. Candidate use cases / agents at Memrise</div>
+        <div class="tag green">7. Candidate use cases / agents at Memrise</div>
         <h2>Translating the pattern, not copying the personalities</h2>
         <p>Memrise probably should not have Peppermint Butler or BMO by name. But it can adopt the concepts behind them: coordination, execution, and visibility as distinct roles with different model tiers and access boundaries.</p>
         <p><strong>Important implementation detail:</strong> each one should be separated out as its own bot identity rather than collapsing everything into one shared assistant.</p>
@@ -734,6 +721,7 @@
               <li>project setup</li>
               <li>handoffs between people, agents, and systems</li>
             </ul>
+            <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> Slack, task systems, docs, and internal workflow tooling.</p>
           </div>
           <div class="card">
             <div class="agent-head">
@@ -750,6 +738,7 @@
               <li>build/review loops</li>
               <li>repo-linked implementation work</li>
             </ul>
+            <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> Claude Code, GitHub, repos, CI, and QA/review flows.</p>
           </div>
           <div class="card">
             <div class="agent-head">
@@ -767,18 +756,14 @@
               <li>exception spotting and follow-up</li>
               <li>lightweight review prep</li>
             </ul>
+            <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> AWS / Athena and the reporting/data work already happening with Kevin.</p>
           </div>
-        </div>
-        <div class="grid-three" style="margin-top:16px;">
-          <div class="card"><h3>Other candidate workflows</h3><p>support, marketing / Braze, planning and status visibility, executive briefing / summaries, security / review assistance.</p></div>
-          <div class="card"><h3>What matters most</h3><p>The names are less important than the boundaries: who coordinates, who executes, who reports, and what each role is allowed to do.</p></div>
-          <div class="card"><h3>Data stack fit</h3><p>This agent should sit against the existing data stack — for example AWS / Athena and the reporting work already happening with Kevin — rather than feeling like a vague generic “insights” helper.</p></div>
         </div>
         <div class="callout"><strong>Recommendation:</strong> in Memrise, each bot should have its <strong>own Slack identity</strong>, its <strong>own email address</strong>, and its <strong>own GitHub account</strong> wherever code or repo actions are involved. That separation is what makes permissions, audit trails, accountability, and safe automation workable.</div>
       </section>
 
       <section id="pilot">
-        <div class="tag purple">9. Pilot with technical teams first</div>
+        <div class="tag purple">8. Pilot with technical teams first</div>
         <h2>Broad rollout is probably not the right starting point</h2>
         <p>Before rolling out a system like this more broadly, it makes sense to test it with technically strong teams and developers first.</p>
         <p>This is particularly important for coding workflows, where the upside can be high but the setup burden is also significant. The point of the pilot phase is not just to prove that the tools work. It is to understand where they are worth the setup cost, where they need refinement, and where they should not yet be trusted without closer supervision.</p>
@@ -827,6 +812,33 @@
           </svg>
         </div>
         <div class="callout"><strong>Bottom line:</strong> Start narrow, learn fast, then expand selectively.</div>
+      </section>
+
+      <section id="strengths">
+        <div class="tag purple">9. OpenClaw: strengths and constraints</div>
+        <h2>High upside, but only with deliberate setup, control, and staged adoption</h2>
+        <div class="grid-two">
+          <div class="card">
+            <h3>Strengths</h3>
+            <ul>
+              <li>flexible multi-agent model</li>
+              <li>strong workflow potential</li>
+              <li>useful visibility patterns are emerging</li>
+              <li>good fit for technical and operational workflows</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Constraints</h3>
+            <ul>
+              <li>setup can be tedious</li>
+              <li>security needs deliberate hardening</li>
+              <li>model and context costs need active management</li>
+              <li>memory and context are still imperfect</li>
+              <li>best with technically capable operators first</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout"><strong>Bottom takeaway:</strong> high upside, but only with deliberate setup, control, and staged adoption.</div>
       </section>
 
       <section id="management">

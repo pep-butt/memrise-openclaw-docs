@@ -696,7 +696,13 @@
         <p>The strongest first-wave candidates are not the flashiest ones. They are the ones that sit in repeatable workflows, produce measurable value, and still allow for human review where needed.</p>
         <div class="grid-two" style="margin-top:16px;">
           <div class="card">
-            <h3>Customer Service Agent</h3>
+            <div class="agent-head">
+              <span class="agent-avatar badge" aria-hidden="true">CS</span>
+              <div>
+                <h3>Customer Service Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+              </div>
+            </div>
             <p><strong>Why this is a good first workflow:</strong> customer service is high-volume, repeatable, measurable, and naturally suited to human-in-the-loop review.</p>
             <ul>
               <li>triage inbound support requests</li>
@@ -708,7 +714,13 @@
             </ul>
           </div>
           <div class="card">
-            <h3>Technical Delivery Agent</h3>
+            <div class="agent-head">
+              <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="Technical delivery agent avatar" />
+              <div>
+                <h3>Technical Delivery Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
+              </div>
+            </div>
             <p><strong>BMO-style model applied to Memrise:</strong> high upside, but more setup burden than the others.</p>
             <ul>
               <li>pick up scoped work from GitHub Projects</li>
@@ -721,7 +733,13 @@
             <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> Claude Code, GitHub, repos, CI, and QA/review flows.</p>
           </div>
           <div class="card">
-            <h3>Workflow / Planning Agent</h3>
+            <div class="agent-head">
+              <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Workflow planning agent avatar" />
+              <div>
+                <h3>Workflow / Planning Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+              </div>
+            </div>
             <p><strong>Pep-style orchestration layer:</strong> useful because a lot of team drag comes from shaping work, routing it, and following up on it.</p>
             <ul>
               <li>scope incoming requests</li>
@@ -734,7 +752,13 @@
             <p class="muted" style="margin-top:12px;"><strong>Stack fit:</strong> Slack, task systems, docs, and internal workflow tooling.</p>
           </div>
           <div class="card">
-            <h3>Insights and Reporting Agent</h3>
+            <div class="agent-head">
+              <span class="agent-avatar badge" aria-hidden="true">IR</span>
+              <div>
+                <h3>Insights and Reporting Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+              </div>
+            </div>
             <p><strong>Another good early candidate:</strong> it improves visibility without introducing too much execution risk.</p>
             <ul>
               <li>summarize weekly status across tools and teams</li>

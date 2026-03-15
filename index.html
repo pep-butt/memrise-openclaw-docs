@@ -529,57 +529,60 @@
 
       <section id="individual-accounts">
         <div class="tag gold">3. Why individual accounts</div>
-        <div class="card">
-          <h2>Dedicated identities make agent-based workflows easier to manage, safer to operate, and clearer to supervise.</h2>
-          <div class="grid-three" style="margin-top:14px;">
-            <div class="card"><h3>Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
-            <div class="card"><h3>Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
-            <div class="card"><h3>Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
-            <div class="card"><h3>Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries, while still escalating sensitive or higher-risk actions.</p></div>
-            <div class="card"><h3>Cleaner handoffs between agents</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
-            <div class="card"><h3>Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
-            <div class="card"><h3>More resilient workflow design</h3><p>If one agent drifts, fails, or needs to be reset, it can be managed without disrupting the whole system.</p></div>
-          </div>
-          <div class="callout"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
+        <h2>Dedicated identities make agent-based workflows easier to manage, safer to operate, and clearer to supervise.</h2>
+        <p>Separate identities are not cosmetic. They are part of the operating model. Once multiple agents are doing real work, identity separation is what keeps roles legible, permissions narrower, and workflows easier to reason about.</p>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card"><h3>Clear separation of roles</h3><p>Each agent has a distinct function and operating surface, rather than one shared identity doing everything.</p></div>
+          <div class="card"><h3>Better auditability</h3><p>Actions can be traced back to the specific agent account that performed them.</p></div>
+          <div class="card"><h3>Safer permissions design</h3><p>Access can be scoped by workflow and role, instead of giving one general-purpose identity broad access to everything.</p></div>
+          <div class="card"><h3>Supports controlled autonomy</h3><p>Agents can operate independently within defined boundaries while still escalating higher-risk actions.</p></div>
+          <div class="card"><h3>Cleaner handoffs</h3><p>A planning agent and an execution agent can work together without collapsing into one overloaded session or identity.</p></div>
+          <div class="card"><h3>Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
         </div>
+        <div class="callout"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
       </section>
 
       <section id="development">
         <div class="tag green">4. Development workflow</div>
         <h2>From scoping to tracked execution</h2>
-        <p>This is the clearest place to show the system working in miniature. A request comes in, Pep turns it into a structured project and task list, BMO takes the technical path, and the work is tracked through to completion rather than disappearing into an opaque chat log.</p>
-        <div class="flow">
-          <div class="step"><strong>Scoping.</strong> Pep turns a raw request into something bounded and actionable.</div>
-          <div class="step"><strong>GitHub project creation.</strong> The request becomes a visible project workflow rather than an informal memory burden.</div>
-          <div class="step"><strong>Task generation.</strong> Work is broken into clear technical steps.</div>
-          <div class="step"><strong>Handoff to BMO.</strong> Execution passes to the specialist technical agent.</div>
-          <div class="step"><strong>Tracked execution to completion.</strong> Progress is visible through tasks, issues, PRs, and artifacts.</div>
-        </div>
-        <div class="visual">
-          <svg viewBox="0 0 980 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Development workflow diagram">
-            <rect x="24" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="99" y="93" text-anchor="middle" font-size="18" font-weight="700">Idea / request</text>
-            <text x="99" y="117" text-anchor="middle" font-size="14" fill="#6a645b">human intent</text>
-            <rect x="220" y="50" width="180" height="96" rx="18" fill="#ece8ff" stroke="#d8d1ff"/>
-            <text x="310" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#5b46ff">Pep</text>
-            <text x="310" y="112" text-anchor="middle" font-size="14" fill="#4f41b8">scope · route · shape</text>
-            <text x="310" y="132" text-anchor="middle" font-size="14" fill="#4f41b8">create project + tasks</text>
-            <rect x="446" y="50" width="180" height="96" rx="18" fill="#e7f8f1" stroke="#cceee0"/>
-            <text x="536" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#0a8c61">BMO</text>
-            <text x="536" y="112" text-anchor="middle" font-size="14" fill="#4f7f69">inspect · build · debug</text>
-            <text x="536" y="132" text-anchor="middle" font-size="14" fill="#4f7f69">tests · handover · QA</text>
-            <rect x="672" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="747" y="93" text-anchor="middle" font-size="18" font-weight="700">GitHub Project</text>
-            <text x="747" y="117" text-anchor="middle" font-size="14" fill="#6a645b">tracked execution</text>
-            <rect x="848" y="60" width="110" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="903" y="93" text-anchor="middle" font-size="18" font-weight="700">Review</text>
-            <text x="903" y="117" text-anchor="middle" font-size="14" fill="#6a645b">approve / merge</text>
-            <path d="M174 98 L220 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
-            <path d="M400 98 L446 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
-            <path d="M626 98 L672 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
-            <path d="M822 98 L848 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
-            <defs><marker id="flowarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
-          </svg>
+        <p>This is the clearest place to show the system working in miniature. A request comes in, Pep shapes it into a structured project, BMO takes the technical path, and the work becomes visible rather than disappearing into a chat thread.</p>
+        <div class="grid-two" style="margin-top:16px; align-items:start;">
+          <div class="card">
+            <h3>The workflow in plain English</h3>
+            <div class="flow" style="margin-top:14px;">
+              <div class="step"><strong>1. Scope the work.</strong> Turn a raw request into something bounded and actionable.</div>
+              <div class="step"><strong>2. Create the project structure.</strong> Make the work visible in GitHub rather than leaving it as informal memory.</div>
+              <div class="step"><strong>3. Break it into tasks.</strong> Define the technical steps clearly enough for execution.</div>
+              <div class="step"><strong>4. Hand off to BMO.</strong> Move execution to the specialist technical agent.</div>
+              <div class="step"><strong>5. Track it to completion.</strong> Progress lives in issues, tasks, PRs, and review points.</div>
+            </div>
+          </div>
+          <div class="visual">
+            <svg viewBox="0 0 980 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Development workflow diagram">
+              <rect x="24" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+              <text x="99" y="93" text-anchor="middle" font-size="18" font-weight="700">Idea / request</text>
+              <text x="99" y="117" text-anchor="middle" font-size="14" fill="#6a645b">human intent</text>
+              <rect x="220" y="50" width="180" height="96" rx="18" fill="#ece8ff" stroke="#d8d1ff"/>
+              <text x="310" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#5b46ff">Pep</text>
+              <text x="310" y="112" text-anchor="middle" font-size="14" fill="#4f41b8">scope · route · shape</text>
+              <text x="310" y="132" text-anchor="middle" font-size="14" fill="#4f41b8">create project + tasks</text>
+              <rect x="446" y="50" width="180" height="96" rx="18" fill="#e7f8f1" stroke="#cceee0"/>
+              <text x="536" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#0a8c61">BMO</text>
+              <text x="536" y="112" text-anchor="middle" font-size="14" fill="#4f7f69">inspect · build · debug</text>
+              <text x="536" y="132" text-anchor="middle" font-size="14" fill="#4f7f69">tests · handover · QA</text>
+              <rect x="672" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+              <text x="747" y="93" text-anchor="middle" font-size="18" font-weight="700">GitHub Project</text>
+              <text x="747" y="117" text-anchor="middle" font-size="14" fill="#6a645b">tracked execution</text>
+              <rect x="848" y="60" width="110" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
+              <text x="903" y="93" text-anchor="middle" font-size="18" font-weight="700">Review</text>
+              <text x="903" y="117" text-anchor="middle" font-size="14" fill="#6a645b">approve / merge</text>
+              <path d="M174 98 L220 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+              <path d="M400 98 L446 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+              <path d="M626 98 L672 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+              <path d="M822 98 L848 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
+              <defs><marker id="flowarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
+            </svg>
+          </div>
         </div>
         <div class="grid-two" style="margin-top:18px;">
           <figure class="screenshot">

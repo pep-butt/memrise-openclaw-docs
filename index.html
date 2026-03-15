@@ -407,6 +407,13 @@
       h2 { font-size: 27px; }
       .quote { font-size: 24px; }
       .row { grid-template-columns: 1fr; gap: 6px; }
+      .telegram-layout {
+        grid-template-columns: 1fr !important;
+      }
+      .telegram-layout .screenshot {
+        max-width: 220px !important;
+        justify-self: start !important;
+      }
     }
   </style>
 </head>
@@ -627,7 +634,7 @@
         <p>The interfaces should look cleaner because they are doing different kinds of work. Telegram is the lightweight direct line into the system. Slack is the shared operational surface where people can see what is happening and intervene when needed.</p>
 
         <div class="card" style="margin-top:16px;">
-          <div class="grid-two" style="align-items:start; grid-template-columns: minmax(0, 1.7fr) minmax(180px, .7fr);">
+          <div class="grid-two telegram-layout" style="align-items:start; grid-template-columns: minmax(0, 1.7fr) minmax(180px, .7fr);">
             <div>
               <h3>Telegram</h3>
               <p>Telegram works well as the fast personal interface: low friction, mobile-first, good for direct requests, quick check-ins, and lightweight coordination.</p>

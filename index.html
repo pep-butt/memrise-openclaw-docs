@@ -281,6 +281,21 @@
       background: #fff;
       overflow: hidden;
     }
+    .agent-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .agent-avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 999px;
+      object-fit: cover;
+      border: 3px solid #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,.10);
+      flex: 0 0 auto;
+    }
     .screenshot img { width: 100%; height: auto; }
     .caption {
       padding: 10px 12px 12px;
@@ -441,8 +456,13 @@
         <h2>Agent roles, responsibilities, and identity model</h2>
         <div class="grid-two">
           <div class="card">
-            <h3>Peppermint Butler — day-to-day workhorse</h3>
-            <p class="muted"><strong>Primary model:</strong> ChatGPT 5.4</p>
+            <div class="agent-head">
+              <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Peppermint Butler avatar" />
+              <div>
+                <h3>Peppermint Butler — day-to-day workhorse</h3>
+                <p class="muted"><strong>Primary model:</strong> ChatGPT 5.4</p>
+              </div>
+            </div>
             <ul>
               <li>reviews meeting notes</li>
               <li>saves and watches YouTube videos and articles</li>
@@ -464,8 +484,13 @@
             </ul>
           </div>
           <div class="card">
-            <h3>BMO — coding agent</h3>
-            <p class="muted"><strong>Model mix:</strong> ChatGPT 5.4 / Claude Sonnet / Claude Opus</p>
+            <div class="agent-head">
+              <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="BMO avatar" />
+              <div>
+                <h3>BMO — coding agent</h3>
+                <p class="muted"><strong>Model mix:</strong> ChatGPT 5.4 / Claude Sonnet / Claude Opus</p>
+              </div>
+            </div>
             <ul>
               <li>picks up tasks from GitHub Projects</li>
               <li>breaks work into clear technical steps</li>

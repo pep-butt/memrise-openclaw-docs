@@ -207,7 +207,6 @@
         <p class="lead">This page is for developers and technical operators. The goal is not to build a huge agent zoo. The goal is to get one useful setup working in a way that is visible, cheap enough, and safe enough to iterate on.</p>
         <div class="button-row">
           <a class="button" href="./index.html">Main exploration</a>
-          <a class="button" href="./mission-control.html">Mission Control</a>
         </div>
         <div class="callout good"><strong>Recommended first path:</strong> start <strong>VPS-first</strong>, connect one or two models, set up Telegram, prove one useful workflow, then layer in memory, routing, and additional integrations.</div>
       </section>
@@ -287,13 +286,16 @@
 
       <section id="routing">
         <div class="tag">5. Model routing</div>
-        <h2>Do not run premium models for everything</h2>
-        <p>OpenClaw gets expensive when every message loads a big workspace and long history into a premium model. The sane pattern is to route by task difficulty.</p>
-        <div class="grid-three" style="margin-top:16px;">
-          <div class="card"><h3>Tier 1</h3><p>Complex reasoning and planning.</p><p class="mini-tag">Use sparingly</p></div>
-          <div class="card"><h3>Tier 2</h3><p>Default for daily tasks.</p><p class="mini-tag">Strong default</p></div>
-          <div class="card"><h3>Tier 3</h3><p>Routine tasks, summaries, and heartbeats.</p><p class="mini-tag">Cheap by default</p></div>
+        <h2>Cheap-first routing, clear tiers, and explicit escalation</h2>
+        <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The goal is to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks.</p>
+        <div class="callout"><strong>Illustrative pricing examples:</strong> GPT-5 mini is roughly <strong>$0.25 / $2.00</strong> per 1M input/output tokens, Gemini 2.5 Flash is roughly <strong>$0.30 / $2.50</strong>, Gemini 2.5 Flash-Lite is roughly <strong>$0.10 / $0.40</strong>, while Claude Sonnet 4.6 is roughly <strong>$3.00 / $15.00</strong>. Premium defaults can become dramatically more expensive than cheap-first routing.</div>
+        <div class="grid-two" style="margin-top:16px;">
+          <div class="card"><h3>Tier 1 — cheapest / fastest</h3><ul><li>classification</li><li>tagging</li><li>daily digests</li><li>reminders</li><li>simple summaries</li><li>lightweight routing</li><li>inbox triage</li></ul><p><strong>Examples:</strong> Gemini 2.5 Flash-Lite · GPT-5 mini · Claude Haiku 4.5</p></div>
+          <div class="card"><h3>Tier 2 — low-cost general work</h3><ul><li>project shaping</li><li>rough drafting</li><li>meeting-note synthesis</li><li>task breakdown</li><li>lightweight web / docs work</li><li>agent-to-agent summaries</li></ul><p><strong>Examples:</strong> Gemini 2.5 Flash · GPT-5 mini · Claude Haiku 4.5 / low-cost Sonnet</p></div>
+          <div class="card"><h3>Tier 3 — strong default production model</h3><ul><li>most coding work</li><li>non-trivial planning</li><li>implementation steps</li><li>code review</li><li>debugging</li><li>quality-sensitive drafting</li></ul><p><strong>Examples:</strong> GPT-5.4 · Claude Sonnet 4.6 · Gemini 2.5 Pro</p></div>
+          <div class="card"><h3>Tier 4 — premium / sparse use</h3><ul><li>hardest debugging</li><li>architecture decisions</li><li>difficult synthesis</li><li>large codebase reasoning</li><li>critical final passes</li><li>stubborn edge cases</li></ul><p><strong>Examples:</strong> Claude Opus 4.6 · GPT-5.4 high-reasoning · Gemini 2.5 Pro</p></div>
         </div>
+        <div class="callout"><strong>Operational pattern:</strong> use cheap-first routing, per-agent budgets, spend tracking, context-window management, narrow contexts, structured handoffs, and resets after milestones rather than letting sessions turn into whales.</div>
         <div class="callout"><strong>Free / cheap fallback:</strong> keep a fallback model available so the bot does not fail silently if credits run out.</div>
       </section>
 

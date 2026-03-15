@@ -210,6 +210,21 @@
       box-decoration-break: clone;
       -webkit-box-decoration-break: clone;
     }
+    .tier-help {
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:18px;
+      height:18px;
+      border-radius:999px;
+      margin-left:6px;
+      font-size:11px;
+      font-weight:800;
+      background:var(--accent-soft);
+      color:var(--accent);
+      cursor: help;
+      vertical-align:middle;
+    }
     .purple { background: var(--accent-soft); color: var(--accent); }
     .green { background: var(--green-soft); color: var(--green); }
     .gold { background: var(--gold-soft); color: var(--gold); }
@@ -542,7 +557,7 @@
               <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Peppermint Butler avatar" />
               <div>
                 <h3>Peppermint Butler</h3>
-                <p class="muted"><strong>Default tier:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+                <p class="muted"><strong>Default tier:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3<span class="tier-help" title="Tier 1 / 2 are cheaper and faster, Tier 3 is the strong default, and Tier 4 is premium / sparse use. The cost model tiers are explained in more detail below.">?</span></p>
               </div>
             </div>
             <ul>
@@ -560,7 +575,7 @@
               <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="BMO avatar" />
               <div>
                 <h3>BMO</h3>
-                <p class="muted"><strong>Default tier:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
+                <p class="muted"><strong>Default tier:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4<span class="tier-help" title="Tier 1 / 2 are cheaper and faster, Tier 3 is the strong default, and Tier 4 is premium / sparse use. The cost model tiers are explained in more detail below.">?</span></p>
               </div>
             </div>
             <ul>

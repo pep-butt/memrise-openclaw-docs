@@ -396,16 +396,20 @@
         <summary>☰ Menu</summary>
         <nav>
           <a href="#overview">Overview</a>
-          <a href="#operating-system">Current operating system</a>
-          <a href="#agents">Who are my agents?</a>
-          <a href="#development">Development use</a>
+          <a href="#part1">Part 1 — Current operating system</a>
+          <a href="#current-setup">Current setup</a>
+          <a href="#development">Development workflow</a>
           <a href="#interfaces">Interfaces</a>
-          <a href="#management">AI management / mission control</a>
-          <a href="#security">Security</a>
-          <a href="#cost">Cost saving & model routing</a>
-          <a href="#users">Who needs this?</a>
-          <a href="#memory">OpenClaw memory</a>
-          <a href="#principles">Operating gospel</a>
+          <a href="#management">Control layer / mission control</a>
+          <a href="#limitations">What is working / current limitations</a>
+          <a href="#part2">Part 2 — Applying this to Memrise</a>
+          <a href="#memrise-why">Why this could matter for Memrise</a>
+          <a href="#memrise-agents">Candidate use cases / agents</a>
+          <a href="#security">Security and governance</a>
+          <a href="#cost">Cost control and model routing</a>
+          <a href="#users">Who this is for</a>
+          <a href="#principles">Key principles</a>
+          <a href="#closing">Closing takeaway</a>
         </nav>
       </details>
 
@@ -420,106 +424,72 @@
     <main>
       <section class="hero" id="overview">
         <div class="eyebrow">OpenClaw</div>
-        <h1>How the system is structured today</h1>
-        <p class="lead">OpenClaw works best as a coordination and execution layer for real workflows. Instead of putting everything into one giant conversation, it separates work across dedicated agents, sessions, identities, and interfaces so requests can be routed, executed, reviewed, and monitored clearly.</p>
-        <div class="grid-three" style="margin-top:18px;">
-          <div class="card">
-            <h3>What it is</h3>
-            <p>A multi-agent operating layer that connects people, agents, tools, channels, and approvals.</p>
-          </div>
-          <div class="card">
-            <h3>What it changes</h3>
-            <p>It reduces context sprawl, clarifies responsibilities, and makes handoffs and review points more explicit.</p>
-          </div>
-          <div class="card">
-            <h3>Why it matters</h3>
-            <p>The win is not one clever assistant. The win is a system that makes real work more legible and governable.</p>
-          </div>
-        </div>
-        <p class="muted" style="margin-top:16px; max-width:920px;">This page is meant to explain the current operating model clearly: who the agents are, how work flows through the system, where interfaces sit, how governance works, and what principles the whole setup should be built around.</p>
+        <h1>From a personal operating system to an organizational operating model</h1>
+        <p class="lead">This document should be read as a two-part story. Part 1 shows how the current system works in practice today using Peppermint Butler and BMO. Part 2 shifts from personal productivity into organizational design and explains what would matter if a model like this were implemented more formally inside Memrise.</p>
+        <div class="callout"><strong>Reading note:</strong> Part 1 is about showing the machine in motion: real workflows, real agents, real interfaces, real examples. Part 2 is about what would need to be true to make the same pattern viable, safe, and useful in a company context.</div>
+      </section>
+
+      <section id="part1">
+        <div class="tag purple">Part 1 — Current operating system</div>
+        <h2>How the current system works in practice</h2>
+        <p>This first part is deliberately concrete. The point is not to talk about agent architecture in the abstract. The point is to show how a small multi-agent operating system already works today in practice: what it is, what problem it solves, why specialization matters, and how the different parts fit together.</p>
       </section>
 
       <section id="operating-system">
-        <div class="tag purple">Current operating system</div>
-        <h2>Why it is structured this way</h2>
+        <div class="tag purple">1. Overview</div>
+        <h2>What this system is and why it exists</h2>
         <p>This system is structured around specialised agents, separate identities, lightweight interfaces, and explicit control layers because the goal is not just to make AI available. The goal is to make it usable, governable, and effective in real workflows.</p>
         <p>A single general-purpose agent quickly becomes overloaded. It has to hold too much context, switch between too many responsibilities, and operate across too many systems at once. That increases cost, reduces clarity, and makes failures harder to understand. By splitting work across specialised agents, each agent can operate with a narrower role, a smaller context window, and a clearer operating boundary.</p>
-        <p>Separate identities and scoped permissions are used so that agents can act independently without collapsing into one shared, opaque system. This improves auditability, makes permissions easier to reason about, and supports safer autonomy. A coordination agent and an execution agent should not have identical access or responsibilities.</p>
-        <p>The interfaces are also chosen deliberately. Lightweight interfaces such as Telegram make it easy to interact with agents quickly and on the go, while Slack provides a more shared operational layer for team visibility, approvals, and coordination. The aim is to let agents fit into existing workflows rather than forcing people into a new tool or habit.</p>
-        <p>The control layer is included because visibility is essential. Once work is distributed across multiple agents, operators need to be able to see what is running, what has completed, what is blocked, what has failed, and where intervention is needed. Without that, the system becomes a black box. With it, autonomy becomes manageable.</p>
-        <p>This structure also supports better cost control. Smaller sessions, clearer handoffs, and model routing make it possible to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks. That keeps the system more sustainable and prevents complexity from turning into unnecessary spend.</p>
-        <p>Overall, the structure is designed to balance autonomy with control. Agents are able to move work forward independently, but within a model that keeps responsibilities clear, permissions bounded, costs more manageable, and humans in control where it matters.</p>
-        <div class="callout good"><strong>Short version:</strong> specialised agents keep roles and context clear; separate identities improve auditability and permissions design; lightweight interfaces reduce friction; control layers make autonomous work visible and manageable; approvals preserve human judgment where risk matters; and model routing helps control cost.</div>
+        <p>The result is a system that is easier to supervise, easier to scale, and less likely to become an expensive black box.</p>
         <div class="visual">
           <svg viewBox="0 0 1080 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="OpenClaw operating model diagram">
             <rect x="40" y="128" width="150" height="74" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
             <text x="115" y="161" text-anchor="middle" font-size="20" font-weight="700">Lizzie</text>
             <text x="115" y="184" text-anchor="middle" font-size="14" fill="#6a645b">user</text>
-
             <rect x="250" y="118" width="200" height="94" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
             <text x="350" y="152" text-anchor="middle" font-size="20" font-weight="700">Interfaces</text>
             <text x="350" y="178" text-anchor="middle" font-size="14" fill="#6a645b">Slack · Telegram</text>
-
             <rect x="510" y="110" width="220" height="110" rx="24" fill="#ece8ff" stroke="#d8d1ff"/>
             <text x="620" y="150" text-anchor="middle" font-size="26" font-weight="800" fill="#5b46ff">OpenClaw</text>
             <text x="620" y="178" text-anchor="middle" font-size="15" fill="#4f41b8">routing · memory · tools</text>
             <text x="620" y="199" text-anchor="middle" font-size="15" fill="#4f41b8">orchestration · approvals</text>
-
             <rect x="790" y="40" width="220" height="132" rx="20" fill="#ffffff" stroke="#ddd2c2"/>
             <text x="900" y="74" text-anchor="middle" font-size="21" font-weight="800">Pep</text>
             <text x="900" y="99" text-anchor="middle" font-size="14" fill="#6a645b">coordination and orchestration</text>
-            <rect x="815" y="116" width="58" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/>
-            <text x="844" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">routing</text>
-            <rect x="879" y="116" width="72" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/>
-            <text x="915" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">accounts</text>
-            <rect x="957" y="116" width="34" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/>
-            <text x="974" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">ops</text>
-            <rect x="830" y="146" width="67" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/>
-            <text x="863.5" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">updates</text>
-            <rect x="903" y="146" width="83" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/>
-            <text x="944.5" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">messaging</text>
-
+            <rect x="815" y="116" width="58" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="844" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">routing</text>
+            <rect x="879" y="116" width="72" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="915" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">accounts</text>
+            <rect x="957" y="116" width="34" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="974" y="132" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">ops</text>
+            <rect x="830" y="146" width="67" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="863.5" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">updates</text>
+            <rect x="903" y="146" width="83" height="24" rx="12" fill="#efe8ff" stroke="#d8d1ff"/><text x="944.5" y="162" text-anchor="middle" font-size="11" font-weight="700" fill="#5b46ff">messaging</text>
             <rect x="790" y="194" width="220" height="132" rx="20" fill="#e7f8f1" stroke="#cceee0"/>
             <text x="900" y="228" text-anchor="middle" font-size="21" font-weight="800" fill="#0a8c61">BMO</text>
             <text x="900" y="253" text-anchor="middle" font-size="14" fill="#4f7f69">technical execution</text>
-            <rect x="815" y="270" width="54" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/>
-            <text x="842" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">build</text>
-            <rect x="875" y="270" width="61" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/>
-            <text x="905.5" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">debug</text>
-            <rect x="942" y="270" width="50" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/>
-            <text x="967" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">docs</text>
-            <rect x="830" y="300" width="76" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/>
-            <text x="868" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">GitHub</text>
-            <rect x="912" y="300" width="62" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/>
-            <text x="943" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">QA</text>
-
-            <rect x="790" y="348" width="220" height="48" rx="18" fill="#fff4d6" stroke="#ecdca4"/>
-            <text x="900" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#8a6500">Future specialists</text>
-
+            <rect x="815" y="270" width="54" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="842" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">build</text>
+            <rect x="875" y="270" width="61" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="905.5" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">debug</text>
+            <rect x="942" y="270" width="50" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="967" y="286" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">docs</text>
+            <rect x="830" y="300" width="76" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="868" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">GitHub</text>
+            <rect x="912" y="300" width="62" height="24" rx="12" fill="#edf9f3" stroke="#cceee0"/><text x="943" y="316" text-anchor="middle" font-size="11" font-weight="700" fill="#0a8c61">QA</text>
+            <rect x="790" y="348" width="220" height="48" rx="18" fill="#fff4d6" stroke="#ecdca4"/><text x="900" y="378" text-anchor="middle" font-size="18" font-weight="700" fill="#8a6500">Future specialists</text>
             <path d="M190 165 L250 165" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
             <path d="M450 165 L510 165" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
             <path d="M730 165 L790 106" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
             <path d="M730 165 L790 260" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
             <path d="M730 165 L790 372" stroke="#8a867b" stroke-width="2.5" marker-end="url(#arr2)"/>
-            <defs>
-              <marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker>
-            </defs>
+            <defs><marker id="arr2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
           </svg>
         </div>
       </section>
 
-      <section id="agents">
-        <div class="tag green">Who are my agents?</div>
-        <h2>From personal setup to a Memrise-ready agent model</h2>
-        <p>The first part of this story is the personal setup: a coordination agent and a coding agent, each with a distinct role, identity, and operating surface. That gives a concrete proof point for how the model works in practice. The next step is not to copy Peppermint Butler and BMO literally into Memrise, but to translate the underlying pattern into agent roles that make sense for the organisation.</p>
-
-        <div class="tag purple" style="margin-top:18px;">Current personal setup</div>
+      <section id="current-setup">
+        <div class="tag green">2. The current setup</div>
+        <h2>Peppermint Butler, BMO, and why the split matters</h2>
+        <p>The current setup uses two primary agents with different roles. Pep handles orchestration, synthesis, routing, and day-to-day operational support. BMO handles technical execution. Keeping those roles separate is what makes the whole thing practical.</p>
         <div class="grid-two">
           <div class="card">
             <div class="agent-head">
               <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Peppermint Butler avatar" />
               <div>
-                <h3>Peppermint Butler — day-to-day workhorse</h3>
+                <h3>Peppermint Butler</h3>
                 <p class="muted"><strong>Default tier:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
               </div>
             </div>
@@ -529,15 +499,15 @@
               <li>inbox triage</li>
               <li>task routing</li>
               <li>project setup drafts</li>
-              <li>account and workflow management</li>
-              <li>proactive updates and coordination</li>
+              <li>workflow and account coordination</li>
+              <li>proactive updates and requests</li>
             </ul>
           </div>
           <div class="card">
             <div class="agent-head">
               <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="BMO avatar" />
               <div>
-                <h3>BMO — coding agent</h3>
+                <h3>BMO</h3>
                 <p class="muted"><strong>Default tier:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
               </div>
             </div>
@@ -551,7 +521,6 @@
             </ul>
           </div>
         </div>
-
         <div class="tag gold" style="margin-top:22px;">Why individual accounts?</div>
         <h3>Dedicated identities make agent-based workflows easier to manage, safer to operate, and clearer to supervise.</h3>
         <div class="grid-three" style="margin-top:14px;">
@@ -563,140 +532,47 @@
           <div class="card"><h3>Less operational ambiguity</h3><p>It is easier to understand who did what, where work lives, and which agent is responsible for the next step.</p></div>
           <div class="card"><h3>More resilient workflow design</h3><p>If one agent drifts, fails, or needs to be reset, it can be managed without disrupting the whole system.</p></div>
         </div>
-        <div class="callout" style="margin-top:16px;"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
-
-        <div class="tag purple" style="margin-top:22px;">Proposed Memrise translation</div>
-        <p>Memrise probably should not have Peppermint Butler or BMO by name. But it can adopt the concepts behind them: coordination, execution, and visibility as distinct roles with different model tiers and access boundaries.</p>
-        <div class="grid-three" style="margin-top:16px;">
-          <div class="card">
-            <div class="agent-head">
-              <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Workflow coordination agent avatar" />
-              <div>
-                <h3>Workflow Coordination Agent</h3>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>intake and scoping</li>
-              <li>task shaping</li>
-              <li>meeting-note synthesis</li>
-              <li>routing between agents and systems</li>
-              <li>project setup and follow-up</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="Technical delivery agent avatar" />
-              <div>
-                <h3>Technical Delivery Agent</h3>
-                <p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>implementation and coding</li>
-              <li>debugging and refactors</li>
-              <li>PR support and QA</li>
-              <li>technical documentation</li>
-              <li>repository-linked execution</li>
-            </ul>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">IR</span>
-              <div>
-                <h3>Insights & Reporting Agent</h3>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>weekly summaries and reporting</li>
-              <li>cross-system visibility</li>
-              <li>operational digests</li>
-              <li>exception spotting and follow-up</li>
-              <li>lightweight approvals and escalation prep</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="grid-three" style="margin-top:18px;">
-          <figure class="screenshot">
-            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576211508_Screenshot+2026-03-15+at+12.40.34.png" alt="Pep interface screenshot" />
-            <figcaption class="caption">Current personal setup: useful because it shows the pattern already working in practice.</figcaption>
-          </figure>
-          <figure class="screenshot">
-            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576413875_Screenshot+2026-03-15+at+13.06.49.png" alt="Pep interface screenshot 2" />
-            <figcaption class="caption">The story starts with a personal setup, then translates the operating pattern into an org-ready model.</figcaption>
-          </figure>
-          <figure class="screenshot">
-            <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773576866081_Screenshot+2026-03-15+at+13.14.19.png" alt="Pep interface screenshot 3" />
-            <figcaption class="caption">What matters is not the names — it is the role separation, identity design, and operating logic.</figcaption>
-          </figure>
-        </div>
+        <div class="callout"><strong>Bottom line:</strong> individual accounts turn agents from a shared black box into distinct, traceable operators.</div>
+        <div class="callout good"><strong>How they work together:</strong> Pep shapes work, routes it, and keeps the workflow legible. BMO picks up the execution-heavy technical path. That split is what lets planning and implementation remain connected without turning into one muddled session.</div>
       </section>
 
       <section id="development">
-        <div class="tag green">Development use</div>
-        <h2>Development workflow: agent chaining and repository-linked execution</h2>
-        <p>Agent chaining means one agent does not have to do everything itself. Work can be passed between specialised agents, with each one handling a distinct part of the workflow.</p>
-        <div class="grid-two" style="margin-top:16px;">
-          <div class="card">
-            <h3>In this model</h3>
-            <ul>
-              <li>Peppermint Butler handles scoping, coordination, and task shaping</li>
-              <li>BMO handles technical execution</li>
-              <li>other agents can be added later for review, security, support, or reporting</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Why this matters</h3>
-            <ol>
-              <li><strong>It keeps context smaller.</strong> Separate agents help avoid one long, bloated conversation trying to hold planning, implementation, review, and reporting all at once.</li>
-              <li><strong>It creates clearer responsibilities.</strong> A coordinator agent can own scoping and routing while a builder agent owns execution.</li>
-              <li><strong>It makes governance easier.</strong> Clear approval rules, role separation, and bounded autonomy are easier to reason about.</li>
-            </ol>
-          </div>
+        <div class="tag green">3. Development workflow</div>
+        <h2>From scoping to tracked execution</h2>
+        <p>This is the clearest place to show the system working in miniature. A request comes in, Pep turns it into a structured project and task list, BMO takes the technical path, and the work is tracked through to completion rather than disappearing into an opaque chat log.</p>
+        <div class="flow">
+          <div class="step"><strong>Scoping.</strong> Pep turns a raw request into something bounded and actionable.</div>
+          <div class="step"><strong>GitHub project creation.</strong> The request becomes a visible project workflow rather than an informal memory burden.</div>
+          <div class="step"><strong>Task generation.</strong> Work is broken into clear technical steps.</div>
+          <div class="step"><strong>Handoff to BMO.</strong> Execution passes to the specialist technical agent.</div>
+          <div class="step"><strong>Tracked execution to completion.</strong> Progress is visible through tasks, issues, PRs, and artifacts.</div>
         </div>
-
         <div class="visual">
           <svg viewBox="0 0 980 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Development workflow diagram">
             <rect x="24" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
             <text x="99" y="93" text-anchor="middle" font-size="18" font-weight="700">Idea / request</text>
             <text x="99" y="117" text-anchor="middle" font-size="14" fill="#6a645b">human intent</text>
-
             <rect x="220" y="50" width="180" height="96" rx="18" fill="#ece8ff" stroke="#d8d1ff"/>
             <text x="310" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#5b46ff">Pep</text>
             <text x="310" y="112" text-anchor="middle" font-size="14" fill="#4f41b8">scope · route · shape</text>
             <text x="310" y="132" text-anchor="middle" font-size="14" fill="#4f41b8">create project + tasks</text>
-
             <rect x="446" y="50" width="180" height="96" rx="18" fill="#e7f8f1" stroke="#cceee0"/>
             <text x="536" y="85" text-anchor="middle" font-size="22" font-weight="800" fill="#0a8c61">BMO</text>
             <text x="536" y="112" text-anchor="middle" font-size="14" fill="#4f7f69">inspect · build · debug</text>
             <text x="536" y="132" text-anchor="middle" font-size="14" fill="#4f7f69">tests · handover · QA</text>
-
             <rect x="672" y="60" width="150" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
             <text x="747" y="93" text-anchor="middle" font-size="18" font-weight="700">GitHub Project</text>
             <text x="747" y="117" text-anchor="middle" font-size="14" fill="#6a645b">tracked execution</text>
-
             <rect x="848" y="60" width="110" height="76" rx="18" fill="#ffffff" stroke="#ddd2c2"/>
             <text x="903" y="93" text-anchor="middle" font-size="18" font-weight="700">Review</text>
             <text x="903" y="117" text-anchor="middle" font-size="14" fill="#6a645b">approve / merge</text>
-
             <path d="M174 98 L220 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
             <path d="M400 98 L446 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
             <path d="M626 98 L672 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
             <path d="M822 98 L848 98" stroke="#8a867b" stroke-width="2.5" marker-end="url(#flowarr)"/>
-            <defs>
-              <marker id="flowarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker>
-            </defs>
+            <defs><marker id="flowarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker></defs>
           </svg>
         </div>
-
-        <div class="flow">
-          <div class="step"><strong>Peppermint Butler handles project scoping and orchestration.</strong> It translates a request into a repository-linked GitHub project, creates the implementation task list, and structures the execution flow.</div>
-          <div class="step"><strong>BMO handles technical delivery.</strong> It works through the queued tasks, building and refining outputs until the work is complete, while escalating blockers, ambiguities, or higher-risk actions for review.</div>
-          <div class="step"><strong>Result.</strong> A repeatable path from idea → scoped project → tracked execution → completed work.</div>
-        </div>
-
         <div class="grid-two" style="margin-top:18px;">
           <figure class="screenshot">
             <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773573567519_Screenshot+2026-03-15+at+12.19.12.png" alt="GitHub project screenshot" />
@@ -710,302 +586,285 @@
       </section>
 
       <section id="interfaces">
-        <div class="tag purple">Interfaces</div>
-        <h2>Interfaces: Telegram, Slack, and the practical command surface</h2>
+        <div class="tag purple">4. Interfaces</div>
+        <h2>Why Telegram and Slack work well in practice</h2>
         <div class="grid-two">
           <div class="card">
             <h3>Telegram</h3>
-            <p>Telegram works well as a lightweight, mobile-first interface into a much more powerful system.</p>
+            <p>Telegram works because it is fast, lightweight, mobile-first, and easy to use as a direct line into the system.</p>
             <ul>
-              <li>easy to spin up multiple bots for different agents or workflows</li>
-              <li>keeps sessions and context more contained</li>
-              <li>fast session reset and recovery when an agent gets stuck or drifts</li>
-              <li>useful on the go for quick requests, updates, and approvals</li>
-              <li>still powerful despite the simple surface</li>
-              <li>low-friction desktop companion for snippets and quick asks</li>
+              <li>quick interaction on the go</li>
+              <li>simple direct requests and updates</li>
+              <li>easy session reset and recovery</li>
+              <li>contained context per agent or thread</li>
             </ul>
           </div>
           <div class="card">
             <h3>Slack</h3>
-            <p>Slack is where a lot of operational communication already happens, so it reduces friction by meeting people in an existing workflow rather than forcing a separate tool.</p>
+            <p>Slack works because it fits into existing operational workflows and supports shared visibility, approvals, and coordination.</p>
             <ul>
-              <li>central place to manage multiple agents</li>
-              <li>useful for both direct requests and workflow updates</li>
-              <li>supports team visibility</li>
-              <li>good for approvals and human-in-the-loop workflows</li>
-              <li>works well with GitHub, task boards, support systems, and internal workflows</li>
-              <li>helpful for ongoing agent management and supervision</li>
+              <li>team visibility</li>
+              <li>human-in-the-loop approvals</li>
+              <li>shared workflow updates</li>
+              <li>coordination alongside GitHub and other systems</li>
             </ul>
           </div>
         </div>
-
         <div class="grid-three" style="margin-top:18px;">
           <figure class="screenshot">
             <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575808160_Screenshot+2026-03-15+at+12.56.42.png" alt="Telegram screenshot" />
-            <figcaption class="caption">Telegram as a lightweight but surprisingly capable interface.</figcaption>
+            <figcaption class="caption">Telegram is good for fast, low-friction interaction.</figcaption>
           </figure>
           <figure class="screenshot">
             <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575677387_Screenshot+2026-03-15+at+12.54.34.png" alt="Telegram screenshot 2" />
-            <figcaption class="caption">Mobile-first interaction matters because real operational use happens away from the desk too.</figcaption>
+            <figcaption class="caption">It works particularly well as a lightweight companion interface.</figcaption>
           </figure>
           <figure class="screenshot">
             <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773575721043_Screenshot+2026-03-15+at+12.55.17.png" alt="Slack screenshot" />
-            <figcaption class="caption">Slack is strong when the work needs visibility, approvals, and coordination across people.</figcaption>
+            <figcaption class="caption">Slack is stronger when work needs visibility, approvals, and shared context.</figcaption>
           </figure>
         </div>
       </section>
 
       <section id="management">
-        <div class="tag purple">AI management</div>
-        <h2>Control layer / mission control</h2>
-        <p>One of the biggest challenges in agent-based systems is visibility. It is not enough for agents to be capable of doing useful work. Operators need to be able to see what is happening, what has already happened, and where intervention may be needed.</p>
-        <div class="callout good"><strong>Mission control is not just monitoring.</strong> It is a way to supervise autonomous work without manually inspecting every conversation or workflow step. It reduces the black-box feeling that makes people distrust agentic systems.</div>
+        <div class="tag purple">5. Control layer / mission control</div>
+        <h2>How the agents are supervised</h2>
+        <p>Once work is distributed across multiple agents, visibility becomes a core operating need. Operators need to be able to see what is running, what has completed, what is blocked, what has failed, and where intervention is required. Without that, the system becomes a black box.</p>
         <div class="grid-two" style="margin-top:16px;">
           <div class="card">
-            <h3>Key advantages</h3>
+            <h3>What the dashboard solves</h3>
             <ul>
-              <li>visibility into what each agent is doing</li>
-              <li>active sessions and running workflows</li>
-              <li>task status and workflow progress</li>
-              <li>approvals and exceptions in one place</li>
-              <li>failures, retries, and stuck states are easier to spot</li>
-              <li>clearer auditability of actions across the system</li>
-              <li>easier intervention through reset, reroute, or stop controls</li>
-              <li>cost and usage can be monitored alongside activity</li>
+              <li>live session visibility</li>
+              <li>running workflows and stuck states</li>
+              <li>approvals and exceptions</li>
+              <li>cost and usage alongside activity</li>
+              <li>easier intervention through reset, reroute, or stop</li>
             </ul>
           </div>
           <figure class="screenshot">
             <img src="https://paper-attachments.dropboxusercontent.com/s_40B4E47109640266509B1B8C26A8AD687AE15813104BE5F4D73A0927F644035A_1773577392079_Screenshot+2026-03-11+at+16.16.14.png" alt="Mission control dashboard screenshot" />
-            <figcaption class="caption">A control layer makes the system legible: active agents, workflow state, cost, failures, and intervention points.</figcaption>
+            <figcaption class="caption">The control layer makes the system legible: active agents, workflow state, cost, failures, and intervention points.</figcaption>
           </figure>
         </div>
       </section>
 
-      <section id="security">
-        <div class="tag red">Security</div>
-        <h2>Security, governance, and bounded autonomy</h2>
-        <p>This model is only useful if the controls are part of the operating design rather than something bolted on later.</p>
+      <section id="limitations">
+        <div class="tag gold">6. What is working / current limitations</div>
+        <h2>What already works and what still feels messy</h2>
         <div class="grid-two">
           <div class="card">
-            <h3>Key principles</h3>
+            <h3>What is already working well</h3>
+            <ul>
+              <li>agent specialization keeps roles clearer</li>
+              <li>the development path from scoping to tracked execution is real</li>
+              <li>Telegram and Slack both work as practical interfaces</li>
+              <li>mission control improves visibility and operator trust</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Current limitations</h3>
+            <ul>
+              <li>memory is still weaker than it should be</li>
+              <li>security and permissions are not yet as tight as a company rollout would require</li>
+              <li>visibility is better, but not complete</li>
+              <li>some workflows still feel hand-built rather than formalized</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout"><strong>Bridge:</strong> The current setup is useful because it shows the model working in practice. But moving from a personal operating system to a team or company context changes the requirements. At that point, visibility, permissions, cost control, governance, and workflow design become much more important.</div>
+      </section>
+
+      <section id="part2">
+        <div class="tag red">Part 2 — Applying this model to Memrise</div>
+        <h2>What changes when the context becomes organizational</h2>
+        <p>Part 2 shifts from demonstration to design. The question is no longer just “does this work in miniature?” The question becomes “what would need to be true for a model like this to work safely and usefully inside Memrise?”</p>
+      </section>
+
+      <section id="memrise-why">
+        <div class="tag purple">7. Why this could matter for Memrise</div>
+        <h2>From personal leverage to organizational leverage</h2>
+        <div class="grid-two">
+          <div class="card">
+            <h3>Why the pattern matters</h3>
+            <ul>
+              <li>lean team</li>
+              <li>growing demand</li>
+              <li>coordination overhead</li>
+              <li>specialist bandwidth constraints</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>The key shift</h3>
+            <ul>
+              <li>not just AI chat</li>
+              <li>not just one assistant surface</li>
+              <li>workflow leverage across real operational paths</li>
+              <li>more throughput without losing control</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="memrise-agents">
+        <div class="tag green">8. Candidate use cases / agents at Memrise</div>
+        <h2>Translating the pattern, not copying the personalities</h2>
+        <p>Memrise probably should not have Peppermint Butler or BMO by name. But it can adopt the concepts behind them: coordination, execution, and visibility as distinct roles with different model tiers and access boundaries.</p>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card">
+            <div class="agent-head">
+              <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Workflow coordination agent avatar" />
+              <div>
+                <h3>Workflow Coordination Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+              </div>
+            </div>
+            <ul>
+              <li>support triage and routing</li>
+              <li>planning and task shaping</li>
+              <li>meeting-note synthesis</li>
+              <li>project setup</li>
+              <li>handoffs between people, agents, and systems</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="agent-head">
+              <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="Technical delivery agent avatar" />
+              <div>
+                <h3>Technical Delivery Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
+              </div>
+            </div>
+            <ul>
+              <li>product and coding execution</li>
+              <li>refactors, debugging, PR support</li>
+              <li>technical documentation</li>
+              <li>build/review loops</li>
+              <li>repo-linked implementation work</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="agent-head">
+              <span class="agent-avatar badge" aria-hidden="true">IR</span>
+              <div>
+                <h3>Insights & Reporting Agent</h3>
+                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+              </div>
+            </div>
+            <ul>
+              <li>planning and status visibility</li>
+              <li>executive briefings and summaries</li>
+              <li>operational digests</li>
+              <li>exception spotting and follow-up</li>
+              <li>lightweight review prep</li>
+            </ul>
+          </div>
+        </div>
+        <div class="grid-three" style="margin-top:16px;">
+          <div class="card"><h3>Other candidate workflows</h3><p>support, marketing / Braze, planning and status visibility, executive briefing / summaries, security / review assistance.</p></div>
+          <div class="card"><h3>What matters most</h3><p>The names are less important than the boundaries: who coordinates, who executes, who reports, and what each role is allowed to do.</p></div>
+          <div class="card"><h3>How to use the pattern</h3><p>Use Part 1 to show the model working in miniature. Use Part 2 to show what would be needed to make it company-safe and company-useful.</p></div>
+        </div>
+      </section>
+
+      <section id="security">
+        <div class="tag red">9. Security and governance</div>
+        <h2>What would need to be true inside Memrise</h2>
+        <div class="grid-two">
+          <div class="card">
+            <h3>Controls that matter</h3>
+            <ul>
+              <li>dedicated identities</li>
+              <li>least privilege</li>
+              <li>approval gates</li>
+              <li>auditability</li>
+              <li>clear draft vs execute boundary</li>
+              <li>hosting model chosen intentionally</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Design implications</h3>
             <ul>
               <li>not all actions should execute automatically</li>
-              <li>explicit approvals at key risk points</li>
-              <li>clear draft versus execute boundaries</li>
-              <li>escalation when requirements are unclear</li>
-              <li>humans remain accountable for high-impact decisions</li>
+              <li>humans stay accountable for high-impact decisions</li>
+              <li>memory and context should be externalized, not hidden in giant chats</li>
               <li>autonomy should expand only where trust has been earned</li>
             </ul>
           </div>
-          <div class="card">
-            <h3>Structural controls</h3>
-            <ul>
-              <li>dedicated identities per agent</li>
-              <li>least-privilege access by role</li>
-              <li>scoped credentials and tool permissions</li>
-              <li>clearer separation between orchestration and execution</li>
-              <li>isolated sessions and workspaces where possible</li>
-              <li>stronger traceability of actions taken</li>
-              <li>approval gates for sensitive external or high-impact actions</li>
-              <li>auditability</li>
-            </ul>
-          </div>
         </div>
-        <div class="callout warning"><strong>Important:</strong> this should not be sold as “autonomous agents everywhere.” It is strongest when autonomy is narrow, supervised, and earned through reliability.</div>
       </section>
 
       <section id="cost">
-        <div class="tag gold">Cost saving</div>
-        <h2>Cost control and model routing</h2>
-        <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The recurring pattern is simple: stop sending every task to a premium model, add a cheap routing layer in front, keep sessions narrow, and track spend centrally through a gateway such as LiteLLM.</p>
+        <div class="tag gold">10. Cost control and model routing</div>
+        <h2>Cheap-first routing, clear tiers, and explicit escalation</h2>
+        <p>Cost control should be treated as an operating discipline, not just a model-choice preference. The goal is to reserve stronger models for genuinely difficult work while cheaper models handle routine tasks.</p>
         <div class="grid-two" style="margin-top:16px;">
           <div class="card">
             <h3>Tier 1 — cheapest / fastest</h3>
-            <p><strong>Use for:</strong></p>
-            <ul>
-              <li>classification</li>
-              <li>tagging</li>
-              <li>daily digests</li>
-              <li>reminders</li>
-              <li>simple summaries</li>
-              <li>lightweight routing</li>
-              <li>inbox triage</li>
-            </ul>
-            <p style="margin-top:12px;"><strong>Example models:</strong> Gemini 2.5 Flash-Lite · GPT-5 mini · Claude Haiku 4.5</p>
+            <ul><li>classification</li><li>tagging</li><li>daily digests</li><li>reminders</li><li>simple summaries</li><li>lightweight routing</li><li>inbox triage</li></ul>
+            <p style="margin-top:12px;"><strong>Examples:</strong> Gemini 2.5 Flash-Lite · GPT-5 mini · Claude Haiku 4.5</p>
           </div>
           <div class="card">
             <h3>Tier 2 — low-cost general work</h3>
-            <p><strong>Use for:</strong></p>
-            <ul>
-              <li>project shaping</li>
-              <li>rough drafting</li>
-              <li>meeting-note synthesis</li>
-              <li>task breakdown</li>
-              <li>lightweight web or docs work</li>
-              <li>agent-to-agent routing summaries</li>
-            </ul>
-            <p style="margin-top:12px;"><strong>Example models:</strong> Gemini 2.5 Flash · GPT-5 mini · Claude Haiku 4.5 / low-cost Sonnet path</p>
+            <ul><li>project shaping</li><li>rough drafting</li><li>meeting-note synthesis</li><li>task breakdown</li><li>lightweight web / docs work</li><li>agent-to-agent summaries</li></ul>
+            <p style="margin-top:12px;"><strong>Examples:</strong> Gemini 2.5 Flash · GPT-5 mini · Claude Haiku 4.5 / low-cost Sonnet</p>
           </div>
           <div class="card">
             <h3>Tier 3 — strong default production model</h3>
-            <p><strong>Use for:</strong></p>
-            <ul>
-              <li>most coding work</li>
-              <li>non-trivial planning</li>
-              <li>implementation steps</li>
-              <li>code review</li>
-              <li>debugging</li>
-              <li>quality-sensitive drafting</li>
-              <li>higher-stakes internal reasoning</li>
-            </ul>
-            <p style="margin-top:12px;"><strong>Example models:</strong> GPT-5.4 · Claude Sonnet 4.6 · Gemini 2.5 Pro</p>
+            <ul><li>most coding work</li><li>non-trivial planning</li><li>implementation steps</li><li>code review</li><li>debugging</li><li>quality-sensitive drafting</li></ul>
+            <p style="margin-top:12px;"><strong>Examples:</strong> GPT-5.4 · Claude Sonnet 4.6 · Gemini 2.5 Pro</p>
           </div>
           <div class="card">
             <h3>Tier 4 — premium / sparse use</h3>
-            <p><strong>Use for:</strong></p>
-            <ul>
-              <li>hardest debugging</li>
-              <li>architecture decisions</li>
-              <li>difficult synthesis</li>
-              <li>large codebase reasoning</li>
-              <li>final pass on critical outputs</li>
-              <li>gnarly edge cases where cheaper models fail</li>
-            </ul>
-            <p style="margin-top:12px;"><strong>Example models:</strong> Claude Opus 4.6 · GPT-5.4 high-reasoning · Gemini 2.5 Pro</p>
+            <ul><li>hardest debugging</li><li>architecture decisions</li><li>difficult synthesis</li><li>large codebase reasoning</li><li>critical final passes</li><li>stubborn edge cases</li></ul>
+            <p style="margin-top:12px;"><strong>Examples:</strong> Claude Opus 4.6 · GPT-5.4 high-reasoning · Gemini 2.5 Pro</p>
           </div>
         </div>
-
-        <div class="visual">
-          <svg viewBox="0 0 980 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cost routing diagram">
-            <rect x="24" y="108" width="140" height="80" rx="18" fill="#fff" stroke="#ddd2c2"/>
-            <text x="94" y="143" text-anchor="middle" font-size="18" font-weight="700">Request</text>
-            <text x="94" y="167" text-anchor="middle" font-size="14" fill="#6a645b">task / message</text>
-
-            <rect x="204" y="94" width="180" height="108" rx="20" fill="#fff4d6" stroke="#ecdca4"/>
-            <text x="294" y="126" text-anchor="middle" font-size="18" font-weight="800" fill="#8a6500">Router / policy</text>
-            <text x="294" y="151" text-anchor="middle" font-size="14" fill="#7a6425">routine · complex · uncertain</text>
-            <text x="294" y="173" text-anchor="middle" font-size="14" fill="#7a6425">cheap-first where safe</text>
-
-            <rect x="430" y="28" width="170" height="56" rx="16" fill="#e7f8f1" stroke="#cceee0"/>
-            <text x="515" y="62" text-anchor="middle" font-size="18" font-weight="800" fill="#0a8c61">Tier 1 / Tier 2</text>
-            <rect x="430" y="122" width="170" height="56" rx="16" fill="#ffffff" stroke="#ddd2c2"/>
-            <text x="515" y="156" text-anchor="middle" font-size="18" font-weight="700">Tier 3</text>
-            <rect x="430" y="216" width="170" height="56" rx="16" fill="#faebe7" stroke="#efc9c0"/>
-            <text x="515" y="250" text-anchor="middle" font-size="18" font-weight="800" fill="#b14d3f">Tier 4</text>
-
-            <rect x="658" y="52" width="290" height="192" rx="22" fill="#ece8ff" stroke="#d8d1ff"/>
-            <text x="803" y="88" text-anchor="middle" font-size="20" font-weight="800" fill="#5b46ff">Gateway + control layer</text>
-            <text x="803" y="114" text-anchor="middle" font-size="14" fill="#4f41b8">LiteLLM / spend limits / logs / virtual keys</text>
-            <text x="803" y="144" text-anchor="middle" font-size="15" fill="#4f41b8">Pep defaults to Tier 1 / Tier 2</text>
-            <text x="803" y="167" text-anchor="middle" font-size="15" fill="#4f41b8">Escalate to Tier 3 when judgment is needed</text>
-            <text x="803" y="197" text-anchor="middle" font-size="15" fill="#4f41b8">BMO defaults to Tier 3</text>
-            <text x="803" y="220" text-anchor="middle" font-size="15" fill="#4f41b8">Escalate to Tier 4 for stubborn or high-risk work</text>
-
-            <path d="M164 148 L204 148" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M384 120 L430 56" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M384 148 L430 150" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M384 176 L430 244" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M600 56 L658 96" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M600 150 L658 150" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <path d="M600 244 L658 212" stroke="#8a867b" stroke-width="2.5" marker-end="url(#costarr)"/>
-            <defs>
-              <marker id="costarr" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#8a867b"/></marker>
-            </defs>
-          </svg>
-        </div>
-
-        <div class="grid-two" style="margin-top:16px;">
-          <div class="card">
-            <h3>Peppermint Butler</h3>
-            <p><strong>Default:</strong> Tier 1 or Tier 2</p>
-            <p><strong>For:</strong></p>
-            <ul>
-              <li>daily briefings</li>
-              <li>meeting-note summaries</li>
-              <li>inbox triage</li>
-              <li>AI news scans</li>
-              <li>task routing</li>
-              <li>project setup drafts</li>
-            </ul>
-            <p style="margin-top:12px;"><strong>Escalate to Tier 3 when:</strong> the request is ambiguous, the email is sensitive, planning gets complex, or the output needs stronger judgment.</p>
-          </div>
-          <div class="card">
-            <h3>BMO</h3>
-            <p><strong>Default:</strong> Tier 3</p>
-            <p><strong>For:</strong></p>
-            <ul>
-              <li>coding tasks</li>
-              <li>refactors</li>
-              <li>implementation</li>
-              <li>debugging</li>
-              <li>PR support</li>
-              <li>technical documentation</li>
-            </ul>
-            <p style="margin-top:12px;"><strong>Escalate to Tier 4 when:</strong> the bug is stubborn, the repo is large and messy, architecture is unclear, repeated attempts fail, or quality risk is high.</p>
-          </div>
-        </div>
-
-        <div class="callout"><strong>Clean slide copy:</strong> Tier 1 is cheapest / fastest for routing, summaries, classification, and routine ops. Tier 2 handles low-cost general work for drafting, shaping, and lightweight synthesis. Tier 3 is the strong default for coding, planning, debugging, and quality-sensitive work. Tier 4 is reserved for hard reasoning, architecture, and stubborn edge cases.</div>
-        <p class="muted" style="margin-top:14px;">This maps cleanly onto current model positioning: GPT-5.4 / Sonnet 4.6 / Gemini Pro as strong production defaults; GPT-5 mini, Flash, Flash-Lite, and Haiku as lower-cost routing and synthesis options; Opus and higher-reasoning paths reserved for the hardest work.</p>
+        <div class="callout"><strong>Operational pattern:</strong> use cheap-first routing, per-agent budgets, spend tracking, narrow contexts, structured handoffs, and resets after milestones rather than letting sessions turn into whales.</div>
       </section>
 
       <section id="users">
-        <div class="tag purple">Who needs this?</div>
-        <h2>Target users and operating scope</h2>
-        <p>This model is unlikely to be the right default for everybody in the company. It is strongest when used in targeted workflows where there is a clear owner, a repeatable process, and a meaningful coordination burden that can be reduced.</p>
+        <div class="tag purple">11. Who this is for</div>
+        <h2>Best for selected workflows, not for everyone by default</h2>
         <div class="grid-two">
           <div class="card">
-            <h3>Best suited to</h3>
+            <h3>Best for</h3>
             <ul>
-              <li>workflow owners and operators</li>
+              <li>operators and workflow owners</li>
               <li>product and project leads</li>
-              <li>support, lifecycle, or coordination-heavy roles</li>
+              <li>support and lifecycle-heavy roles</li>
               <li>teams with repeatable, high-friction processes</li>
-              <li>users willing to supervise and review outputs</li>
             </ul>
           </div>
           <div class="card">
-            <h3>Less suitable as a default</h3>
+            <h3>Not to be trusted by default</h3>
             <ul>
-              <li>everyone in the company by default</li>
-              <li>workflows with unclear ownership</li>
-              <li>high-risk actions without human review</li>
-              <li>contexts where deterministic outputs are essential</li>
-              <li>uncontrolled experimentation at scale</li>
+              <li>for everyone in the company</li>
+              <li>for high-risk actions without review</li>
+              <li>for workflows with unclear ownership</li>
+              <li>for contexts where deterministic behavior is essential</li>
             </ul>
           </div>
         </div>
-        <p class="muted" style="margin-top:14px;">The goal is targeted leverage, not universal rollout.</p>
-      </section>
-
-      <section id="memory">
-        <div class="tag gold">OpenClaw memory</div>
-        <h2>Memory should be externalized, structured, and intentionally reused</h2>
-        <p>One of the practical strengths of this model is that it does not rely entirely on the model’s context window as memory. Ongoing project state can live in GitHub Projects, documentation, structured notes, and durable files, then be retrieved as needed.</p>
-        <div class="grid-three" style="margin-top:16px;">
-          <div class="card"><h3>Why that matters</h3><p>It reduces repeated token burn and stops long conversations becoming the only source of truth.</p></div>
-          <div class="card"><h3>What to store externally</h3><p>project state, task lists, accepted decisions, repository notes, operating rules, and workflow-specific memory.</p></div>
-          <div class="card"><h3>What not to do</h3><p>keep re-pasting giant blobs of history into chat or expect the model to “just remember” everything indefinitely.</p></div>
-        </div>
-        <div class="callout good"><strong>Practical rule:</strong> pass summaries, task lists, issue references, and documents between agents — not full conversational histories unless there is a very specific reason.</div>
       </section>
 
       <section id="principles">
-        <div class="tag red">Operating gospel</div>
-        <h2>These are the principles the proposal should revolve around</h2>
-        <p>This should not just be implied throughout the document. These principles should be concreted in as the core doctrine the implementation will be built around.</p>
+        <div class="tag red">12. Key principles / guiding stars</div>
+        <h2>The principles the adoption model should revolve around</h2>
         <div class="principles">
-          <div class="principle"><strong>Workflow-first, not chat-first.</strong> The point is not to give everyone another AI chat surface. The point is to improve real workflows.</div>
-          <div class="principle"><strong>Specialised agents over one overloaded agent.</strong> Split coordination, execution, review, and support where it creates clarity and control.</div>
-          <div class="principle"><strong>Dedicated identities per agent.</strong> Keep roles, permissions, and auditability clean.</div>
-          <div class="principle"><strong>Human approvals at key risk points.</strong> External sends, sensitive actions, merges, and permission expansion should not happen casually.</div>
-          <div class="principle"><strong>Evidence beats narration.</strong> Agents should report commands, files, tests, artifacts, blockers, and concrete results.</div>
-          <div class="principle"><strong>Mission control is part of the product.</strong> Visibility, intervention, session health, approvals, failures, and costs need a control layer.</div>
-          <div class="principle"><strong>Cost is an operating discipline.</strong> Use routing, cheap-first defaults, session narrowing, and central spend tracking.</div>
-          <div class="principle"><strong>Memory belongs in systems, not just context windows.</strong> Externalize durable state into docs, projects, and structured files.</div>
-          <div class="principle"><strong>Autonomy should expand only where trust has been earned.</strong> Start bounded, prove leverage, then widen scope deliberately.</div>
-          <div class="principle"><strong>Targeted leverage beats universal rollout.</strong> This model is strongest in coordination-heavy workflows with clear owners and repeatable patterns.</div>
+          <div class="principle"><strong>Visibility over black boxes.</strong> If the work is distributed across agents, operators need to be able to see what is happening.</div>
+          <div class="principle"><strong>Specialization over one giant agent.</strong> Split roles where it creates clarity, control, and better handoffs.</div>
+          <div class="principle"><strong>Autonomy within boundaries.</strong> Agents can move work forward independently, but not without guardrails.</div>
+          <div class="principle"><strong>Human review where risk matters.</strong> Sensitive actions, merges, external sends, and permission changes should stay gated.</div>
+          <div class="principle"><strong>Cost-aware by design.</strong> Routing, narrow contexts, and spend tracking should be built in from the start.</div>
+          <div class="principle"><strong>Fit into existing workflows.</strong> Slack, Telegram, GitHub, and adjacent systems should be part of the operating model, not afterthoughts.</div>
+          <div class="principle"><strong>Start narrow, scale carefully.</strong> Prove leverage in selected workflows before broadening autonomy.</div>
         </div>
+      </section>
+
+      <section id="closing">
+        <div class="tag green">13. Closing takeaway</div>
+        <h2>This is not a chatbot rollout</h2>
+        <p>This is an operating model for selected workflows. The point is to increase leverage without losing control: show the system working in miniature, then design the cleaner, safer, more governable version that a company context would require.</p>
       </section>
     </main>
   </div>

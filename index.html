@@ -468,6 +468,7 @@
           <a href="#cost-caution">A note of caution</a>
           <a href="#part2">Applying this to Memrise</a>
           <a href="#memrise-system">Translating the model into Memrise</a>
+          <a href="#memrise-agent-layer">Agent &amp; workflow layer</a>
           <a href="#memrise-agents">Candidate use cases / agents</a>
           <a href="#individual-accounts">Why individual accounts</a>
           <a href="#pilot">Pilot with technical teams first</a>
@@ -814,10 +815,62 @@
         </div>
       </section>
 
+      <section id="memrise-agent-layer">
+        <div class="tag gold">6a. Agent &amp; Workflow Layer</div>
+        <h2>Where AI starts doing real work inside the company</h2>
+        <p>This layer sits between the visible user experience and the platform and data foundations. It is the execution layer where requests are processed, workflows are advanced, and repeatable tasks are carried out.</p>
+        <p>In practical terms, this is where internal agents, automations, and workflow tools live. It is the layer that takes <span class="hl">intent</span>, <span class="hl">context</span>, and <span class="hl">business rules</span> and turns them into action.</p>
+        <p>Some of that action is operational: triaging customer service tickets, preparing KPI summaries, monitoring competitors, or supporting hiring workflows. Some of it is product-facing: synthesising learner insights, analysing experiments, evaluating prompts, or identifying opportunities for learning intervention. Some of it is intelligence work: connecting signals across the organisation, spotting patterns early, and helping leadership see what matters.</p>
+        <div class="callout"><strong>The architectural move here is to split this layer into three distinct domains:</strong> Operational Agents, Product Agents, and Intelligence Agents.</div>
+        <div class="grid-three" style="margin-top:16px; align-items:start;">
+          <div class="card">
+            <h3>Operational Agents</h3>
+            <p>These agents help the company run more efficiently. Their value comes from workflow acceleration, consistency, and reduced manual overhead.</p>
+            <ul>
+              <li>customer service ticket triage</li>
+              <li>meeting summarisation and action capture</li>
+              <li>competitor monitoring</li>
+              <li>revenue and KPI reporting</li>
+              <li>CRM support and pipeline hygiene</li>
+              <li>hiring and people-ops workflows</li>
+            </ul>
+            <p class="muted" style="margin-top:12px;"><strong>Core question:</strong> where can repetitive internal work be reduced without losing reviewability?</p>
+          </div>
+          <div class="card">
+            <h3>Product Agents</h3>
+            <p>These agents sit closer to the learner and the product itself. Their value comes from improving product intelligence, experimentation, and learner impact rather than just internal efficiency.</p>
+            <ul>
+              <li>content generation workflows</li>
+              <li>experiment analysis</li>
+              <li>user insight synthesis</li>
+              <li>prompt testing and evaluation</li>
+              <li>learning intervention recommendations</li>
+              <li>support-to-product signal extraction</li>
+            </ul>
+            <p class="muted" style="margin-top:12px;"><strong>Core question:</strong> how can AI help Memrise make better product decisions and improve learning outcomes?</p>
+          </div>
+          <div class="card">
+            <h3>Intelligence Agents</h3>
+            <p>These agents improve organisational awareness. They connect signals across functions, surface patterns, and turn fragmented information into more usable strategic understanding.</p>
+            <ul>
+              <li>cross-functional insight synthesis</li>
+              <li>strategic and market monitoring</li>
+              <li>decision-support brief preparation</li>
+              <li>knowledge and memory agents</li>
+              <li>pattern detection across teams and systems</li>
+              <li>leadership-facing synthesis</li>
+            </ul>
+            <p class="muted" style="margin-top:12px;"><strong>Core question:</strong> what is changing, what patterns matter, and what should the company pay attention to?</p>
+          </div>
+        </div>
+        <p style="margin-top:16px;">Making this layer explicit stops “AI strategy” from collapsing into a bag of internal bots. A CRM assistant, a learner intervention recommender, and a strategy synthesis agent may all be called AI agents, but they serve different purposes, have different owners, and should be judged by different metrics.</p>
+        <div class="callout"><strong>Why this matters:</strong> it creates a more mature conversation about priorities, value, governance, and where AI should — or should not — be applied inside Memrise.</div>
+      </section>
+
       <section id="memrise-agents">
         <div class="tag green">7. First candidate agents for Memrise</div>
-        <h2>Start with agents that reduce operational drag, improve visibility, and fit naturally into reviewable workflows</h2>
-        <p>The strongest first-wave candidates are not the flashiest ones. They are the ones that sit in repeatable workflows, produce measurable value, and still allow for <span class="hl">human review</span> where needed.</p>
+        <h2>Start with operational agents that reduce drag, improve visibility, and fit naturally into reviewable workflows</h2>
+        <p>The strongest first-wave candidates are not the flashiest ones. They are the ones that sit in repeatable workflows, produce measurable value, and still allow for <span class="hl">human review</span> where needed. These are mostly <span class="hl">operational agents</span>, because that is usually the cleanest place to start.</p>
         <div class="grid-two" style="margin-top:16px;">
           <div class="card">
             <div class="agent-head">

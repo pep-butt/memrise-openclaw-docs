@@ -815,37 +815,176 @@
         <p>In practical terms, this is where internal agents, automations, and workflow tools live. It is the layer that takes <span class="hl">intent</span>, <span class="hl">context</span>, and <span class="hl">business rules</span> and turns them into action.</p>
         <p>Some of that action is operational: triaging customer service tickets, preparing KPI summaries, monitoring competitors, or supporting hiring workflows. Some of it is product-facing: synthesising learner insights, analysing experiments, evaluating prompts, or identifying opportunities for learning intervention. Some of it is intelligence work: connecting signals across the organisation, spotting patterns early, and helping leadership see what matters.</p>
         <div class="callout"><strong>The architectural move here is to split this layer into three distinct domains:</strong> Operational Agents, Product Agents, and Intelligence Agents. That keeps efficiency work, product-improvement work, and strategic sensing from being blurred into one generic "AI assistant" bucket.</div>
-        <div class="grid-two" style="margin-top:16px; align-items:start;">
+        <div style="display:grid; gap:18px; margin-top:16px;">
           <div class="card">
             <div class="agent-head">
               <span class="agent-avatar badge" aria-hidden="true">⚙️</span>
               <div>
-                <h3>Operational Agents</h3>
+                <h3>Operational Agent Team</h3>
                 <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
               </div>
             </div>
             <p><strong>The broadest and safest place to start:</strong> these agents reduce internal drag, support repeatable workflows, and keep work reviewable.</p>
+            <div class="grid-two" style="margin-top:14px;">
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head">
+                  <span class="agent-avatar badge" aria-hidden="true">🎧</span>
+                  <div>
+                    <h4>Customer Service Agent</h4>
+                    <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+                  </div>
+                </div>
+                <ul>
+                  <li>triages inbound support requests</li>
+                  <li>classifies urgency, risk, and intent</li>
+                  <li>prepares draft responses and summaries</li>
+                  <li>surfaces recurring product pain points</li>
+                </ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> Zendesk, Slack, help content, support reporting loops.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head">
+                  <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Workflow planning agent avatar" />
+                  <div>
+                    <h4>Workflow / Planning Agent</h4>
+                    <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+                  </div>
+                </div>
+                <ul>
+                  <li>scopes incoming requests</li>
+                  <li>shapes work into projects or task lists</li>
+                  <li>routes work to the right systems or agents</li>
+                  <li>keeps progress and priorities visible</li>
+                </ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> Slack, task systems, docs, workflow tooling.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head">
+                  <span class="agent-avatar badge" aria-hidden="true">📈</span>
+                  <div>
+                    <h4>Revenue and KPI Reporting Agent</h4>
+                    <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+                  </div>
+                </div>
+                <ul>
+                  <li>pulls recurring numbers together</li>
+                  <li>prepares summaries and commentary</li>
+                  <li>highlights movement and anomalies</li>
+                  <li>turns dashboards into usable narrative</li>
+                </ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> reporting systems, finance inputs, internal dashboards.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head">
+                  <span class="agent-avatar badge" aria-hidden="true">🤝</span>
+                  <div>
+                    <h4>CRM / Commercial Ops Agent</h4>
+                    <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+                  </div>
+                </div>
+                <ul>
+                  <li>supports account notes and follow-ups</li>
+                  <li>maintains partner and pipeline context</li>
+                  <li>improves hygiene in commercial workflows</li>
+                  <li>reduces admin sprawl and dropped threads</li>
+                </ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> CRM tools, Slack, notes, commercial workflow systems.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none; grid-column:1 / -1;">
+                <div class="agent-head">
+                  <span class="agent-avatar badge" aria-hidden="true">🧑‍💼</span>
+                  <div>
+                    <h4>HR / Hiring Agent</h4>
+                    <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+                  </div>
+                </div>
+                <ul>
+                  <li>supports structured hiring workflows</li>
+                  <li>prepares candidate summaries</li>
+                  <li>helps coordinate interviews and follow-up</li>
+                  <li>keeps people-ops workflows consistent</li>
+                </ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> hiring tools, calendars, internal docs, interview workflows.</p>
+              </div>
+            </div>
           </div>
+
           <div class="card">
             <div class="agent-head">
               <span class="agent-avatar badge" aria-hidden="true">🧪</span>
               <div>
-                <h3>Product Agents</h3>
+                <h3>Product Agent Team</h3>
                 <p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p>
               </div>
             </div>
             <p><strong>Closer to the learner and the product itself:</strong> these agents support experimentation, product insight, content workflows, and learning quality.</p>
+            <div class="grid-two" style="margin-top:14px;">
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">✍️</span><div><h4>Content Generation Agent</h4><p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>assists with producing and structuring learning content</li><li>creates variants within quality boundaries</li><li>supports faster content workflows</li><li>keeps human quality review in the loop</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> content systems, prompt tooling, review workflows.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🧬</span><div><h4>Experiment Analysis Agent</h4><p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>summarises test results</li><li>spots patterns and anomalies</li><li>helps teams interpret outcomes faster</li><li>supports evidence-based iteration</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> experimentation data, analytics, product reporting.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🔍</span><div><h4>User Insight Synthesis Agent</h4><p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>pulls together support, research, and behavioural signals</li><li>turns fragmented inputs into product insight</li><li>surfaces themes worth acting on</li><li>reduces fragmentation across teams</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> support signals, research inputs, analytics, product docs.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🪄</span><div><h4>Prompt Testing Agent</h4><p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>evaluates prompt variants</li><li>compares output quality and consistency</li><li>supports tuning of AI-driven experiences</li><li>helps standardise prompt quality</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> prompt tooling, evaluation workflows, product experiments.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none; grid-column:1 / -1;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🎯</span><div><h4>Learning Intervention Agent</h4><p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>identifies where learners may need more support</li><li>recommends repetition, correction, or alternative explanation</li><li>uses learning signals and usage patterns</li><li>supports more personalised learner outcomes</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> learner data, product signals, intervention logic, content systems.</p>
+              </div>
+            </div>
           </div>
+
           <div class="card">
             <div class="agent-head">
               <span class="agent-avatar badge" aria-hidden="true">🧠</span>
               <div>
-                <h3>Intelligence Agents</h3>
+                <h3>Intelligence Agent Team</h3>
                 <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
               </div>
             </div>
             <p><strong>Less about a single workflow and more about organisational awareness:</strong> these agents connect signals, surface patterns, and support strategic understanding.</p>
+            <div class="grid-two" style="margin-top:14px;">
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🕵️</span><div><h4>Competitor Monitoring Agent</h4><p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p></div></div>
+                <ul><li>tracks launches, positioning shifts, and product moves</li><li>turns external scanning into digestible updates</li><li>keeps strategic awareness current</li><li>reduces manual monitoring burden</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> market sources, web research, reporting docs.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🧩</span><div><h4>Cross-Functional Insight Agent</h4><p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p></div></div>
+                <ul><li>connects patterns across support, product, growth, and research</li><li>surfaces themes worth acting on</li><li>helps Memrise see across silos</li><li>improves shared organisational understanding</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> internal reports, support signals, product docs, research outputs.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">📘</span><div><h4>Strategic Briefing Agent</h4><p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p></div></div>
+                <ul><li>prepares decision briefs and trade-off summaries</li><li>gathers context for leadership discussions</li><li>supports cleaner strategic conversations</li><li>reduces time spent assembling background material</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> planning docs, internal context, leadership inputs.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🗂️</span><div><h4>Knowledge and Memory Agent</h4><p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p></div></div>
+                <ul><li>organises prior decisions and internal docs</li><li>keeps recurring context accessible</li><li>supports institutional memory</li><li>reduces re-learning of old lessons</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> docs, knowledge bases, decision logs, memory systems.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none; grid-column:1 / -1;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🪞</span><div><h4>Leadership Synthesis Agent</h4><p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p></div></div>
+                <ul><li>synthesises signals for leadership visibility</li><li>turns noise into clear narrative</li><li>supports prioritisation and pattern detection</li><li>helps decision-makers focus on what matters</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> reporting layers, cross-team updates, planning context.</p>
+              </div>
+            </div>
           </div>
+
           <div class="card">
             <div class="agent-head">
               <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="Development agent team avatar" />
@@ -855,343 +994,33 @@
               </div>
             </div>
             <p><strong>A specialised execution cluster for engineering work:</strong> this is where scoped technical work gets built, reviewed, checked, and handed off cleanly.</p>
-          </div>
-        </div>
-
-        <h3 style="margin-top:22px;">Operational agent team</h3>
-        <div class="grid-two" style="margin-top:14px;">
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🎧</span>
-              <div>
-                <h4>Customer Service Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
+            <div class="grid-two" style="margin-top:14px;">
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="Technical delivery agent avatar" /><div><h4>Technical Delivery Agent</h4><p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>picks up scoped work from GitHub Projects</li><li>breaks work into implementation steps</li><li>writes and refines code</li><li>prototypes features quickly</li><li>progresses tasks through execution</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> GitHub, repos, coding agents, CI.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">✅</span><div><h4>Code Review / QA Agent</h4><p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>reviews output for correctness and completeness</li><li>checks for regressions or risky changes</li><li>supports PR review and quality assurance</li><li>surfaces issues before handoff or production</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> PRs, QA flows, CI signals, test outputs.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🗺️</span><div><h4>Product Planning Agent</h4><p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>translates requests into technical tasks</li><li>shapes requirements and acceptance criteria</li><li>prepares project structures and task breakdowns</li><li>improves handoff between product and engineering</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> GitHub Projects, planning docs, briefs, task systems.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">🔐</span><div><h4>Security / Architecture Review Agent</h4><p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>flags risky implementation choices</li><li>checks for obvious security, permission, or workflow concerns</li><li>supports architectural consistency</li><li>helps maintain standards as agentic delivery expands</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> architecture docs, security review loops, repos, workflow standards.</p>
+              </div>
+              <div class="card" style="background:var(--bg); box-shadow:none; grid-column:1 / -1;">
+                <div class="agent-head"><span class="agent-avatar badge" aria-hidden="true">📝</span><div><h4>Documentation / Handoff Agent</h4><p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p></div></div>
+                <ul><li>prepares setup notes, change summaries, and handover docs</li><li>keeps work understandable for humans coming in afterward</li><li>reduces the risk of output becoming opaque</li><li>supports maintainability over time</li></ul>
+                <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> docs, repos, PR notes, setup guides, handoff workflows.</p>
               </div>
             </div>
-            <ul>
-              <li>triages inbound support requests</li>
-              <li>classifies urgency, risk, and intent</li>
-              <li>prepares draft responses and summaries</li>
-              <li>surfaces recurring product pain points</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> Zendesk, Slack, help content, support reporting loops.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <img class="agent-avatar" src="assets/pep-avatar.jpg" alt="Workflow planning agent avatar" />
-              <div>
-                <h4>Workflow / Planning Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>scopes incoming requests</li>
-              <li>shapes work into projects or task lists</li>
-              <li>routes work to the right systems or agents</li>
-              <li>keeps progress and priorities visible</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> Slack, task systems, docs, workflow tooling.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">📈</span>
-              <div>
-                <h4>Revenue and KPI Reporting Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>pulls recurring numbers together</li>
-              <li>prepares summaries and commentary</li>
-              <li>highlights movement and anomalies</li>
-              <li>turns dashboards into usable narrative</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> reporting systems, finance inputs, internal dashboards.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🤝</span>
-              <div>
-                <h4>CRM / Commercial Ops Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>supports account notes and follow-ups</li>
-              <li>maintains partner and pipeline context</li>
-              <li>improves hygiene in commercial workflows</li>
-              <li>reduces admin sprawl and dropped threads</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> CRM tools, Slack, notes, commercial workflow systems.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🧑‍💼</span>
-              <div>
-                <h4>HR / Hiring Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>supports structured hiring workflows</li>
-              <li>prepares candidate summaries</li>
-              <li>helps coordinate interviews and follow-up</li>
-              <li>keeps people-ops workflows consistent</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> hiring tools, calendars, internal docs, interview workflows.</p>
-          </div>
-        </div>
-
-        <h3 style="margin-top:22px;">Product agent team</h3>
-        <div class="grid-two" style="margin-top:14px;">
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">✍️</span>
-              <div>
-                <h4>Content Generation Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>assists with producing and structuring learning content</li>
-              <li>creates variants within quality boundaries</li>
-              <li>supports faster content workflows</li>
-              <li>keeps human quality review in the loop</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> content systems, prompt tooling, review workflows.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🧬</span>
-              <div>
-                <h4>Experiment Analysis Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>summarises test results</li>
-              <li>spots patterns and anomalies</li>
-              <li>helps teams interpret outcomes faster</li>
-              <li>supports evidence-based iteration</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> experimentation data, analytics, product reporting.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🔍</span>
-              <div>
-                <h4>User Insight Synthesis Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>pulls together support, research, and behavioural signals</li>
-              <li>turns fragmented inputs into product insight</li>
-              <li>surfaces themes worth acting on</li>
-              <li>reduces fragmentation across teams</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> support signals, research inputs, analytics, product docs.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🪄</span>
-              <div>
-                <h4>Prompt Testing Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>evaluates prompt variants</li>
-              <li>compares output quality and consistency</li>
-              <li>supports tuning of AI-driven experiences</li>
-              <li>helps standardise prompt quality</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> prompt tooling, evaluation workflows, product experiments.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🎯</span>
-              <div>
-                <h4>Learning Intervention Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>identifies where learners may need more support</li>
-              <li>recommends repetition, correction, or alternative explanation</li>
-              <li>uses learning signals and usage patterns</li>
-              <li>supports more personalised learner outcomes</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> learner data, product signals, intervention logic, content systems.</p>
-          </div>
-        </div>
-
-        <h3 style="margin-top:22px;">Intelligence agent team</h3>
-        <div class="grid-two" style="margin-top:14px;">
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🕵️</span>
-              <div>
-                <h4>Competitor Monitoring Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>tracks launches, positioning shifts, and product moves</li>
-              <li>turns external scanning into digestible updates</li>
-              <li>keeps strategic awareness current</li>
-              <li>reduces manual monitoring burden</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> market sources, web research, reporting docs.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🧩</span>
-              <div>
-                <h4>Cross-Functional Insight Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>connects patterns across support, product, growth, and research</li>
-              <li>surfaces themes worth acting on</li>
-              <li>helps Memrise see across silos</li>
-              <li>improves shared organisational understanding</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> internal reports, support signals, product docs, research outputs.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">📘</span>
-              <div>
-                <h4>Strategic Briefing Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>prepares decision briefs and trade-off summaries</li>
-              <li>gathers context for leadership discussions</li>
-              <li>supports cleaner strategic conversations</li>
-              <li>reduces time spent assembling background material</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> planning docs, internal context, leadership inputs.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🗂️</span>
-              <div>
-                <h4>Knowledge and Memory Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>organises prior decisions and internal docs</li>
-              <li>keeps recurring context accessible</li>
-              <li>supports institutional memory</li>
-              <li>reduces re-learning of old lessons</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> docs, knowledge bases, decision logs, memory systems.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🪞</span>
-              <div>
-                <h4>Leadership Synthesis Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 1 / Tier 2 · <strong>Escalate:</strong> Tier 3</p>
-              </div>
-            </div>
-            <ul>
-              <li>synthesises signals for leadership visibility</li>
-              <li>turns noise into clear narrative</li>
-              <li>supports prioritisation and pattern detection</li>
-              <li>helps decision-makers focus on what matters</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> reporting layers, cross-team updates, planning context.</p>
-          </div>
-        </div>
-
-        <h3 style="margin-top:22px;">Development agent team</h3>
-        <div class="grid-two" style="margin-top:14px;">
-          <div class="card">
-            <div class="agent-head">
-              <img class="agent-avatar" src="assets/bmo-avatar.jpg" alt="Technical delivery agent avatar" />
-              <div>
-                <h4>Technical Delivery Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>picks up scoped work from GitHub Projects</li>
-              <li>breaks work into implementation steps</li>
-              <li>writes and refines code</li>
-              <li>prototypes features quickly</li>
-              <li>progresses tasks through execution</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> GitHub, repos, coding agents, CI.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">✅</span>
-              <div>
-                <h4>Code Review / QA Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>reviews output for correctness and completeness</li>
-              <li>checks for regressions or risky changes</li>
-              <li>supports PR review and quality assurance</li>
-              <li>surfaces issues before handoff or production</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> PRs, QA flows, CI signals, test outputs.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🗺️</span>
-              <div>
-                <h4>Product Planning Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>translates requests into technical tasks</li>
-              <li>shapes requirements and acceptance criteria</li>
-              <li>prepares project structures and task breakdowns</li>
-              <li>improves handoff between product and engineering</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> GitHub Projects, planning docs, briefs, task systems.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">🔐</span>
-              <div>
-                <h4>Security / Architecture Review Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>flags risky implementation choices</li>
-              <li>checks for obvious security, permission, or workflow concerns</li>
-              <li>supports architectural consistency</li>
-              <li>helps maintain standards as agentic delivery expands</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> architecture docs, security review loops, repos, workflow standards.</p>
-          </div>
-          <div class="card">
-            <div class="agent-head">
-              <span class="agent-avatar badge" aria-hidden="true">📝</span>
-              <div>
-                <h4>Documentation / Handoff Agent</h4>
-                <p class="muted"><strong>Default:</strong> Tier 2 / Tier 3 · <strong>Escalate:</strong> Tier 4</p>
-              </div>
-            </div>
-            <ul>
-              <li>prepares setup notes, change summaries, and handover docs</li>
-              <li>keeps work understandable for humans coming in afterward</li>
-              <li>reduces the risk of output becoming opaque</li>
-              <li>supports maintainability over time</li>
-            </ul>
-            <p class="muted" style="margin-top:12px;"><strong>Systems touched:</strong> docs, repos, PR notes, setup guides, handoff workflows.</p>
           </div>
         </div>
         <p style="margin-top:16px;">Making this layer explicit stops “AI strategy” from collapsing into a bag of internal bots. A CRM assistant, a learner intervention recommender, and a strategy synthesis agent may all be called AI agents, but they serve different purposes, have different owners, and should be judged by different metrics.</p>
